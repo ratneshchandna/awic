@@ -27,6 +27,15 @@ namespace AWIC
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            // add general css
+            bundles.Add(new StyleBundle("~/bundles/css").Include(
+                      "~/Content/general.css"));
+            // add flexslider js
+            bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
+                      "~/Scripts/jquery.flexslider-min.js",
+                      "~/Scripts/scripts.js"));
+            // add scripts.js
+
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = true;
