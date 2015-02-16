@@ -1,0 +1,19 @@
+syntax: glob
+*.suo
+*.user
+*.dgml
+*.mdf
+*.ldf
+*.cache
+*.[Pp]ublish.xml
+*.tmp
+*.swp
+Migrations/*_*
+Logs/
+obj/
+[Bb]in
+Debug/
+Release/
+Uploads/
+App_Data/
+Samples/
