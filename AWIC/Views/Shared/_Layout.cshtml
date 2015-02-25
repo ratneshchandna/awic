@@ -24,121 +24,32 @@
             <!-- Navigation -->
             <nav>
                 <ul>
-                    <li class="active">
-                        <a href="@Url.Action("Index","Home")">Home</a>
-                    </li>
-                    <li>
-                        <!--a href="about.html">Our causes</a-->
-                        <a href="#">Calendar</a>
-                        <!--ul>
-                            <li><a href="">Drop down example 1</a></li>
-                            <li><a href="">Drop down example 2</a></li>
-                            <li><a href="">Drop down example 3</a></li>
-                            <li><a href="">Drop down example 4</a></li>
-                            <li><a href="">Drop down example 5</a></li>
-                            <li><a href="">Drop down example 6</a></li>
-                        </ul-->
-                    </li>
-                    <li>
-                        <!--a href="events.html">Events</a-->
-                        <a href="#">Gallery</a>
-                    </li>
-                    <li>
-                        <!--a href="blog.html">Blog</!--a-->
-                        <a href="#">Join Our Members Club</a>
-                    </li>
-                    <li>
-                        <!--a href="donate.html">Donate</a-->
-                        <a href="#">Volunteer</a>
-                    </li>
-                    <li>
-                        <!--a href="gallery.html">Gallery</a-->
-                        <a href="#">Donate</a>
-                    </li>
-                    <!--li>
-                        <a href="contacts.html">Contacts</a>
-                    </li-->
+                    <li class="active"><a href="@Url.Action("Index","Home")">Home</a></li>
+                    <li><a href="#">Calendar</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Join Our Members Club</a></li>
+                    <li><a href="#">Volunteer</a></li>
+                    <li><a href="#">Donate</a></li>
                 </ul>
             </nav>
             <div id="mobile-button"></div>
             <div id="mobile-menu">
                 <ul>
                     <li class="active"><a href="@Url.Action("Index","Home")">Home</a></li>
-                    <li>
-                        <!--a href="about.html">Our causes</a-->
-                        <a href="#">Calendar</a>
-                        <!--ul>
-                            <li><a href="">Drop down example 1</a></li>
-                            <li><a href="">Drop down example 2</a></li>
-                            <li><a href="">Drop down example 3</a></li>
-                            <li><a href="">Drop down example 4</a></li>
-                            <li><a href="">Drop down example 5</a></li>
-                            <li><a href="">Drop down example 6</a></li>
-                        </ul-->
-                    </li>
-                    <li>
-                        <!--a href="events.html">Events</a-->
-                        <a href="#">Gallery</a>
-                    </li>
-                    <li>
-                        <!--a href="blog.html">Blog</!--a-->
-                        <a href="#">Join Our Members Club</a>
-                    </li>
-                    <li>
-                        <!--a href="donate.html">Donate</a-->
-                        <a href="#">Volunteer</a>
-                    </li>
-                    <li>
-                        <!--a href="gallery.html">Gallery</a-->
-                        <a href="#">Donate</a>
-                    </li>
-                    <!--li>
-                        <a href="contacts.html">Contacts</a>
-                    </li-->
+                    <li><a href="#">Calendar</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Join Our Members Club</a></li>
+                    <li><a href="#">Volunteer</a></li>
+                    <li><a href="#">Donate</a></li>
                 </ul>
             </div>
         </div>
     </header>
-    <!--div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div-->
     @RenderBody()
-    <!--div class="container body-content">    
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div-->
     <footer>
         <div class="line">
             <div class="center cf">
                 <div class="links">
-                    <!--
-                    <a href="index.html">Home</a>
-                    <a href="about.html">Our causes</a>
-                    <a href="events.html">Events</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="donate.html">Donate</a>
-                    <a href="gallery.html">Gallery</a>
-                    <a href="contacts.html">Contacts</a>
-                    -->
                     <a href="#">About Us</a>
                     <a href="#">Funders</a>
                     <a href="#">Sponsors</a>
@@ -148,50 +59,6 @@
                 <div class="copy">© @DateTime.Now.Year  All rights reserved. <span>AWIC</span> </div>
             </div>
         </div>
-        <!--div class="footer">
-            <div class="center cf">
-                <div class="col-4">
-                    <h3>Company information</h3>
-                    <p>
-                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                        The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here.
-                    </p>
-                    <div class="social">
-                        <a href="#" class="twitter"></a>
-                        <a href="#" class="facebook"></a>
-                        <a href="#" class="google"></a>
-                        <a href="#" class="flickr"></a>
-                        <a href="#" class="youtube"></a>
-                    </div>
-                </div>
-                <div class="col-4 twits">
-                    <h3>Latest twits</h3>
-                    <div class="twit">
-                        <p>
-                            It is a long established fact that a reader will be distracted by
-                            the readable content of a page when looking at its layout.
-                        </p>
-                        <div class="name">&#64;Donacion <span>2 hours ago</span></div>
-                    </div>
-                    <div class="twit">
-                        <p>
-                            It is a long established fact that a reader will be distracted by
-                            the readable content of a page when looking at its layout.
-                        </p>
-                        <div class="name">&#64;Donacion <span>2 hours ago</span></div>
-                    </div>
-                </div>
-                <div class="col-4 contacts">
-                    <h3>Contacts</h3>
-                    <div class="phone">8 800 <span>524 90 26</span></div>
-                    <div class="adress">
-                        <span>United States</span>
-                        New York, Wall st. 25/1
-                    </div>
-                    <div class="email">info@donacion.cm</div>
-                </div>
-            </div>
-        </div-->
     </footer>
 
     @Scripts.Render("~/bundles/jquery")
