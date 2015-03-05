@@ -8,7 +8,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace AWIC.DAL
 {
-    public class AWICDbContext : IdentityDbContext<ApplicationUser>
+    public class AWICDbContext : IdentityDbContext<User>
     {
         public AWICDbContext()
             : base("AWICDBConnection", throwIfV1Schema: false)
