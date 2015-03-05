@@ -1,14 +1,5 @@
 "use strict";
 
-/* DROP MENU */
-$('#mobile-menu > ul > li').click(function(){
-    $(this).children('ul').toggle({display: "toggle"});
-});
-
-$('#mobile-button').click(function(){
-    $('#mobile-menu').toggle({display: "toggle"});
-});
-
 function InitHome() {
 
     $('#slider').flexslider({

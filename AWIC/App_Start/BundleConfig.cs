@@ -28,13 +28,26 @@ namespace AWIC
                       "~/Content/site.css"));
 
             // add general css
-            bundles.Add(new StyleBundle("~/bundles/css").Include(
+            bundles.Add(new StyleBundle("~/bundles/generalcss").Include(
                       "~/Content/general.css"));
             // add flexslider js
-            bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
+            // add scripts.js
+            bundles.Add(new ScriptBundle("~/bundles/sliderscripts").Include(
                       "~/Scripts/jquery.flexslider-min.js",
                       "~/Scripts/scripts.js"));
-            // add scripts.js
+            bundles.Add(new StyleBundle("~/bundles/hbcalcss").Include(
+                      "~/Content/jquery.event.calendar.css",
+                      "~/Content/green.event.calendar.css"));
+            bundles.Add(new ScriptBundle("~/bundles/hbcalscripts").Include(
+                      "~/Scripts/jquery.event.calendar.js", 
+                      "~/Scripts/jquery.event.calendar.en.js"));
+            bundles.Add(new StyleBundle("~/bundles/photoswipecss").Include(
+                "~/Content/photoswipe.css",
+                "~/Content/default-skin.css"));
+            bundles.Add(new ScriptBundle("~/bundles/photoswipescripts").Include(
+                      "~/Scripts/photoswipe.js",
+                      "~/Scripts/photoswipe-ui-default.js",
+                      "~/Scripts/initPhotoSwipe.js"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

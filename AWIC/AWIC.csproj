@@ -159,11 +159,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DAL\AWICDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -171,8 +175,33 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\default-skin.css" />
     <Content Include="Content\general.css" />
+    <Content Include="Content\green.event.calendar.css" />
+    <Content Include="Content\images\arco_logo.png" />
     <Content Include="Content\images\awic_logo.png" />
+    <Content Include="Content\images\Canadian Flag.png" />
+    <Content Include="Content\images\community.png" />
+    <Content Include="Content\images\cot_logo.gif" />
+    <Content Include="Content\images\dawn_infotek _logo.jpg" />
+    <Content Include="Content\images\default-skin.png" />
+    <Content Include="Content\images\default-skin.svg" />
+    <Content Include="Content\images\goc_logo.jpg" />
+    <Content Include="Content\images\iconLoadingGreen.gif" />
+    <Content Include="Content\images\iconNext.png" />
+    <Content Include="Content\images\iconPrev.png" />
+    <Content Include="Content\images\left.png" />
+    <Content Include="Content\images\macroglobal_immigration_logo.gif" />
+    <Content Include="Content\images\menu.jpg" />
+    <Content Include="Content\images\omci_logo.png" />
+    <Content Include="Content\images\photo-search.png" />
+    <Content Include="Content\images\preloader.gif" />
+    <Content Include="Content\images\right.png" />
+    <Content Include="Content\images\seniors.png" />
+    <Content Include="Content\images\state_bank_of_india_logo.jpg" />
+    <Content Include="Content\images\x_logo.jpg" />
+    <Content Include="Content\jquery.event.calendar.css" />
+    <Content Include="Content\photoswipe.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -180,15 +209,20 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\initPhotoSwipe.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.event.calendar.en.js" />
+    <Content Include="Scripts\jquery.event.calendar.js" />
     <Content Include="Scripts\jquery.flexslider-min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\photoswipe-ui-default.js" />
+    <Content Include="Scripts\photoswipe.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\scripts.js" />
@@ -223,9 +257,25 @@
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\Settlement.cshtml" />
+    <Content Include="Views\Home\Community.cshtml" />
+    <Content Include="Views\Home\Seniors.cshtml" />
+    <Content Include="Views\Home\Other.cshtml" />
+    <Content Include="Views\Home\Funders.cshtml" />
+    <Content Include="Views\Home\Sponsors.cshtml" />
+    <Content Include="Views\Home\Careers.cshtml" />
+    <Content Include="Views\Gallery\Index.cshtml" />
+    <Content Include="Views\Event\Create.cshtml" />
+    <Content Include="Views\Event\Delete.cshtml" />
+    <Content Include="Views\Event\Details.cshtml" />
+    <Content Include="Views\Event\Edit.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\calendar\" />
+    <Folder Include="Content\flyers\" />
+    <Folder Include="Content\gallery\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

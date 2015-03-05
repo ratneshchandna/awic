@@ -6,20 +6,21 @@
 2. Header / header.top
 3. Control Nav / .flex-control-nav
 4. Slider / #slider
-5. Info / section.info
-6. Donate / section.donate
-7. Latest Donations / section.latest-donations
-8. How can you help / section.how-help
-9. News / section.news
-10. Bottom / section.bottom
-11. Footer / footer
-12. About Us / section.top-page-nav
-13. Management / section.management
-14. Organization Details / section.org-details
-15. Blog / section.blog
-16. Aside Blog / aside.blog
-17. Gallery / .gallery
-18. Contacts / section.contacts
+5. What We Do / About
+6. Info / section.info
+7. Donate / section.donate
+8. Latest Donations / section.latest-donations
+9. How can you help / section.how-help
+10. News / section.events
+11. Bottom / section.bottom
+12. Footer / footer
+13. About Us / section.top-page-nav
+14. Management / section.management
+15. Organization Details / section.org-details
+16. Blog / section.blog
+17. Aside Blog / aside.blog
+18. Gallery / .gallery
+19. Contacts / section.contacts
 -------------------------------------------------------------------*/
 /* Gradients / .gradient - elements.less
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
@@ -101,6 +102,15 @@
 }
 /* Reset Styles
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+.push {
+    height: 52px;
+}
 article,
 aside,
 details,
@@ -879,7 +889,7 @@ header.main #mobile-button {
   margin-top: -12px;
   width: 25px;
   height: 25px;
-  background: url("images/menu.jpg") no-repeat center;
+  background: url("/Content/images/menu.jpg") no-repeat center;
   background-size: 80%;
   cursor: pointer;
 }
@@ -977,36 +987,73 @@ header.main #mobile-menu ul ul li a {
 #slider .slides li img {
   width: 100.1%;
 }
-#slider .slides li .text1 {
-  width: 340px;
-  height: 64px;
+
+#slider .slides li .text1 {  
   position: absolute;
   bottom: 94px;
   font-family: 'Open Sans', 'sans-serif';
-  font-weight: 300;
-  font-size: 46px;
   color: #fff;
-  text-transform: uppercase;
+  text-transform:none;
   background: #7bae4e;
   text-align: center;
-  left: 50%;
   margin-left: -170px;
 }
-#slider .slides li .text2 {
-  width: 220px;
+
+#slider .slides li #settlementtext1 {
+    height: 50px;
+    width: 800px;
+    font-size: 38px;
+    font-weight: 350;
+    left: 29%;
+}
+
+#slider .slides li #communitytext1 {
+    height: 100px;
+    width: 800px;
+    font-size: 38px;
+    font-weight: 350;
+    left: 29%;
+}
+
+#slider .slides li #seniorstext1 {
+    height: 100px;
+    width: 800px;
+    font-size: 38px;
+    font-weight: 350;
+    left: 29%;
+}
+
+#slider .slides li .text2 a {
   height: 42px;
   line-height: 40px;
   position: absolute;
   bottom: 41px;
   font-family: 'Open Sans', 'sans-serif';
-  font-weight: 300;
   font-size: 23px;
   color: #fff;
   background: rgba(0, 0, 0, 0.73);
   text-align: center;
-  left: 50%;
   margin-left: -110px;
 }
+
+#slider .slides li #settlementtext2 a {
+    width: 540px;
+    font-weight: 350;
+    left: 35%;
+}
+
+#slider .slides li #communitytext2 a {
+    width: 540px;
+    font-weight: 350;
+    left: 35%;
+}
+
+#slider .slides li #seniorstext2 a {
+    width: 540px;
+    font-weight: 350;
+    left: 35%;
+}
+
 #slider .slides li.flex-active-slide {
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
@@ -1032,7 +1079,7 @@ header.main #mobile-menu ul ul li a {
   position: absolute;
   width: 42px;
   height: 42px;
-  background: rgba(0, 0, 0, 0.6) url("../css/images/left.png") no-repeat center;
+  background: rgba(0, 0, 0, 0.6) url("/Content/images/left.png") no-repeat center;
   -webkit-border-top-right-radius: 3px;
   -webkit-border-bottom-right-radius: 3px;
   -webkit-border-bottom-left-radius: 3px;
@@ -1056,13 +1103,13 @@ header.main #mobile-menu ul ul li a {
   transition: all 0.3s ease;
 }
 #slider .flex-direction-nav .flex-prev:hover {
-  background: rgba(0, 0, 0, 0.4) url("../css/images/left.png") no-repeat center;
+  background: rgba(0, 0, 0, 0.4) url("/Content/images/left.png") no-repeat center;
 }
 #slider .flex-direction-nav .flex-next {
   position: absolute;
   width: 42px;
   height: 42px;
-  background: rgba(0, 0, 0, 0.6) url("../css/images/right.png") no-repeat center;
+  background: rgba(0, 0, 0, 0.6) url("/Content/images/right.png") no-repeat center;
   -webkit-border-top-right-radius: 3px;
   -webkit-border-bottom-right-radius: 3px;
   -webkit-border-bottom-left-radius: 3px;
@@ -1086,12 +1133,63 @@ header.main #mobile-menu ul ul li a {
   transition: all 0.3s ease;
 }
 #slider .flex-direction-nav .flex-next:hover {
-  background: rgba(0, 0, 0, 0.4) url("../css/images/right.png") no-repeat center;
+  background: rgba(0, 0, 0, 0.4) url("/Content/images/right.png") no-repeat center;
 }
+
+/* What We Do / About
+/* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
+section.aboutwhatwedo {
+    /*background-color: #70a346;*/
+    background-color: #223115;
+    min-height: calc(100% - 98px);
+    height: auto !important;
+    height: calc(100% - 98px);
+    margin: 0 auto -52px;
+
+    font-family: 'PT Sans', 'sans-serif';
+    font-weight: normal;
+    font-size: 24px;
+    color: white;
+}
+
+section.aboutwhatwedo h2 {
+    margin: 0;
+    padding: 20px 0 10px 0;
+    font-weight: bold;
+    font-size: 30px;
+    text-transform: none;
+}
+
+section.aboutwhatwedo p {
+    margin: 0;
+    line-height: 1;
+}
+
+section.aboutwhatwedo .bold {
+    font-weight: bold;
+}
+
+section.aboutwhatwedo a {
+    color: white;
+    text-decoration: underline;
+}
+
+section.aboutwhatwedo ul li {
+    list-style: disc;
+}
+
+section.aboutwhatwedo .callus {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+    padding: 50px 0 0 0;
+}
+
 /* Info
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
 section.info {
-  padding: 72px 0;
+  background-color: #f65339;
 }
 section.info.i2 {
   padding: 40px 0 0;
@@ -1160,6 +1258,47 @@ section.info .col-4 p {
   font-size: 12px;
   color: #8c8d95;
   margin-bottom: 0;
+}
+section.info .col-8 {
+    padding: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+section.info .col-8:nth-child(3n+1) {
+  padding-right: 60px;
+}
+section.info .col-8:nth-child(3n+2) {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+section.info .col-8:nth-child(3n+3) {
+  padding-left: 60px;
+}
+section.info .col-8 h3 {
+  font-family: 'PT Sans', 'sans-serif';
+  font-weight: 700;
+  font-size: 18px;
+  color: white;
+  padding: 0;
+  text-transform: none;
+  margin-bottom: 10px;
+  text-align: center;
+}
+section.info .col-8 h3 a {
+    color: white;
+    text-decoration: underline;
+}
+section.info .col-8 p {
+  font-family: 'PT Sans', 'sans-serif';
+  font-size: 14px;
+  color: white;
+  margin-bottom: 0;
+  text-align: center;
+}
+section.info .col-8 p a {
+    color: white;
+    text-decoration: underline;
 }
 /* Donate
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
@@ -1680,30 +1819,50 @@ section.how-help .more:hover {
   -moz-box-shadow: 0 0px 0 0 #d8422a;
   box-shadow: 0 0px 0 0 #d8422a;
 }
-/* News
+/* Events
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
-section.news {
-  padding: 60px 0;
-  position: relative;
-  background: url("../css/images/map.png") no-repeat center right;
-  background-size: cover;
+section.events {
+    padding: 60px 0;
+    position: relative;
+    background-color: #76a84b;
+    color: white;
 }
-section.news h3 {
+section.events h2 {
+  font-family: 'Open Sans', 'sans-serif';
+  font-weight: 700;
+  color: #fff;
+  font-size: 58px;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.11);
+}
+section.events h3 {
   font-family: 'Open Sans', 'sans-serif';
   font-weight: 700;
   font-size: 30px;
-  color: #1e1d1c;
+  color: white;
   text-transform: none;
   margin-top: 0;
   margin-bottom: 25px;
 }
-section.news .news {
+section.events #eventlist {
+    margin: 0 0 0 100px;
+}
+section.events #eventlist table {
+    font-family: 'Open Sans', 'sans-serif';
+    font-weight: normal;
+    font-size: 24px;
+}
+section.events #eventlist table td {
+    padding: 0 30px 5px 0;
+}
+section.events .news {
   padding-right: 30px;
 }
-section.news .news section {
+section.events .news section {
   margin-bottom: 25px;
 }
-section.news .news section .time {
+section.events .news section .time {
   font-family: 'Open Sans', 'sans-serif';
   font-weight: 400;
   font-size: 12px;
@@ -1712,7 +1871,7 @@ section.news .news section .time {
   background: url("images/time.png") no-repeat center left;
   margin-bottom: 5px;
 }
-section.news .news section a {
+section.events .news section a {
   font-family: 'Open Sans', 'sans-serif';
   font-weight: 700;
   font-size: 16px;
@@ -1726,23 +1885,23 @@ section.news .news section a {
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
-section.news .news section a:hover {
+section.events .news section a:hover {
   color: #88c452;
 }
-section.news .news section p {
+section.events .news section p {
   font-family: 'Open Sans', 'sans-serif';
   font-weight: 400;
   font-size: 12px;
   color: #7c7c7b;
 }
-section.news .news .info {
+section.events .news .info {
   border-top: 1px solid #f0f0f0;
   border-bottom: 1px solid #f0f0f0;
   padding: 10px 0;
 }
-section.news .news .info .reply,
-section.news .news .info .comment,
-section.news .news .info .tag {
+section.events .news .info .reply,
+section.events .news .info .comment,
+section.events .news .info .tag {
   height: 16px;
   line-height: 16px;
   float: left;
@@ -1752,15 +1911,15 @@ section.news .news .info .tag {
   color: #999999;
   margin-right: 15px;
 }
-section.news .news .info .reply {
+section.events .news .info .reply {
   background: url("images/reply.png") no-repeat center left;
   padding-left: 22px;
 }
-section.news .news .info .comment {
+section.events .news .info .comment {
   background: url("images/chat.png") no-repeat center left;
   padding-left: 22px;
 }
-section.news .news .info .tag {
+section.events .news .info .tag {
   font-size: 11px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -1784,7 +1943,7 @@ section.news .news .info .tag {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
 }
-section.news .news .more {
+section.events .news .more {
   display: inline-block;
   width: 208px;
   height: 50px;
@@ -1820,15 +1979,15 @@ section.news .news .more {
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
-section.news .news .more:hover {
+section.events .news .more:hover {
   -webkit-box-shadow: 0 0px 0 0 #d8422a;
   -moz-box-shadow: 0 0px 0 0 #d8422a;
   box-shadow: 0 0px 0 0 #d8422a;
 }
-section.news .about {
+section.events .about {
   padding-right: 15px;
 }
-section.news .about img {
+section.events .about img {
   width: 100%;
   margin-bottom: 25px;
   -webkit-border-top-right-radius: 3px;
@@ -1847,24 +2006,24 @@ section.news .about img {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
 }
-section.news .about p {
+section.events .about p {
   color: #7c7c7b;
   font-size: 13px;
   line-height: 24px;
   font-family: 'Open Sans', 'sans-serif';
   font-weight: 400;
 }
-section.news .photos h3 {
+section.events .photos h3 {
   padding-left: 13px;
   position: relative;
 }
-section.news .photos h3 .control {
+section.events .photos h3 .control {
   display: block;
   position: absolute;
   top: 23%;
   right: 10px;
 }
-section.news .photos h3 .control span {
+section.events .photos h3 .control span {
   display: block;
   width: 24px;
   height: 24px;
@@ -1876,10 +2035,10 @@ section.news .photos h3 .control span {
   transition: all 0.3s ease;
   cursor: pointer;
 }
-section.news .photos h3 .control span:hover {
+section.events .photos h3 .control span:hover {
   background-color: #60893d;
 }
-section.news .photos h3 .control .left {
+section.events .photos h3 .control .left {
   -webkit-border-top-right-radius: 0;
   -webkit-border-bottom-right-radius: 0;
   -webkit-border-bottom-left-radius: 3px;
@@ -1901,7 +2060,7 @@ section.news .photos h3 .control .left {
   background-position: center;
   background-size: 45%;
 }
-section.news .photos h3 .control .right {
+section.events .photos h3 .control .right {
   -webkit-border-top-right-radius: 3px;
   -webkit-border-bottom-right-radius: 3px;
   -webkit-border-bottom-left-radius: 0;
@@ -1923,15 +2082,15 @@ section.news .photos h3 .control .right {
   background-position: center;
   background-size: 45%;
 }
-section.news #photo-slider {
+section.events #photo-slider {
   padding-left: 15px;
 }
-section.news #photo-slider a {
+section.events #photo-slider a {
   position: relative;
   display: block;
   overflow: hidden;
 }
-section.news #photo-slider a .mask {
+section.events #photo-slider a .mask {
   position: absolute;
   left: 0;
   top: 0;
@@ -1960,10 +2119,10 @@ section.news #photo-slider a .mask {
   -o-transition: opacity .3s ease;
   transition: opacity .3s ease;
 }
-section.news #photo-slider a:hover > .mask {
+section.events #photo-slider a:hover > .mask {
   opacity: 1;
 }
-section.news #photo-slider img {
+section.events #photo-slider img {
   width: 100%;
   -webkit-border-top-right-radius: 3px;
   -webkit-border-bottom-right-radius: 3px;
@@ -1981,15 +2140,91 @@ section.news #photo-slider img {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
 }
-section.news #photo-slider .col-6 {
+section.events #photo-slider .col-6 {
   width: 48%;
   margin-bottom: 10px;
 }
-section.news #photo-slider .col-6:nth-child(2n+1) {
+section.events #photo-slider .col-6:nth-child(2n+1) {
   padding-right: 5px;
 }
-section.news #photo-slider .col-6:nth-child(2n+2) {
+section.events #photo-slider .col-6:nth-child(2n+2) {
   padding-left: 5px;
+}
+/* Pics
+/* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
+section.pics {
+    padding: 67px 0;
+}
+section.pics h2 {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Open Sans', 'sans-serif';
+  font-weight: 700;
+  /*font-size: 37px;*/
+  font-size: 58px;
+  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.11);
+}
+section.pics .pics-container {
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+section.pics .pic {
+    display: inline;
+    height: 200px;
+    padding: 0 20px;
+}
+section.pics .button {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0 0 0;
+}
+section.pics .button a {
+    display: inline-block;
+    width: 390px;
+    height: 78px;
+    background: #f65339;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    -moz-border-radius-topleft: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    -webkit-box-shadow: 0 3px 0 0 #d8422a;
+    -moz-box-shadow: 0 3px 0 0 #d8422a;
+    box-shadow: 0 3px 0 0 #d8422a;
+    text-align: center;
+    line-height: 78px;
+    font-family: 'Open Sans', 'sans-serif';
+    font-weight: 700;
+    color: #fff;
+    font-size: 25px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+section.pics .button a:hover {
+  -webkit-box-shadow: 0 0px 0 0 #d8422a;
+  -moz-box-shadow: 0 0px 0 0 #d8422a;
+  box-shadow: 0 0px 0 0 #d8422a;
+}
+/* AWIC Gallery
+/* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
+section.awic-gallery {
+    min-height: calc(100% - 198px);
+    height: auto !important;
+    height: calc(100% - 198px);
+    margin: 0 auto -52px;
 }
 /* Bottom
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
@@ -3270,7 +3505,8 @@ aside.blog .video iframe {
 /* Gallery
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
 .gallery {
-  margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .gallery .menu {
   width: 100%;
@@ -3415,6 +3651,89 @@ aside.blog .video iframe {
   text-align: left;
   padding-left: 22px;
   padding-right: 15px;
+}
+.gallery .photos .col-4 {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  padding-left: 6px;
+  padding-right: 6px;
+  height: calc(1080px/3); /*Warning: 1080px depends on (.center) of .center*/
+  position: relative;
+  text-align: center;
+}
+.gallery .photos .col-4 .pics-container-wide {
+    position: absolute;
+    width: calc(100% - 12px); /*Warning: 12px depends on (padding-left + padding-right) of .gallery .photos .col-4*/
+    top: 50%;
+    transform: translate(0,-50%);
+}
+.gallery .photos .col-4 .pics-container-tall {
+    height: 100%;
+}
+.gallery .photos .col-4 div > a {
+  display: block;
+  position: relative;
+}
+.gallery .photos .col-4 div > a.a-tall {
+  height: 100%;
+}
+.gallery .photos .col-4 div > a:hover > .mask {
+  opacity: 1;
+}
+.gallery .photos .col-4 div > a .mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7) url("/Content/images/photo-search.png") no-repeat center;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -webkit-border-top-left-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -moz-border-radius-topleft: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  opacity: 0;
+  border: 2px solid #7bae4e;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: opacity .3s ease;
+  -moz-transition: opacity .3s ease;
+  -ms-transition: opacity .3s ease;
+  -o-transition: opacity .3s ease;
+  transition: opacity .3s ease;
+}
+.gallery .photos .col-4 div > a img {
+  width: 100%;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -webkit-border-top-left-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -moz-border-radius-topleft: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.gallery .photos .col-4 div > a img.img-tall {
+  width: auto;
+  height: 100%;
 }
 /* Contacts
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
@@ -3846,9 +4165,15 @@ section.donate-text .col-4 form #submit:hover {
     background-size: 80%;
     background-position: left center;
   }
-  header.main nav > ul > li > a {
+  /*header.main nav > ul > li > a {
     font-size: 14px;
     padding: 0 14px;
+  }*/
+  header.main nav {
+      display: none;
+  }
+  header.main #mobile-button {
+      display: block;
   }
   #slider {
     width: 800px;
@@ -3870,10 +4195,10 @@ section.donate-text .col-4 form #submit:hover {
     width: 350px;
     font-size: 20px;
   }
-  section.news .news .info .tag {
+  section.events .news .info .tag {
     margin-top: 10px;
   }
-  section.news .news .more {
+  section.events .news .more {
     width: 100%;
   }
   section.bottom .text {
@@ -3953,6 +4278,9 @@ section.donate-text .col-4 form #submit:hover {
   }
   .gallery .menu > a {
     font-size: 12px;
+  }
+  .gallery .photos .col-4 {
+  height: calc(800px/3); /*Warning: 800px depends on (.center) of .center*/
   }
   aside.blog .video {
     margin-bottom: 20px;
@@ -4041,37 +4369,37 @@ section.donate-text .col-4 form #submit:hover {
     padding: 0;
     margin-bottom: 20px;
   }
-  section.news .about,
-  section.news .news,
-  section.news .photos {
+  section.events .about,
+  section.events .news,
+  section.events .photos {
     padding: 0;
     width: 100%;
     margin-bottom: 20px;
   }
-  section.news .photos h3 {
+  section.events .photos h3 {
     padding-left: 0;
   }
-  section.news .news .more {
+  section.events .news .more {
     margin-top: 0;
   }
-  section.news .news .info .tag {
+  section.events .news .info .tag {
     margin-top: 0;
   }
-  section.news #photo-slider .col-6:nth-child(2n+1),
-  section.news #photo-slider .col-6:nth-child(2n+2),
-  section.news #photo-slider {
+  section.events #photo-slider .col-6:nth-child(2n+1),
+  section.events #photo-slider .col-6:nth-child(2n+2),
+  section.events #photo-slider {
     padding: 0;
   }
-  section.news #photo-slider .col-6:nth-child(2n+1) .flex-control-nav,
-  section.news #photo-slider .col-6:nth-child(2n+2) .flex-control-nav,
-  section.news #photo-slider .flex-control-nav {
+  section.events #photo-slider .col-6:nth-child(2n+1) .flex-control-nav,
+  section.events #photo-slider .col-6:nth-child(2n+2) .flex-control-nav,
+  section.events #photo-slider .flex-control-nav {
     display: none;
   }
-  section.news #photo-slider .col-6 {
+  section.events #photo-slider .col-6 {
     width: 33.333333333333%;
     padding: 0 5px !important;
   }
-  section.news .photos h3 .control {
+  section.events .photos h3 .control {
     right: 0;
   }
   section.bottom .col-4 {
@@ -4164,6 +4492,9 @@ section.donate-text .col-4 form #submit:hover {
   section.top-page-nav h2 {
     font-size: 35px;
   }
+  .gallery .photos .col-4 {
+  height: calc(500px/3); /*Warning: 500px depends on (.center) of .center*/
+  }
 }
 /* Mobile
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
@@ -4229,7 +4560,7 @@ section.donate-text .col-4 form #submit:hover {
   section.how-help .more {
     width: 100%;
   }
-  section.news #photo-slider .col-6 {
+  section.events #photo-slider .col-6 {
     width: 50%;
   }
   section.contacts .col-5 form #submit {
@@ -4263,6 +4594,9 @@ section.donate-text .col-4 form #submit:hover {
     width: 100%;
     border-right: 0;
     border-bottom: 1px solid #a8ca8a;
+  }
+  .gallery .photos .col-4 {
+  height: calc(260px/3); /*Warning: 260px depends on (.center) of .center*/
   }
   section.top-page-nav h2 {
     font-size: 30px;

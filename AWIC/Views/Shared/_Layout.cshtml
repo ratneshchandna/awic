@@ -2,16 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="description" content="AWIC">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AWIC">
+    <meta name="keywords" content="AWIC, non profit, new to Canada, seniors programs, services">
     <title>AWIC</title>
-    @Styles.Render("~/bundles/css")
-    @{
-        //Styles.Render("~/Content/css");
-        //Scripts.Render("~/bundles/modernizr");
-    }
+    @Styles.Render("~/bundles/generalcss")
+    @Styles.Render("~/bundles/hbcalcss")
+    @Styles.Render("~/bundles/photoswipecss")
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/sliderscripts")
+    @Scripts.Render("~/bundles/hbcalscripts")
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Toggle drop down menu when mobile button is clicked
+            $('#mobile-button').click(function () {
+                $('#mobile-menu').toggle({ display: "toggle" });
+            });
+
+            // Initialise the slider
+            InitHome();
+
+            // Initialise the calendar
+            $('#calendar').eCalendar();
+
+            // Hack for hash scrolling not working
+            if (window.location.hash.length > 0) {
+                setTimeout(function () {
+                    $('html, body').animate({
+                        scrollTop: $(window.location.hash).offset().top
+                    }, 1000);
+                }, 500);
+            }
+        });
+    </script>
     <!-- Semantic HTML5 Support on old IE -->
     <!--[if IE]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -24,9 +50,11 @@
             <!-- Navigation -->
             <nav>
                 <ul>
-                    <li class="active"><a href="@Url.Action("Index","Home")">Home</a></li>
-                    <li><a href="#">Calendar</a></li>
-                    <li><a href="#">Gallery</a></li>
+                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li><a href="@Url.Action("About","Home")">About</a></li>
+                    <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+                    <li><a href="@Url.Action("Index", "Home")#awicevents">Events</a></li>
+                    <li><a href="@Url.Action("Index", "Gallery")">Gallery</a></li>
                     <li><a href="#">Join Our Members Club</a></li>
                     <li><a href="#">Volunteer</a></li>
                     <li><a href="#">Donate</a></li>
@@ -35,9 +63,11 @@
             <div id="mobile-button"></div>
             <div id="mobile-menu">
                 <ul>
-                    <li class="active"><a href="@Url.Action("Index","Home")">Home</a></li>
-                    <li><a href="#">Calendar</a></li>
-                    <li><a href="#">Gallery</a></li>
+                    <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                    <li><a href="@Url.Action("About", "Home")">About</a></li>
+                    <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                    <li><a href="@Url.Action("Index", "Home")#awicevents">Events</a></li>
+                    <li><a href="@Url.Action("Index", "Gallery")">Gallery</a></li>
                     <li><a href="#">Join Our Members Club</a></li>
                     <li><a href="#">Volunteer</a></li>
                     <li><a href="#">Donate</a></li>
@@ -50,25 +80,15 @@
         <div class="line">
             <div class="center cf">
                 <div class="links">
-                    <a href="#">About Us</a>
-                    <a href="#">Funders</a>
-                    <a href="#">Sponsors</a>
-                    <a href="#">Contact Us</a>
-                    <a href="#">Careers</a>
+                    <a href="@Url.Action("About", "Home")">About Us</a>
+                    <a href="@Url.Action("Funders", "Home")">Funders</a>
+                    <a href="@Url.Action("Sponsors", "Home")">Sponsors</a>
+                    <a href="@Url.Action("Contact", "Home")">Contact Us</a>
+                    <a href="@Url.Action("Careers", "Home")">Careers</a>
                 </div>
                 <div class="copy">© @DateTime.Now.Year  All rights reserved. <span>AWIC</span> </div>
             </div>
         </div>
     </footer>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/scripts")
-    @RenderSection("scripts", required: false)
-    @{
-        //Scripts.Render("~/bundles/bootstrap")   
-    }
-    <script>
-        InitHome();
-    </script>
 </body>
 </html>
