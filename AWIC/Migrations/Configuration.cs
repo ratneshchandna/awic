@@ -17,7 +17,22 @@ namespace AWIC.Migrations
 
         protected override void Seed(AWICDbContext context)
         {
-
+            var admin = new User
+            {
+                Email = "team@awicsocialservices.ca",
+                EmailConfirmed = false,
+                PasswordHash = "AK0O2maSDXqmvN/zipLunJ0C1rEoyTDm/D6EXje3TkTjUfxz6CPYNMsqvq+nGtHHZQ==",
+                SecurityStamp = "83d4d10f-93d1-4967-8066-604cdc27a44b",
+                PhoneNumber = null,
+                PhoneNumberConfirmed = false,
+                TwoFactorEnabled = false,
+                LockoutEndDateUtc = null,
+                LockoutEnabled = false,
+                AccessFailedCount = 0,
+                UserName = "team@awicsocialservices.ca"
+            };;
+            context.Users.AddOrUpdate(u => u.UserName, admin);
+            context.SaveChanges();
         }
     }
 }

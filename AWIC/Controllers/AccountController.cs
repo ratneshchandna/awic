@@ -75,15 +75,15 @@ namespace AWIC.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        /*[AllowAnonymous]
         public ActionResult Register()
         {
             return View();
-        }
+        }*/
 
         //
         // POST: /Account/Register
-        [HttpPost]
+        /*[HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
@@ -112,11 +112,11 @@ namespace AWIC.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
-        }
+        }*/
 
         //
         // GET: /Account/ConfirmEmail
-        [AllowAnonymous]
+        /*[AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null) 
@@ -134,19 +134,19 @@ namespace AWIC.Controllers
                 AddErrors(result);
                 return View();
             }
-        }
+        }*/
 
         //
         // GET: /Account/ForgotPassword
-        [AllowAnonymous]
+        /*[AllowAnonymous]
         public ActionResult ForgotPassword()
         {
             return View();
-        }
+        }*/
 
         //
         // POST: /Account/ForgotPassword
-        [HttpPost]
+        /*[HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
@@ -170,19 +170,19 @@ namespace AWIC.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
-        }
+        }*/
 
         //
         // GET: /Account/ForgotPasswordConfirmation
-        [AllowAnonymous]
+        /*[AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {
             return View();
-        }
+        }*/
 	
         //
         // GET: /Account/ResetPassword
-        [AllowAnonymous]
+        /*[AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
             if (code == null) 
@@ -190,11 +190,11 @@ namespace AWIC.Controllers
                 return View("Error");
             }
             return View();
-        }
+        }*/
 
         //
         // POST: /Account/ResetPassword
-        [HttpPost]
+        /*[HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
@@ -221,19 +221,19 @@ namespace AWIC.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
-        }
+        }*/
 
         //
         // GET: /Account/ResetPasswordConfirmation
-        [AllowAnonymous]
+        /*[AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
             return View();
-        }
+        }*/
 
         //
         // POST: /Account/Disassociate
-        [HttpPost]
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Disassociate(string loginProvider, string providerKey)
         {
@@ -250,11 +250,11 @@ namespace AWIC.Controllers
                 message = ManageMessageId.Error;
             }
             return RedirectToAction("Manage", new { Message = message });
-        }
+        }*/
 
         //
         // GET: /Account/Manage
-        public ActionResult Manage(ManageMessageId? message)
+        /*public ActionResult Manage(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -265,11 +265,11 @@ namespace AWIC.Controllers
             ViewBag.HasLocalPassword = HasPassword();
             ViewBag.ReturnUrl = Url.Action("Manage");
             return View();
-        }
+        }*/
 
         //
         // POST: /Account/Manage
-        [HttpPost]
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Manage(ManageUserViewModel model)
         {
@@ -318,22 +318,22 @@ namespace AWIC.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
-        }
+        }*/
 
         //
         // POST: /Account/ExternalLogin
-        [HttpPost]
+        /*[HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Request a redirect to the external login provider
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
-        }
+        }*/
 
         //
         // GET: /Account/ExternalLoginCallback
-        [AllowAnonymous]
+        /*[AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
@@ -356,21 +356,21 @@ namespace AWIC.Controllers
                 ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
                 return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
             }
-        }
+        }*/
 
         //
         // POST: /Account/LinkLogin
-        [HttpPost]
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
         {
             // Request a redirect to the external login provider to link a login for the current user
             return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Account"), User.Identity.GetUserId());
-        }
+        }*/
 
         //
         // GET: /Account/LinkLoginCallback
-        public async Task<ActionResult> LinkLoginCallback()
+        /*public async Task<ActionResult> LinkLoginCallback()
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
             if (loginInfo == null)
@@ -383,11 +383,11 @@ namespace AWIC.Controllers
                 return RedirectToAction("Manage");
             }
             return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
-        }
+        }*/
 
         //
         // POST: /Account/ExternalLoginConfirmation
-        [HttpPost]
+        /*[HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
@@ -428,7 +428,7 @@ namespace AWIC.Controllers
 
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
-        }
+        }*/
 
         //
         // POST: /Account/LogOff
@@ -442,19 +442,20 @@ namespace AWIC.Controllers
 
         //
         // GET: /Account/ExternalLoginFailure
-        [AllowAnonymous]
+        /*[AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {
             return View();
-        }
+        }*/
 
-        [ChildActionOnly]
+        
+        /*[ChildActionOnly]
         public ActionResult RemoveAccountList()
         {
             var linkedAccounts = UserManager.GetLogins(User.Identity.GetUserId());
             ViewBag.ShowRemoveButton = HasPassword() || linkedAccounts.Count > 1;
             return (ActionResult)PartialView("_RemoveAccountPartial", linkedAccounts);
-        }
+        }*/
 
         protected override void Dispose(bool disposing)
         {
@@ -468,7 +469,7 @@ namespace AWIC.Controllers
 
         #region Helpers
         // Used for XSRF protection when adding external logins
-        private const string XsrfKey = "XsrfId";
+        //private const string XsrfKey = "XsrfId";
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -484,15 +485,15 @@ namespace AWIC.Controllers
             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, await user.GenerateUserIdentityAsync(UserManager));
         }
 
-        private void AddErrors(IdentityResult result)
+        /*private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
             {
                 ModelState.AddModelError("", error);
             }
-        }
+        }*/
 
-        private bool HasPassword()
+        /*private bool HasPassword()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
             if (user != null)
@@ -500,20 +501,20 @@ namespace AWIC.Controllers
                 return user.PasswordHash != null;
             }
             return false;
-        }
+        }*/
 
         private void SendEmail(string email, string callbackUrl, string subject, string message)
         {
             // For information on sending mail, please visit http://go.microsoft.com/fwlink/?LinkID=320771
         }
 
-        public enum ManageMessageId
+        /*public enum ManageMessageId
         {
             ChangePasswordSuccess,
             SetPasswordSuccess,
             RemoveLoginSuccess,
             Error
-        }
+        }*/
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
@@ -527,7 +528,7 @@ namespace AWIC.Controllers
             }
         }
 
-        private class ChallengeResult : HttpUnauthorizedResult
+        /*private class ChallengeResult : HttpUnauthorizedResult
         {
             public ChallengeResult(string provider, string redirectUri) : this(provider, redirectUri, null)
             {
@@ -553,7 +554,7 @@ namespace AWIC.Controllers
                 }
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
-        }
+        }*/
         #endregion
     }
 }
