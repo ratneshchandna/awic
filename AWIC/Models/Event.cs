@@ -12,10 +12,15 @@ namespace AWIC.Models
         [Required]
         public int ID { get; set; }
 
+        [Display(Name = "All Day")]
+        public bool AllDay { get; set; }
+
         [Required]
+        [Display(Name="Event Date and Time")]
         public DateTime EventDateAndTime { get; set; }
 
         [Required]
+        [Display(Name = "Event Description")]
         public string EventDescription { get; set; }
     }
 }

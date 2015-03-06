@@ -1,0 +1,48 @@
+﻿<!--
+@model AWIC.Models.Event
+
+@{
+    ViewBag.Title = "Event Details";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AllDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AllDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventDateAndTime)
+        </dt>
+
+        <dd>
+            @if (Model.AllDay)
+            {
+                <span>@Model.EventDateAndTime.ToLongDateString()</span>
+            }
+            else
+            {
+                <span>@Model.EventDateAndTime.ToLongDateString() @Model.EventDateAndTime.ToShortTimeString()</span>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventDescription)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit Event", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to Events", "Index")
+</p>
+-->

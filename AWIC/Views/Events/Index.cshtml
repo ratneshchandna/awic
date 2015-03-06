@@ -1,0 +1,82 @@
+﻿@using AWIC.Models
+@model IEnumerable<Event>
+
+@{
+    ViewBag.Title = "Events";
+}
+
+<section id="awic-events-title" class="top-page-nav">
+    <div class="center cf">
+        <h2>@ViewBag.Title</h2>
+    </div>
+</section>
+<section id="awic-events-body" class="secondary-body">
+    <div class="center cf">
+        <div class="col-12">
+            <div class="button">
+                @Html.ActionLink("Add Event", "Create")
+            </div>
+            <table class="table">
+                <tr class="text-center">
+                    <th>
+                        @Html.DisplayNameFor(model => model.AllDay)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EventDateAndTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EventDescription)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.AllDay)
+                        </td>
+                        <td>
+                            @if (item.AllDay)
+                            {
+                                <span>@item.EventDateAndTime.ToLongDateString()</span>
+                            }
+                            else
+                            {
+                                <span>@item.EventDateAndTime.ToLongDateString() @item.EventDateAndTime.ToShortTimeString()</span>
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EventDescription)
+                        </td>
+                        <td class="event-actions">
+                            <span id="edit" class="button button-small">@Html.ActionLink("Edit", "Edit", new { id = item.ID })</span>
+                            <!--<span id="details" class="button button-small">@Html.ActionLink("Details", "Details", new { id = item.ID })</span>-->
+                            <span id="delete" class="button button-small"><a event-id="@item.ID" href="javascript:void(0)">Delete</a></span>
+                            <span class="confirm-delete"></span>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <div class="push"></div>
+</section>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#delete > a').click(function () {
+            if (!$(this).parent().next().html()) {
+                $(this).attr("href", "@Url.Action("Delete")/" + $(this).attr("event-id"));
+                $(this).html("Yes")
+                $(this).parent().next().html("Are you sure? <a href='javascript:void(0)'>Cancel</a>");
+                return false;
+            }
+        });
+        $('.confirm-delete').click(function () {
+            $(this).prev().children().attr("href", "javascript:void(0)");
+            $(this).prev().children().html("Delete");
+            $(this).html("");
+            return false;
+        });
+    });
+</script>

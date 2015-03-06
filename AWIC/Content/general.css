@@ -606,6 +606,14 @@ html[xmlns] .slides {
 html {
   overflow-x: hidden;
 }
+/* Common
+/* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
+section.secondary-body {
+    min-height: calc(100% - 198px);
+    height: auto !important;
+    height: calc(100% - 198px);
+    margin: 0 auto -52px;
+}
 /* Header
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
 header.top {
@@ -2218,13 +2226,92 @@ section.pics .button a:hover {
   -moz-box-shadow: 0 0px 0 0 #d8422a;
   box-shadow: 0 0px 0 0 #d8422a;
 }
-/* AWIC Gallery
+/* AWIC Events
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
-section.awic-gallery {
-    min-height: calc(100% - 198px);
-    height: auto !important;
-    height: calc(100% - 198px);
-    margin: 0 auto -52px;
+section#awic-events-title > div > h2 {
+    float: none;
+    text-align: center;
+}
+section#awic-events-body .button {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+}
+section#awic-events-body .button a {
+    display: inline-block;
+    width: 140px;
+    height: 40px;
+    background: #f65339;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    -moz-border-radius-topleft: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    -webkit-box-shadow: 0 3px 0 0 #d8422a;
+    -moz-box-shadow: 0 3px 0 0 #d8422a;
+    box-shadow: 0 3px 0 0 #d8422a;
+    text-align: center;
+    line-height: 40px;
+    font-family: 'Open Sans', 'sans-serif';
+    font-weight: 600;
+    color: #fff;
+    font-size: 16pt;
+    -webkit-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+    -ms-transition: all 0.1s ease;
+    -o-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+}
+section#awic-events-body .button-small a {
+    width: 60px;
+    height: 20px;
+    line-height: 20px;
+    font-weight: 500;
+    font-size: 12pt;
+}
+section#awic-events-body #edit a {
+    background-color: #70a346;
+    -webkit-box-shadow: 0 3px 0 0 #5d883a;
+    -moz-box-shadow: 0 3px 0 0 #5d883a;
+    box-shadow: 0 3px 0 0 #5d883a;
+}
+section#awic-events-body #delete a {
+    background-color: red;
+    -webkit-box-shadow: 0 3px 0 0 #d80000;
+    -moz-box-shadow: 0 3px 0 0 #d80000;
+    box-shadow: 0 3px 0 0 #d80000;
+}
+section#awic-events-body .button a:hover {
+  -webkit-box-shadow: 0 0px 0 0 #d8422a;
+  -moz-box-shadow: 0 0px 0 0 #d8422a;
+  box-shadow: 0 0px 0 0 #d8422a;
+}
+section#awic-events-body table {
+    margin: 0 auto;
+}
+section#awic-events-body table th, 
+section#awic-events-body table td {
+    padding: 5px 15px;
+}
+section#awic-events-body table th {
+    font-size: 16pt;
+}
+section#awic-events-body table td {
+    font-size: 14pt;
+}
+section#awic-events-body table td.event-actions {
+    font-size: 12pt;
+    width:330px;
 }
 /* Bottom
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
