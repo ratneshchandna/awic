@@ -1,16 +1,15 @@
-﻿@using AWIC.Models
-@model IEnumerable<Event>
+﻿@model IEnumerable<AWIC.Models.Event>
 
 @{
     ViewBag.Title = "Events";
 }
 
-<section id="awic-events-title" class="top-page-nav">
+<section id="awic-event-list-title" class="awic-events-title top-page-nav">
     <div class="center cf">
         <h2>@ViewBag.Title</h2>
     </div>
 </section>
-<section id="awic-events-body" class="secondary-body">
+<section id="awic-event-list-body" class="secondary-body">
     <div class="center cf">
         <div class="col-12">
             <div class="button">
@@ -19,13 +18,13 @@
             <table class="table">
                 <tr class="text-center">
                     <th>
-                        @Html.DisplayNameFor(model => model.AllDay)
+                        @Html.ActionLink("All Day", "Index", new { sortOrder = ViewBag.AllDaySortParam })
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.EventDateAndTime)
+                        @Html.ActionLink("Event Date and Time", "Index", new { sortOrder = ViewBag.EventDateAndTimeSortParm })
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.EventDescription)
+                        @Html.ActionLink("Event Description", "Index", new { sortOrder = ViewBag.EventDescriptionSortParm })
                     </th>
                     <th></th>
                 </tr>

@@ -2228,16 +2228,16 @@ section.pics .button a:hover {
 }
 /* AWIC Events
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
-section#awic-events-title > div > h2 {
+section.awic-events-title > div > h2 {
     float: none;
     text-align: center;
 }
-section#awic-events-body .button {
+section#awic-event-list-body .button {
     width: 100%;
     text-align: center;
     margin: 20px 0;
 }
-section#awic-events-body .button a {
+section#awic-event-list-body .button a {
     display: inline-block;
     width: 140px;
     height: 40px;
@@ -2272,44 +2272,44 @@ section#awic-events-body .button a {
     -o-transition: all 0.1s ease;
     transition: all 0.1s ease;
 }
-section#awic-events-body .button-small a {
+section#awic-event-list-body .button-small a {
     width: 60px;
     height: 20px;
     line-height: 20px;
     font-weight: 500;
     font-size: 12pt;
 }
-section#awic-events-body #edit a {
+section#awic-event-list-body #edit a {
     background-color: #70a346;
     -webkit-box-shadow: 0 3px 0 0 #5d883a;
     -moz-box-shadow: 0 3px 0 0 #5d883a;
     box-shadow: 0 3px 0 0 #5d883a;
 }
-section#awic-events-body #delete a {
+section#awic-event-list-body #delete a {
     background-color: red;
     -webkit-box-shadow: 0 3px 0 0 #d80000;
     -moz-box-shadow: 0 3px 0 0 #d80000;
     box-shadow: 0 3px 0 0 #d80000;
 }
-section#awic-events-body .button a:hover {
+section#awic-event-list-body .button a:hover {
   -webkit-box-shadow: 0 0px 0 0 #d8422a;
   -moz-box-shadow: 0 0px 0 0 #d8422a;
   box-shadow: 0 0px 0 0 #d8422a;
 }
-section#awic-events-body table {
+section#awic-event-list-body table {
     margin: 0 auto;
 }
-section#awic-events-body table th, 
-section#awic-events-body table td {
+section#awic-event-list-body table th, 
+section#awic-event-list-body table td {
     padding: 5px 15px;
 }
-section#awic-events-body table th {
+section#awic-event-list-body table th {
     font-size: 16pt;
 }
-section#awic-events-body table td {
+section#awic-event-list-body table td {
     font-size: 14pt;
 }
-section#awic-events-body table td.event-actions {
+section#awic-event-list-body table td.event-actions {
     font-size: 12pt;
     width:330px;
 }

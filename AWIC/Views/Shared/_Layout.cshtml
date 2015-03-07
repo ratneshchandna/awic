@@ -38,6 +38,16 @@
             }
         });
     </script>
+    @{
+        if (!String.IsNullOrEmpty((string)TempData["AlertMessage"]))
+        {
+            <script type="text/javascript">
+                (function () {
+                    alert('@TempData["AlertMessage"]');
+                })();
+            </script>
+        }
+    }
     <!-- Semantic HTML5 Support on old IE -->
     <!--[if IE]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>

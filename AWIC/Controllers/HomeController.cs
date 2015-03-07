@@ -4,11 +4,35 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AWIC.Helpers;
 
 namespace AWIC.Controllers
 {
     public class HomeController : Controller
     {
+        public ActionResult SendTestEmail(string emailid)
+        {
+            if(User.Identity.IsAuthenticated)
+            {
+                AWICEmailHelper emailHelper = new AWICEmailHelper();
+
+                try
+                {
+                    emailHelper.SendTestEmail(emailid);
+
+                    TempData["AlertMessage"] = "Email sent. Check email. ";
+                    return RedirectToAction("Index");
+                }
+                catch(Exception ex)
+                {
+                    TempData["AlertMessage"] = "Exception: " + ex.ToString();
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Index()
         {
             // Pass list of files in a string array to the view

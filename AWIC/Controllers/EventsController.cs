@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using AWIC.DAL;
 using AWIC.Models;
 using System.Data.Entity.Infrastructure;
+using AWIC.Helpers;
 
 namespace AWIC.Controllers
 {
@@ -19,9 +20,38 @@ namespace AWIC.Controllers
         private AWICDbContext db = new AWICDbContext();
 
         // GET: Event
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string sortOrder)
         {
-            return View(await db.Events.OrderBy(e => e.EventDateAndTime).ToListAsync());
+            ViewBag.EventDateAndTimeSortParm = String.IsNullOrEmpty(sortOrder) ? "event_date_and_time_desc" : "";
+            ViewBag.EventDescriptionSortParm = sortOrder == "event_description" ? "event_description_desc" : "event_description";
+            ViewBag.AllDaySortParam = sortOrder == "all_day" ? "all_day_desc" : "all_day";
+
+            var events = from s in db.Events
+                           select s;
+
+            switch(sortOrder)
+            {
+                case "event_date_and_time_desc":
+                    events = events.OrderByDescending(e => e.EventDateAndTime);
+                    break;
+                case "event_description":
+                    events = events.OrderBy(e => e.EventDescription);
+                    break;
+                case "event_description_desc":
+                    events = events.OrderByDescending(e => e.EventDescription);
+                    break;
+                case "all_day":
+                    events = events.OrderBy(e => e.AllDay);
+                    break;
+                case "all_day_desc":
+                    events = events.OrderByDescending(e => e.AllDay);
+                    break;
+                default:
+                    events = events.OrderBy(e => e.EventDateAndTime);
+                    break;
+            }
+
+            return View(await events.ToListAsync());
         }
 
         // GET: Event/Details/5

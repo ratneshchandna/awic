@@ -166,6 +166,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Migrations\201511050739183_InitialCreate.cs" />
     <Compile Include="Migrations\201511050739183_InitialCreate.Designer.cs">
       <DependentUpon>201511050739183_InitialCreate.cs</DependentUpon>
