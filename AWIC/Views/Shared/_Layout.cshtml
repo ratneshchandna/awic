@@ -16,28 +16,80 @@
     @Scripts.Render("~/bundles/hbcalscripts")
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
-        $(document).ready(function () {
-            // Toggle drop down menu when mobile button is clicked
-            $('#mobile-button').click(function () {
-                $('#mobile-menu').toggle({ display: "toggle" });
-            });
-
-            // Initialise the slider
-            InitHome();
-
-            // Initialise the calendar
-            $('#calendar').eCalendar();
-
-            // Hack for hash scrolling not working
-            if (window.location.hash.length > 0) {
-                setTimeout(function () {
-                    $('html, body').animate({
-                        scrollTop: $(window.location.hash).offset().top
-                    }, 1000);
-                }, 500);
-            }
+    $(document).ready(function () {
+        // Toggle drop down menu when mobile button is clicked
+        $('#mobile-button').click(function () {
+            $('#mobile-menu').toggle({ display: "toggle" });
         });
-    </script>
+
+        // Initialise the slider
+        InitHome();
+
+        var day = Number('@DateTime.Now.Day');
+        var month = Number('@DateTime.Now.Month');
+        var year = Number('@DateTime.Now.Year');
+        var preLoad = function () {
+            $('#eventlist').html('<div class="text-center loading"><strong>Loading ... </strong></div>');
+        };
+        var getEventsForWeek = function () {
+            preLoad();
+            $.post(
+                '@Url.Action("GetEventsForWeek", "Events")',
+                'currentDay=' + day.toString() + '&currentMonth=' + month.toString() + '&currentYear=' + year.toString(),
+                function (data) {
+                    $('#eventlist').html(data);
+                },
+                'html'
+            );
+        };
+        var getEventsForMonth = function () {
+            preLoad();
+            $.post(
+                '@Url.Action("GetEventsForMonth", "Events")',
+                'currentMonth=' + month.toString() + '&currentYear=' + year.toString(),
+                function (data) {
+                    $('#eventlist').html(data);
+                },
+                'html'
+            );
+        };
+        // Initialise the calendar
+        $('#calendar').eCalendar({
+            ajaxDayLoader: '@Url.Action("GetDaysWithEvents", "Events")',
+            ajaxEventLoader: '@Url.Action("GetEventsForDay", "Events")',
+            eventsContainer: '#eventlist',
+            currentMonth: month,
+            currentYear: year,
+            startMonth: month,
+            startYear: year,
+            endMonth: month,
+            endYear: year,
+            firstDayOfWeek: 0,
+            onBeforeLoad: function(){
+                    return void (0);
+                },
+            onAfterLoad: getEventsForMonth,
+            onClickMonth: function(){
+                    return void (0);
+                },
+            onClickDay: function () {
+                    preLoad();
+                    preLoad();
+                }
+        });
+        $('#allEventsOfWeek').click(getEventsForWeek);
+        $('#allEventsOfMonth').click(getEventsForMonth);
+
+        // Hack for hash scrolling not working
+        if (window.location.hash.length > 0) {
+            setTimeout(function () {
+                $('html, body').animate({
+                    scrollTop: $(window.location.hash).offset().top
+                }, 1000);
+            }, 500);
+        }
+    });
+</script>
     @{
         if (!String.IsNullOrEmpty((string)TempData["AlertMessage"]))
         {

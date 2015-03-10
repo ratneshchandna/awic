@@ -1,0 +1,27 @@
+﻿@model List<IGrouping<int, AWIC.Models.Event>>
+
+@if (Model.Count() > 0)
+{
+    foreach (IGrouping<int, AWIC.Models.Event> day in Model)
+    {
+        <h3>@day.ElementAt(0).EventDateAndTime.ToLongDateString()</h3>
+        <table>
+            @foreach (AWIC.Models.Event e in day)
+            {
+                <tr>
+                    <td class="event-time">
+                        @if (!e.AllDay)
+                    {
+                            <span>@e.EventDateAndTime.ToShortTimeString()</span>
+                    }
+                    else
+                    {
+                            <span>All Day</span>
+                    }
+                    </td>
+                    <td class="event-description">@e.EventDescription</td>
+                </tr>
+            }
+        </table>
+    }
+}

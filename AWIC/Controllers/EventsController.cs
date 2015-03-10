@@ -11,6 +11,7 @@ using AWIC.DAL;
 using AWIC.Models;
 using System.Data.Entity.Infrastructure;
 using AWIC.Helpers;
+using System.Linq;
 
 namespace AWIC.Controllers
 {
@@ -202,6 +203,107 @@ namespace AWIC.Controllers
             db.Events.Remove(@event);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        public async Task<string> GetDaysWithEvents(CalendarData calendarData)
+        {
+            string daysWithEvents = "";
+
+            if(Request.IsAjaxRequest())
+            {
+                DateTime date = DateTime.Parse(calendarData.currentYear + "/" + calendarData.currentMonth + "/1");
+                int month = date.Month;
+                List<Event> allEvents = await db.Events.ToListAsync();
+
+                while(date.Month == month)
+                {
+                    if(allEvents.Find(e => e.EventDateAndTime.ToShortDateString() == date.ToShortDateString()) != null)
+                    {
+                        if(!String.IsNullOrEmpty(daysWithEvents))
+                        {
+                            daysWithEvents = daysWithEvents + ",";
+                        }
+
+                        daysWithEvents = daysWithEvents + date.Day.ToString();
+                    }
+
+                    date = date.AddDays(1);
+                }
+            }
+
+            return daysWithEvents;
+        }
+
+        public async Task<PartialViewResult> GetEventsForDay(CalendarData calendarData)
+        {
+            IEnumerable<Event> eventsForDay = new List<Event>();
+
+            if(Request.IsAjaxRequest())
+            {
+                eventsForDay = db.Events.Where(e =>
+                    e.EventDateAndTime.Day.ToString() == calendarData.currentDay &&
+                    e.EventDateAndTime.Month.ToString() == calendarData.currentMonth &&
+                    e.EventDateAndTime.Year.ToString() == calendarData.currentYear
+                    ).OrderBy(e => e.EventDateAndTime);
+            }
+
+            return PartialView("_EventsForDay", eventsForDay);
+        }
+
+        public async Task<PartialViewResult> GetEventsForWeek(CalendarData calendarData)
+        {
+            List<IGrouping<int, AWIC.Models.Event>> daysOfEvents = new List<IGrouping<int, AWIC.Models.Event>>();
+
+            if (Request.IsAjaxRequest())
+            {
+                List<string> daysOfWeek = new List<string> {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+                DateTime day = DateTime.Parse(calendarData.currentYear + "/" + calendarData.currentMonth + "/" + calendarData.currentDay);
+                int dayNumber = day.Day;
+                int monthNumber = day.Month;
+                int yearNumber = day.Year;
+                int dayNumberOfWeek = daysOfWeek.IndexOf(day.DayOfWeek.ToString()) + 1;
+                int startDay;
+                int endDay;
+
+                if (dayNumber < dayNumberOfWeek)
+                {
+                    startDay = 1;
+                    endDay = dayNumber + (7 - dayNumberOfWeek);
+                }
+                else if((dayNumber + (7 - dayNumberOfWeek)) > (DateTime.DaysInMonth(yearNumber,monthNumber)))
+                {
+                    startDay = dayNumber - (dayNumberOfWeek - 1);
+                    endDay = DateTime.DaysInMonth(yearNumber, monthNumber);
+                }
+                else
+                {
+                    startDay = dayNumber - (dayNumberOfWeek - 1);
+                    endDay = dayNumber + (7 - dayNumberOfWeek);
+                }
+
+                daysOfEvents = await db.Events.Where(e =>
+                    (e.EventDateAndTime.Day >= startDay && e.EventDateAndTime.Day <= endDay) && 
+                    e.EventDateAndTime.Month == monthNumber &&
+                    e.EventDateAndTime.Year == yearNumber
+                ).OrderBy(e => e.EventDateAndTime).GroupBy(e => e.EventDateAndTime.Day).ToListAsync();
+            }
+
+            return PartialView("_EventsForMonth", daysOfEvents);
+        }
+
+        public async Task<PartialViewResult> GetEventsForMonth(CalendarData calendarData)
+        {
+            List<IGrouping<int, AWIC.Models.Event>> daysOfEvents = new List<IGrouping<int, AWIC.Models.Event>>();
+
+            if (Request.IsAjaxRequest())
+            {
+                daysOfEvents = await db.Events.Where(e =>
+                    e.EventDateAndTime.Month.ToString() == calendarData.currentMonth &&
+                    e.EventDateAndTime.Year.ToString() == calendarData.currentYear
+                    ).OrderBy(e => e.EventDateAndTime).GroupBy(e => e.EventDateAndTime.Day).ToListAsync();
+            }
+
+            return PartialView("_EventsForMonth", daysOfEvents);
         }
 
         protected override void Dispose(bool disposing)

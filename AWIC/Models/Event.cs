@@ -6,6 +6,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AWIC.Models
 {
+    public class CalendarData
+    {
+        public string currentDay { get; set; }
+        public string currentMonth { get; set; }
+        public string currentYear { get; set; }
+    }
+
     public class Event
     {
         [Key]

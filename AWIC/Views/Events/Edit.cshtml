@@ -12,68 +12,58 @@
 <section id="awic-edit-event-body" class="secondary-body">
     <div class="center cf">
         <div class="col-12">
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-
-                <div class="form-horizontal">
+            <div class="form-center">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                     <div class="form-group">
+                        @Html.CheckBoxFor(model => model.AllDay, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.LabelFor(model => model.AllDay, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.CheckBoxFor(model => model.AllDay, new { htmlAttributes = new { @class = "form-control" } })
-                        </div>
                     </div>
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.EventDateAndTime, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @if (Model.AllDay)
-                            {
-                                <input class="form-control"
-                                       data-val="true"
-                                       data-val-date="The field Event Date and Time must be a date."
-                                       data-val-required="The Event Date and Time field is required."
-                                       id="EventDateAndTime"
-                                       name="EventDateAndTime"
-                                       type="text"
-                                       value="@Model.EventDateAndTime.ToLongDateString()">
-                            }
-                            else
-                            {
-                                <input class="form-control"
-                                       data-val="true"
-                                       data-val-date="The field Event Date and Time must be a date."
-                                       data-val-required="The Event Date and Time field is required."
-                                       id="EventDateAndTime"
-                                       name="EventDateAndTime"
-                                       type="text"
-                                       value="@Model.EventDateAndTime.ToLongDateString() @Model.EventDateAndTime.ToShortTimeString()">
-                            }
-                            @Html.ValidationMessageFor(model => model.EventDateAndTime, "", new { @class = "text-danger" })
-                        </div>
+                        @if (Model.AllDay)
+                        {
+                            <input class="form-control"
+                                    data-val="true"
+                                    data-val-date="The field Event Date and Time must be a date."
+                                    data-val-required="The Event Date and Time field is required."
+                                    id="EventDateAndTime"
+                                    name="EventDateAndTime"
+                                    type="text"
+                                    value="@Model.EventDateAndTime.ToLongDateString()">
+                        }
+                        else
+                        {
+                            <input class="form-control"
+                                    data-val="true"
+                                    data-val-date="The field Event Date and Time must be a date."
+                                    data-val-required="The Event Date and Time field is required."
+                                    id="EventDateAndTime"
+                                    name="EventDateAndTime"
+                                    type="text"
+                                    value="@Model.EventDateAndTime.ToLongDateString() @Model.EventDateAndTime.ToShortTimeString()">
+                        }
+                        @Html.ValidationMessageFor(model => model.EventDateAndTime, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.EventDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.EventDescription, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.EventDescription, "", new { @class = "text-danger" })
-                        </div>
+                        @Html.EditorFor(model => model.EventDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EventDescription, "", new { @class = "text-danger" })
                     </div>
-
-                    <input type="checkbox" name="weekly" value="weekly">Repeats weekly in month<br>
 
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Update" class="btn btn-default" />
-                        </div>
+                        <input type="submit" value="Update">
                     </div>
+                }
+                <div>
+                    @Html.ActionLink("Back to Events", "Index")
                 </div>
-            }
-            <div>
-                @Html.ActionLink("Back to Events", "Index")
             </div>
         </div>
     </div>

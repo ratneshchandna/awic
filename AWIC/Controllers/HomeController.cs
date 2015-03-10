@@ -25,7 +25,11 @@ namespace AWIC.Controllers
                 }
                 catch(Exception ex)
                 {
-                    TempData["AlertMessage"] = "Exception: " + ex.ToString();
+                    TempData["AlertMessage"] = 
+                        "Exception Message: " + 
+                        ex.Message.Replace('\n',' ').Replace('\r',' ') + 
+                        ". Inner Exception: " + 
+                        ex.InnerException;
                     return RedirectToAction("Index");
                 }
             }

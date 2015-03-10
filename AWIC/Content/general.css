@@ -1851,15 +1851,43 @@ section.events h3 {
   color: white;
   text-transform: none;
   margin-top: 0;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
+}
+section.events .col-4 {
+    height: 450px;
+    text-align: center;
+}
+section.events .col-8 {
+    height: 450px;
+    overflow-y: auto;
+}
+section.events .allevents {
+    display: block;
+    margin: 0 0 15px 0;
+    font-size: 12pt;
+    color: white;
+}
+section.events .allevents a {
+    color: white;
+    text-decoration: underline;
 }
 section.events #eventlist {
+    position: relative;
     margin: 0 0 0 100px;
+    height: 100%;
+}
+section.events #eventlist .loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 24pt;
 }
 section.events #eventlist table {
     font-family: 'Open Sans', 'sans-serif';
     font-weight: normal;
     font-size: 24px;
+    margin-bottom: 25px;
 }
 section.events #eventlist table td {
     padding: 0 30px 5px 0;
@@ -2232,6 +2260,9 @@ section.awic-events-title > div > h2 {
     float: none;
     text-align: center;
 }
+section#awic-event-list-body .col-12 {
+    overflow-x: auto;
+}
 section#awic-event-list-body .button {
     width: 100%;
     text-align: center;
@@ -2292,26 +2323,110 @@ section#awic-event-list-body #delete a {
     box-shadow: 0 3px 0 0 #d80000;
 }
 section#awic-event-list-body .button a:hover {
-  -webkit-box-shadow: 0 0px 0 0 #d8422a;
-  -moz-box-shadow: 0 0px 0 0 #d8422a;
-  box-shadow: 0 0px 0 0 #d8422a;
+    background-color: #f8745f;
+}
+section#awic-event-list-body #edit a:hover {
+    background-color: #98c474;
+}
+section#awic-event-list-body #delete a:hover {
+    background-color: #ff6262;
 }
 section#awic-event-list-body table {
     margin: 0 auto;
+    overflow-x: auto;
 }
 section#awic-event-list-body table th, 
 section#awic-event-list-body table td {
-    padding: 5px 15px;
+    padding: 0 15px;
 }
 section#awic-event-list-body table th {
     font-size: 16pt;
 }
 section#awic-event-list-body table td {
+    height: 2.5em;
     font-size: 14pt;
 }
 section#awic-event-list-body table td.event-actions {
     font-size: 12pt;
-    width:330px;
+}
+section#awic-event-list-body table td.event-actions .confirm-delete {
+    font-size: 10pt;
+    display: block;
+    padding: 5px 0;
+}
+section#awic-add-event-body .form-center, 
+section#awic-edit-event-body .form-center {
+    max-width: 250px;
+    margin: 0 auto;
+    text-align: center;
+}
+section#awic-add-event-body .form-center .form-group,
+section#awic-edit-event-body .form-center .form-group {
+    width: 100%;
+    margin: 20px 0;
+    font-size: 14pt;
+}
+section#awic-add-event-body .form-center .form-group input[type="text"], 
+section#awic-edit-event-body .form-center .form-group input[type="text"], 
+section#awic-add-event-body .form-center .form-group input[type="datetime"], 
+section#awic-edit-event-body .form-center .form-group input[type="datetime"] {
+    width: 100%;
+    padding: 0.25em;
+    margin: 5px 0;
+    height: 1em;
+    font-size: 14pt;
+    color: black;
+    text-align :center
+}
+section#awic-add-event-body .form-center .form-group input[type="submit"], 
+section#awic-edit-event-body .form-center .form-group input[type="submit"] {
+    width: 120px;
+    margin: 5px 0;
+    height: 2em;
+    background: #f65339;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    -moz-border-radius-topleft: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    -webkit-box-shadow: 0 3px 0 0 #d8422a;
+    -moz-box-shadow: 0 3px 0 0 #d8422a;
+    box-shadow: 0 3px 0 0 #d8422a;
+    text-align: center;
+    line-height: 1em;
+    font-family: 'Open Sans', 'sans-serif';
+    font-weight: 700;
+    color: #fff;
+    font-size: 12pt;
+    -webkit-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+    -ms-transition: all 0.1s ease;
+    -o-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+    text-transform: none;   
+}
+section#awic-add-event-body .form-center .form-group input[type="submit"]:hover, 
+section#awic-edit-event-body .form-center .form-group input[type="submit"]:hover {
+    background-color: #f8745f;
+}
+section#awic-add-event-body .form-center .back,
+section#awic-edit-event-body .form-center .back {
+    margin: 5px 0;
+}
+.text-danger, 
+.field-validation-error {
+    color: #eb0000;
+    font-size: 10pt;
 }
 /* Bottom
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
