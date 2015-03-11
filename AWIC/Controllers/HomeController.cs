@@ -34,6 +34,8 @@ namespace AWIC.Controllers
                 }
             }
 
+            TempData["AlertMessage"] = "Uh oh";
+
             return RedirectToAction("Index");
         }
 

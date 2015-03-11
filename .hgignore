@@ -20,3 +20,5 @@ Samples/
 Content/gallery/
 Content/flyers
 Content/calendar/
+WebConnectionStrings.config
+AppSettings.config

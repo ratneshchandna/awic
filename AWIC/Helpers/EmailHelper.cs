@@ -53,7 +53,7 @@ namespace AWIC.Helpers
                         Address = "mail5005.site4now.net",
                         Port = 8889,
                         Username = "team@awicsocialservices.ca",
-                        Password = "KKk!r2s3v44"
+                        Password = System.Configuration.ConfigurationManager.AppSettings["SMTPServerPassword"]
                     }
                 }
             )

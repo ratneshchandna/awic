@@ -40,6 +40,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Stripe.net">
+      <HintPath>..\packages\Stripe.net.5.0.0\lib\net40\Stripe.net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -103,9 +110,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -189,7 +193,18 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\flyers\awic_updated_programmes.jpg" />
     <Content Include="Content\default-skin.css" />
+    <Content Include="Content\gallery\Chrysanthemum.jpg" />
+    <Content Include="Content\gallery\Desert.jpg" />
+    <Content Include="Content\gallery\Hydrangeas.jpg" />
+    <Content Include="Content\gallery\Jellyfish.jpg" />
+    <Content Include="Content\gallery\Koala.jpg" />
+    <Content Include="Content\gallery\Lighthouse.jpg" />
+    <Content Include="Content\gallery\Nature-Wallpaper-1.jpg" />
+    <Content Include="Content\gallery\Penguins.jpg" />
+    <Content Include="Content\gallery\Portrait.jpg" />
+    <Content Include="Content\gallery\Tulips.jpg" />
     <Content Include="Content\general.css" />
     <Content Include="Content\green.event.calendar.css" />
     <Content Include="Content\images\arco_logo.png" />
@@ -222,6 +237,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="AppSettings.config" />
+    <Content Include="Content\calendar\calendar.pdf" />
+    <None Include="Properties\PublishProfiles\AWIC.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\initPhotoSwipe.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -277,19 +295,16 @@
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Events\_EventsForDay.cshtml" />
     <Content Include="Views\Events\_EventsForMonth.cshtml" />
+    <Content Include="WebConnectionStrings.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\calendar\" />
-    <Folder Include="Content\flyers\" />
-    <Folder Include="Content\gallery\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201511050739183_InitialCreate.resx">
