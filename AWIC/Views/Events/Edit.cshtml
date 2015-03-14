@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit Event";
 }
 
-<section id="awic-edit-event-title" class="awic-events-title top-page-nav">
+<section id="awic-edit-event-title" class="title-center top-page-nav">
     <div class="center cf">
         <h2>@ViewBag.Title</h2>
     </div>
@@ -20,12 +20,12 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                     <div class="form-group">
-                        @Html.CheckBoxFor(model => model.AllDay, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.LabelFor(model => model.AllDay, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.CheckBoxFor(model => model.AllDay)
+                        @Html.LabelFor(model => model.AllDay)
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.EventDateAndTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.EventDateAndTime)
                         @if (Model.AllDay)
                         {
                             <input class="form-control"
@@ -52,8 +52,8 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.EventDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.EventDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.LabelFor(model => model.EventDescription)
+                        @Html.EditorFor(model => model.EventDescription)
                         @Html.ValidationMessageFor(model => model.EventDescription, "", new { @class = "text-danger" })
                     </div>
 

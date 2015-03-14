@@ -1,0 +1,56 @@
+﻿@model IEnumerable<AWIC.Models.Donations>
+
+@{
+    ViewBag.Title = "Latest Donations";
+}
+@if (Model.Count() > 0)
+{
+    <!-- Latest Donations -->
+    <section class="latest-donations">
+        <div class="center cf">
+            <h2>@ViewBag.Title</h2>
+            <div class="peoples">
+                @if (Model.Count() == 5)
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="col-2i">
+                            @if (!String.IsNullOrEmpty(item.Donor))
+                            {
+                                <div class="name">@item.Donor</div>
+                            }
+                            else
+                            {
+                                <div class="name">Anonymous</div>
+                            }
+                            <div class="donated">
+                                <div class="left">Donated</div>
+                                <div class="right">$@item.AmountInCAD CAD</div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="col-@(12/Model.Count())">
+                            @if (!String.IsNullOrEmpty(item.Donor))
+                            {
+                                <div class="name">Jack Daniels</div>
+                            }
+                            else
+                            {
+                                <div class="name">Anonymous</div>
+                            }
+                            <div class="donated">
+                                <div class="left">Donated</div>
+                                <div class="right">$@item.AmountInCAD CAD</div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </section>
+}

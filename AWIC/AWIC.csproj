@@ -163,6 +163,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DonationsController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -183,10 +184,29 @@
     <Compile Include="Migrations\201511050841203_AddedAllDayAsEventProperty.Designer.cs">
       <DependentUpon>201511050841203_AddedAllDayAsEventProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511122253412_AddedDonationsModel.cs" />
+    <Compile Include="Migrations\201511122253412_AddedDonationsModel.Designer.cs">
+      <DependentUpon>201511122253412_AddedDonationsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511130041340_AddedPaymentSucceededBoolProperty.cs" />
+    <Compile Include="Migrations\201511130041340_AddedPaymentSucceededBoolProperty.Designer.cs">
+      <DependentUpon>201511130041340_AddedPaymentSucceededBoolProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511130239577_FixedAmountProperty.cs" />
+    <Compile Include="Migrations\201511130239577_FixedAmountProperty.Designer.cs">
+      <DependentUpon>201511130239577_FixedAmountProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511130414114_RemovedPaymentSucceededBoolProperty.cs" />
+    <Compile Include="Migrations\201511130414114_RemovedPaymentSucceededBoolProperty.Designer.cs">
+      <DependentUpon>201511130414114_RemovedPaymentSucceededBoolProperty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Donations.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\Volunteer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -258,6 +278,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\scripts.js" />
+    <Content Include="Scripts\stripe.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -296,6 +317,10 @@
     <Content Include="Views\Events\_EventsForDay.cshtml" />
     <Content Include="Views\Events\_EventsForMonth.cshtml" />
     <Content Include="WebConnectionStrings.config" />
+    <Content Include="Views\Donations\Donate.cshtml" />
+    <Content Include="Views\Donations\_LatestDonations.cshtml" />
+    <Content Include="Views\Donations\Payment.cshtml" />
+    <Content Include="Views\Donations\DonationReceived.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -315,6 +340,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511050841203_AddedAllDayAsEventProperty.resx">
       <DependentUpon>201511050841203_AddedAllDayAsEventProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511122253412_AddedDonationsModel.resx">
+      <DependentUpon>201511122253412_AddedDonationsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511130041340_AddedPaymentSucceededBoolProperty.resx">
+      <DependentUpon>201511130041340_AddedPaymentSucceededBoolProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511130239577_FixedAmountProperty.resx">
+      <DependentUpon>201511130239577_FixedAmountProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511130414114_RemovedPaymentSucceededBoolProperty.resx">
+      <DependentUpon>201511130414114_RemovedPaymentSucceededBoolProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

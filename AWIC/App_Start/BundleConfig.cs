@@ -48,6 +48,8 @@ namespace AWIC
                       "~/Scripts/photoswipe.js",
                       "~/Scripts/photoswipe-ui-default.js",
                       "~/Scripts/initPhotoSwipe.js"));
+            bundles.Add(new ScriptBundle("~/bundles/stripejs").Include(
+                      "~/Scripts/stripe.js"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

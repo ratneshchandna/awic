@@ -123,66 +123,84 @@
         <a class="skype" href=""></a>
     </div>
 </section>
-<!-- Latest Donations -->
-<section class="latest-donations">
-    <div class="center cf">
-        <h2>Latest Donations</h2>
-        <div class="peoples">
-            <div class="col-2i">
-                <div class="circle">
-                    <img src="http://placehold.it/94x94" alt="" />
-                </div>
-                <div class="name">Jack Daniels</div>
-                <div class="state">Manager</div>
-                <div class="donated">
-                    <div class="left">Donated</div>
-                    <div class="right">$3,200</div>
-                </div>
-            </div>
-            <div class="col-2i">
-                <div class="circle">
-                    <img src="http://placehold.it/94x94" alt="" />
-                </div>
-                <div class="name">Mark Ougust</div>
-                <div class="state">Entrepreneur</div>
-                <div class="donated">
-                    <div class="left">Donated</div>
-                    <div class="right">$3,200</div>
-                </div>
-            </div>
-            <div class="col-2i">
-                <div class="circle">
-                    <img src="http://placehold.it/94x94" alt="" />
-                </div>
-                <div class="name">Jack Daniels</div>
-                <div class="state">Director of the Bank</div>
-                <div class="donated">
-                    <div class="left">Donated</div>
-                    <div class="right">$3,200</div>
-                </div>
-            </div>
-            <div class="col-2i">
-                <div class="circle">
-                    <img src="http://placehold.it/94x94" alt="" />
-                </div>
-                <div class="name">Marey Weeli</div>
-                <div class="state">Historian</div>
-                <div class="donated">
-                    <div class="left">Donated</div>
-                    <div class="right">$3,200</div>
-                </div>
-            </div>
-            <div class="col-2i">
-                <div class="circle">
-                    <img src="http://placehold.it/94x94" alt="" />
-                </div>
-                <div class="name">Jack Daniels</div>
-                <div class="state">Entrepreneur</div>
-                <div class="donated">
-                    <div class="left">Donated</div>
-                    <div class="right">$3,200</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@Scripts.Render("~/bundles/sliderscripts")
+@Scripts.Render("~/bundles/hbcalscripts")
+<script>
+    $(document).ready(function () {
+        // Initialise the slider
+        InitHome();
+
+        var day = Number('@DateTime.Now.Day');
+        var month = Number('@DateTime.Now.Month');
+        var year = Number('@DateTime.Now.Year');
+        var preLoad = function(){
+            $('#eventlist').html('<div class="text-center loading"><strong>Loading ... </strong></div>');
+        };
+        var getEventsForWeek = function(){
+            preLoad();
+            $.post(
+                '@Url.Action("GetEventsForWeek", "Events")',
+                'currentDay=' + day.toString() + '&currentMonth=' + month.toString() + '&currentYear=' + year.toString(),
+                function(data){
+                    $('#eventlist').html(data);
+                },
+                'html'
+            );
+        };
+        var getEventsForMonth = function(){
+            preLoad();
+            $.post(
+                '@Url.Action("GetEventsForMonth", "Events")',
+                'currentMonth=' + month.toString() + '&currentYear=' + year.toString(),
+                function(data){
+                    $('#eventlist').html(data);
+                },
+                'html'
+            );
+        };
+        // Initialise the calendar
+        $('#calendar').eCalendar({
+            ajaxDayLoader: '@Url.Action("GetDaysWithEvents", "Events")',
+            ajaxEventLoader: '@Url.Action("GetEventsForDay", "Events")',
+            eventsContainer: '#eventlist',
+            currentMonth: month,
+            currentYear: year,
+            startMonth: month,
+            startYear: year,
+            endMonth: month,
+            endYear: year,
+            firstDayOfWeek: 0,
+            onBeforeLoad: function(){
+                return void (0);
+            },
+            onAfterLoad: getEventsForMonth,
+            onClickMonth: function(){
+                return void (0);
+            },
+            onClickDay: function(){
+                preLoad();  
+            }
+        });
+        $('#allEventsOfWeek').click(getEventsForWeek);
+        $('#allEventsOfMonth').click(getEventsForMonth);
+
+        $.get(
+            "@Url.Action("GetLatestDonations", "Donations")",
+            "",
+            function(data){
+                $('footer').before(data);
+            },
+            "html"
+        );
+    });
+</script>
+@{
+    if (!String.IsNullOrEmpty((string)TempData["AlertMessage"]))
+    {
+        <script type="text/javascript">
+            (function(){
+                alert('@TempData["AlertMessage"]');
+            })();
+        </script>
+    }
+}

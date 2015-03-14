@@ -21,5 +21,6 @@ namespace AWIC.DAL
         }
 
         public DbSet<Event> Events { get; set; }
+        public DbSet<Donations> Donations { get; set; }
     }
 }

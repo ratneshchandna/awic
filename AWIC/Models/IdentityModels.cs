@@ -5,9 +5,10 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace AWIC.Models
 {
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
+    // You can add profile data for the user by adding more properties to your User class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class User : IdentityUser
     {
+        public static string ADMIN = "team@awicsocialservices.ca";
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

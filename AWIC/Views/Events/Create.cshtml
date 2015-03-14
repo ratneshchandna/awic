@@ -4,7 +4,7 @@
     ViewBag.Title = "Add Event";
 }
 
-<section id="awic-add-event-title" class="awic-events-title top-page-nav">
+<section id="awic-add-event-title" class="title-center top-page-nav">
     <div class="center cf">
         <h2>@ViewBag.Title</h2>
     </div>
@@ -34,13 +34,13 @@
                                               DateTime.Now.Day + " 1:00 PM"
                             }
                         })
-                        @Html.ValidationMessageFor(model => model.EventDateAndTime)
+                        @Html.ValidationMessageFor(model => model.EventDateAndTime, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.EventDescription)
                         @Html.EditorFor(model => model.EventDescription)
-                        @Html.ValidationMessageFor(model => model.EventDescription)
+                        @Html.ValidationMessageFor(model => model.EventDescription, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="form-group">

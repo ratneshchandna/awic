@@ -12,94 +12,24 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/sliderscripts")
-    @Scripts.Render("~/bundles/hbcalscripts")
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
-    $(document).ready(function () {
-        // Toggle drop down menu when mobile button is clicked
-        $('#mobile-button').click(function () {
-            $('#mobile-menu').toggle({ display: "toggle" });
+        $(document).ready(function(){
+            // Toggle drop down menu when mobile button is clicked
+            $('#mobile-button').click(function () {
+                $('#mobile-menu').toggle({ display: "toggle" });
+            });
+
+            // Hack for hash scrolling not working
+            if (window.location.hash.length > 0) {
+                setTimeout(function () {
+                    $('html, body').animate({
+                        scrollTop: $(window.location.hash).offset().top
+                    }, 1000);
+                }, 500);
+            }
         });
-
-        // Initialise the slider
-        InitHome();
-
-        var day = Number('@DateTime.Now.Day');
-        var month = Number('@DateTime.Now.Month');
-        var year = Number('@DateTime.Now.Year');
-        var preLoad = function () {
-            $('#eventlist').html('<div class="text-center loading"><strong>Loading ... </strong></div>');
-        };
-        var getEventsForWeek = function () {
-            preLoad();
-            $.post(
-                '@Url.Action("GetEventsForWeek", "Events")',
-                'currentDay=' + day.toString() + '&currentMonth=' + month.toString() + '&currentYear=' + year.toString(),
-                function (data) {
-                    $('#eventlist').html(data);
-                },
-                'html'
-            );
-        };
-        var getEventsForMonth = function () {
-            preLoad();
-            $.post(
-                '@Url.Action("GetEventsForMonth", "Events")',
-                'currentMonth=' + month.toString() + '&currentYear=' + year.toString(),
-                function (data) {
-                    $('#eventlist').html(data);
-                },
-                'html'
-            );
-        };
-        // Initialise the calendar
-        $('#calendar').eCalendar({
-            ajaxDayLoader: '@Url.Action("GetDaysWithEvents", "Events")',
-            ajaxEventLoader: '@Url.Action("GetEventsForDay", "Events")',
-            eventsContainer: '#eventlist',
-            currentMonth: month,
-            currentYear: year,
-            startMonth: month,
-            startYear: year,
-            endMonth: month,
-            endYear: year,
-            firstDayOfWeek: 0,
-            onBeforeLoad: function(){
-                    return void (0);
-                },
-            onAfterLoad: getEventsForMonth,
-            onClickMonth: function(){
-                    return void (0);
-                },
-            onClickDay: function () {
-                    preLoad();
-                    preLoad();
-                }
-        });
-        $('#allEventsOfWeek').click(getEventsForWeek);
-        $('#allEventsOfMonth').click(getEventsForMonth);
-
-        // Hack for hash scrolling not working
-        if (window.location.hash.length > 0) {
-            setTimeout(function () {
-                $('html, body').animate({
-                    scrollTop: $(window.location.hash).offset().top
-                }, 1000);
-            }, 500);
-        }
-    });
-</script>
-    @{
-        if (!String.IsNullOrEmpty((string)TempData["AlertMessage"]))
-        {
-            <script type="text/javascript">
-                (function () {
-                    alert('@TempData["AlertMessage"]');
-                })();
-            </script>
-        }
-    }
+    </script>
     <!-- Semantic HTML5 Support on old IE -->
     <!--[if IE]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -119,7 +49,7 @@
                     <li><a href="@Url.Action("Index", "Gallery")">Gallery</a></li>
                     <li><a href="#">Join Our Members Club</a></li>
                     <li><a href="#">Volunteer</a></li>
-                    <li><a href="#">Donate</a></li>
+                    <li><a href="@Url.Action("Donate", "Donations")">Donate</a></li>
                 </ul>
             </nav>
             <div id="mobile-button"></div>
@@ -132,7 +62,7 @@
                     <li><a href="@Url.Action("Index", "Gallery")">Gallery</a></li>
                     <li><a href="#">Join Our Members Club</a></li>
                     <li><a href="#">Volunteer</a></li>
-                    <li><a href="#">Donate</a></li>
+                    <li><a href="@Url.Action("Donate", "Donations")">Donate</a></li>
                 </ul>
             </div>
         </div>

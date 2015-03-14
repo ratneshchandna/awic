@@ -1,0 +1,67 @@
+﻿@model AWIC.Models.Donations
+
+@{
+    ViewBag.Title = "Donate";
+}
+
+<section id="awic-donate-title" class="title-center top-page-nav">
+    <div class="center cf">
+        <h2>@ViewBag.Title</h2>
+    </div>
+</section>
+<section id="awic-donate-body" class="secondary-body">
+    <div class="linetext">
+        <div class="center">
+            <p>
+                As a non profit organisation, we try to do our best to run our programs and services with the limited amount of
+                resources available to us. Your donation, no matter how small, will go a long way for us to continue to provide
+                those services to the people who need it without creating a financial burden for them. For transparency and
+                information about where your donation money will go, please feel free to <a href="@Url.Action("Contact", "Home")">contact us</a>.
+            </p>
+        </div>
+    </div>
+    <div class="center cf">
+        <div class="col-12">
+            <div id="fill-form-message">
+                <strong>Please fill in the following form to if you wish to make a donation</strong>
+            </div>
+            <div class="form-center">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Donor)
+                        <span class="form-instruction">(leave it blank if you wish to make an anonymous donation)</span>
+                        @Html.EditorFor(model => model.Donor)
+                        @Html.ValidationMessageFor(model => model.Donor, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DonorEmail)
+                        <span class="form-instruction">(we'll only use your email to send you a donation receipt)</span>
+                        @Html.EditorFor(model => model.DonorEmail)
+                        @Html.ValidationMessageFor(model => model.DonorEmail, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AmountInCAD)
+                        <span class="form-instruction">(in CAD)</span>
+                        @Html.EditorFor(model => model.AmountInCAD)
+                        @Html.ValidationMessageFor(model => model.AmountInCAD, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit">Make Payment</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="push"></div>
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

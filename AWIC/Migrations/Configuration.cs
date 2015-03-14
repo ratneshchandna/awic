@@ -19,7 +19,7 @@ namespace AWIC.Migrations
         {
             var admin = new User
             {
-                Email = "team@awicsocialservices.ca",
+                Email = User.ADMIN,
                 EmailConfirmed = false,
                 PasswordHash = "AK0O2maSDXqmvN/zipLunJ0C1rEoyTDm/D6EXje3TkTjUfxz6CPYNMsqvq+nGtHHZQ==",
                 SecurityStamp = "83d4d10f-93d1-4967-8066-604cdc27a44b",
@@ -29,7 +29,7 @@ namespace AWIC.Migrations
                 LockoutEndDateUtc = null,
                 LockoutEnabled = false,
                 AccessFailedCount = 0,
-                UserName = "team@awicsocialservices.ca"
+                UserName = User.ADMIN
             };;
             context.Users.AddOrUpdate(u => u.UserName, admin);
             context.SaveChanges();

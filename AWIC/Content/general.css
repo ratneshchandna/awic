@@ -608,11 +608,86 @@ html {
 }
 /* Common
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
+section.title-center > div > h2 {
+    float: none;
+    text-align: center;
+}
 section.secondary-body {
     min-height: calc(100% - 198px);
     height: auto !important;
     height: calc(100% - 198px);
     margin: 0 auto -52px;
+}
+.form-center {
+    max-width: 250px;
+    margin: 0 auto;
+    text-align: center;
+}
+.form-center .form-group {
+    width: 100%;
+    margin: 20px 0;
+    font-size: 14pt;
+}
+.form-center .form-group input[type="text"], 
+.form-center .form-group input[type="datetime"], 
+.form-center .form-group input[type="email"] {
+    width: 100%;
+    padding: 0.25em;
+    margin: 5px 0;
+    height: 1em;
+    font-size: 14pt;
+    color: black;
+    text-align :center
+}
+.form-center .form-group input[type="submit"], 
+.form-center .form-group button {
+    width: 120px;
+    margin: 5px 0;
+    height: 2em;
+    background: #f65339;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    -moz-border-radius-topleft: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    -webkit-box-shadow: 0 3px 0 0 #d8422a;
+    -moz-box-shadow: 0 3px 0 0 #d8422a;
+    box-shadow: 0 3px 0 0 #d8422a;
+    text-align: center;
+    line-height: 1em;
+    font-family: 'Open Sans', 'sans-serif';
+    font-weight: 700;
+    color: #fff;
+    font-size: 12pt;
+    -webkit-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+    -ms-transition: all 0.1s ease;
+    -o-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+    text-transform: none;   
+}
+.form-center .form-group input[type="submit"]:hover, 
+.form-center .form-group button:hover {
+    background-color: #f8745f;
+}
+.form-center .back {
+    margin: 5px 0;
+}
+.text-danger, 
+.field-validation-error {
+    display: block;
+    color: #eb0000;
+    font-size: 12pt;
 }
 /* Header
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
@@ -1313,7 +1388,7 @@ section.info .col-8 p a {
 section.donate {
   height: 285px;
   width: 100%;
-  background: #77a94c url("images/donate.png") no-repeat 20% 50%;
+  background: #76a84b;
 }
 section.donate.page {
   background: #ededed url("images/donate2.png") no-repeat 20% 50%;
@@ -1696,7 +1771,7 @@ section.latest-donations .peoples .donated .right:before {
 section.how-help {
   padding: 60px 0;
   position: relative;
-  background: url("../css/images/childrens.jpg") no-repeat center right, #76a84b url("../css/images/donacion.jpg") no-repeat left bottom;
+  background: #76a84b;
 }
 section.how-help .top-border {
   position: absolute;
@@ -2256,10 +2331,6 @@ section.pics .button a:hover {
 }
 /* AWIC Events
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
-section.awic-events-title > div > h2 {
-    float: none;
-    text-align: center;
-}
 section#awic-event-list-body .col-12 {
     overflow-x: auto;
 }
@@ -2354,79 +2425,55 @@ section#awic-event-list-body table td.event-actions .confirm-delete {
     display: block;
     padding: 5px 0;
 }
-section#awic-add-event-body .form-center, 
-section#awic-edit-event-body .form-center {
-    max-width: 250px;
-    margin: 0 auto;
-    text-align: center;
+/* AWIC Donate
+/* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
+section#awic-donate-body .linetext, 
+section#awic-make-payment-body .linetext, 
+section#awic-donation-received-body .linetext {
+    margin: 0;
+    padding: 35px 0;
 }
-section#awic-add-event-body .form-center .form-group,
-section#awic-edit-event-body .form-center .form-group {
-    width: 100%;
-    margin: 20px 0;
-    font-size: 14pt;
-}
-section#awic-add-event-body .form-center .form-group input[type="text"], 
-section#awic-edit-event-body .form-center .form-group input[type="text"], 
-section#awic-add-event-body .form-center .form-group input[type="datetime"], 
-section#awic-edit-event-body .form-center .form-group input[type="datetime"] {
-    width: 100%;
-    padding: 0.25em;
-    margin: 5px 0;
-    height: 1em;
-    font-size: 14pt;
-    color: black;
-    text-align :center
-}
-section#awic-add-event-body .form-center .form-group input[type="submit"], 
-section#awic-edit-event-body .form-center .form-group input[type="submit"] {
-    width: 120px;
-    margin: 5px 0;
-    height: 2em;
-    background: #f65339;
-    -webkit-border-top-right-radius: 3px;
-    -webkit-border-bottom-right-radius: 3px;
-    -webkit-border-bottom-left-radius: 3px;
-    -webkit-border-top-left-radius: 3px;
-    -moz-border-radius-topright: 3px;
-    -moz-border-radius-bottomright: 3px;
-    -moz-border-radius-bottomleft: 3px;
-    -moz-border-radius-topleft: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-    border-top-left-radius: 3px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    -webkit-box-shadow: 0 3px 0 0 #d8422a;
-    -moz-box-shadow: 0 3px 0 0 #d8422a;
-    box-shadow: 0 3px 0 0 #d8422a;
-    text-align: center;
-    line-height: 1em;
+section#awic-donate-body .linetext p, 
+section#awic-make-payment-body .linetext p, 
+section#awic-donation-received-body .linetext p {
     font-family: 'Open Sans', 'sans-serif';
-    font-weight: 700;
-    color: #fff;
+    font-weight: 400;
+    font-size: 14pt;
+    color: #7c7c7b;
+    line-height: 1.4em;
+}
+section#awic-donate-body #fill-form-message, 
+section#awic-make-payment-body #fill-form-message {
+    text-align: center;
+    font-size: 14pt;
+}
+section#awic-donate-body .form-center  {
+    max-width: 450px;
+}
+section#awic-donate-body .form-center .form-group .form-instruction {
+    display: block;
     font-size: 12pt;
-    -webkit-transition: all 0.1s ease;
-    -moz-transition: all 0.1s ease;
-    -ms-transition: all 0.1s ease;
-    -o-transition: all 0.1s ease;
-    transition: all 0.1s ease;
-    text-transform: none;   
 }
-section#awic-add-event-body .form-center .form-group input[type="submit"]:hover, 
-section#awic-edit-event-body .form-center .form-group input[type="submit"]:hover {
-    background-color: #f8745f;
+section#awic-donate-body .form-center .form-group input#AmountInCAD {
+    width: 100px;
 }
-section#awic-add-event-body .form-center .back,
-section#awic-edit-event-body .form-center .back {
-    margin: 5px 0;
+section#awic-donate-body .form-center .form-group input[type="submit"], 
+section#awic-donate-body .form-center .form-group button {
+    width: 160px;
 }
-.text-danger, 
-.field-validation-error {
-    color: #eb0000;
-    font-size: 10pt;
+section#awic-make-payment-body .form-center .form-group label {
+    display: block;
+}
+section#awic-make-payment-body .form-center .form-group input#cvc, 
+section#awic-make-payment-body .form-center .form-group input#exp-year {
+    width: 50px;
+}
+section#awic-make-payment-body .form-center .form-group input#exp-month {
+    width: 25px;
+}
+section#awic-make-payment-body .form-center .form-group input#cvc {
+    display: block;
+    margin: 0 auto;
 }
 /* Bottom
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
@@ -2489,7 +2536,7 @@ section.bottom .text a:hover {
 footer .line {
   width: 100%;
   padding: 18px 0;
-  background: #70a346;
+  background: #76a84b;
 }
 footer .line .links {
   float: left;

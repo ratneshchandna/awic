@@ -205,6 +205,7 @@ namespace AWIC.Controllers
             return RedirectToAction("Index");
         }
 
+        [AllowAnonymous]
         public async Task<string> GetDaysWithEvents(CalendarData calendarData)
         {
             string daysWithEvents = "";
@@ -234,6 +235,7 @@ namespace AWIC.Controllers
             return daysWithEvents;
         }
 
+        [AllowAnonymous]
         public async Task<PartialViewResult> GetEventsForDay(CalendarData calendarData)
         {
             IEnumerable<Event> eventsForDay = new List<Event>();
@@ -250,6 +252,7 @@ namespace AWIC.Controllers
             return PartialView("_EventsForDay", eventsForDay);
         }
 
+        [AllowAnonymous]
         public async Task<PartialViewResult> GetEventsForWeek(CalendarData calendarData)
         {
             List<IGrouping<int, AWIC.Models.Event>> daysOfEvents = new List<IGrouping<int, AWIC.Models.Event>>();
@@ -291,6 +294,7 @@ namespace AWIC.Controllers
             return PartialView("_EventsForMonth", daysOfEvents);
         }
 
+        [AllowAnonymous]
         public async Task<PartialViewResult> GetEventsForMonth(CalendarData calendarData)
         {
             List<IGrouping<int, AWIC.Models.Event>> daysOfEvents = new List<IGrouping<int, AWIC.Models.Event>>();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Mail;
+using AWIC.Models;
 
 namespace AWIC.Helpers
 {
@@ -47,12 +48,12 @@ namespace AWIC.Helpers
             : base(
                 new EmailConfig
                 {
-                    From = "team@awicsocialservices.ca",
+                    From = User.ADMIN,
                     SMTPServer = new SMTPServer
                     {
                         Address = "mail5005.site4now.net",
                         Port = 8889,
-                        Username = "team@awicsocialservices.ca",
+                        Username = User.ADMIN,
                         Password = System.Configuration.ConfigurationManager.AppSettings["SMTPServerPassword"]
                     }
                 }
@@ -96,20 +97,41 @@ namespace AWIC.Helpers
             SendEmail(To, Subject, HTMLBody);
         }
 
-        public void SendThanksForDonationEmail(string To, string Name)
+        public void SendDonationReceiptEmail(string To, Donations donation)
         {
-            string Subject = "";
+            string Subject = "Thank you for your donation!";
 
-            string HTMLBody = "";
+            string HTMLBody = 
+                "<p>Hi" + (!String.IsNullOrEmpty(donation.Donor) ? " " + donation.Donor + ", " : ", ") + "</p>" + 
+                "<p>Thank you for making a donation to AWIC!</p>" + 
+                "<p>Your donation of $" + donation.AmountInCAD + " CAD, made on " + donation.DonationDateAndTime.ToLongDateString() + " " + donation.DonationDateAndTime.ToShortTimeString() + " has been received by us. </p>" + 
+                "<br />" + 
+                "<p>Sincerely, </p>" + 
+                "<p>The AWIC Team</p>";
 
             SendEmail(To, Subject, HTMLBody);
         }
 
-        public void SendDonationReceivedEmail(string To, string Name)
+        public void SendDonationReceivedEmail(string To, Donations donation)
         {
-            string Subject = "";
+            string Subject = "We've received a donation!";
 
-            string HTMLBody = "";
+            string HTMLBody =
+                "<p>A donation of $" + donation.AmountInCAD + " CAD" +
+                ", made on " +
+                donation.DonationDateAndTime.ToLongDateString() + " " + donation.DonationDateAndTime.ToShortTimeString() +
+                ", by " +
+                ( (!String.IsNullOrEmpty(donation.Donor) && !String.IsNullOrEmpty(donation.DonorEmail)) ? 
+                        donation.Donor + " (" + donation.DonorEmail + ")" : 
+                        (!String.IsNullOrEmpty(donation.DonorEmail) ? 
+                            donation.DonorEmail : 
+                            (!String.IsNullOrEmpty(donation.Donor) ? 
+                                donation.Donor :
+                                "an anonymous donor"
+                            )
+                        )
+                ) +
+                " has been made to us. The donation should be arriving in our bank account in a few days. </p>";
 
             SendEmail(To, Subject, HTMLBody);
         }

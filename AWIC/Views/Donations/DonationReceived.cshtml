@@ -1,0 +1,32 @@
+﻿@model AWIC.Models.Donations
+
+@{
+    ViewBag.Title = "Thank you!";
+}
+
+<section id="awic-donation-received-title" class="title-center top-page-nav">
+    <div class="center cf">
+        <h2>@ViewBag.Title</h2>
+    </div>
+</section>
+<section id="awic-donation-received-body" class="secondary-body">
+    <div class="linetext">
+        <div class="center">
+            <p>
+                @if (!String.IsNullOrEmpty(Model.Donor))
+                {
+                    <span>@Model.Donor, </span>
+                }
+                Thank you for making a donation to AWIC!
+            </p>
+            <br />
+            <p>Your donation of $@Model.AmountInCAD CAD, made on @Model.DonationDateAndTime.ToLongDateString() @Model.DonationDateAndTime.ToShortTimeString() has been received by us. </p>
+            <br />
+            @if(ViewBag.SentEmailToDonor)
+            {
+                <p>We've sent an email to @Model.DonorEmail with the donation details above. You should be receiving it shortly. </p>
+            }
+        </div>
+    </div>
+    <div class="push"></div>
+</section>

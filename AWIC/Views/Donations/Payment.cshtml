@@ -1,0 +1,103 @@
+﻿@model AWIC.Models.Donations
+
+@{
+    ViewBag.Title = "Make Payment";
+}
+
+<section id="awic-make-payment-title" class="title-center top-page-nav">
+    <div class="center cf">
+        <h2>@ViewBag.Title</h2>
+    </div>
+</section>
+<section id="awic-make-payment-body" class="secondary-body">
+    <div class="linetext">
+        <div class="center">
+            <p>
+                As a non profit organisation, we try to do our best to run our programs and services with the limited amount of
+                resources available to us. Your donation, no matter how small, will go a long way for us to continue to provide
+                those services to the people who need it without creating a financial burden for them. For transparency and
+                information about where your donation money will go, please feel free to <a href="@Url.Action("Contact", "Home")">contact us</a>.
+            </p>
+        </div>
+    </div>
+    <div class="center cf">
+        <div class="col-12">
+            <div id="fill-form-message">
+                <strong>Please enter your payment information to finish making your donation</strong>
+            </div>
+            <div class="form-center">
+                @using(Html.BeginForm("Payment", "Donations", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        <span class="payment-errors text-danger">
+                            @if (!String.IsNullOrEmpty((string)ViewBag.Error))
+                            {
+                                <span>@ViewBag.Error</span>
+                            }
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.Donor)
+                        @Html.HiddenFor(model => model.DonorEmail)
+                        @Html.HiddenFor(model => model.AmountInCAD)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Credit Card Number</label>
+                        <input id="number" type="text" size="20" data-stripe="number" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>CVC</label>
+                        <input id="cvc" type="text" size="4" data-stripe="cvc" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Expiration (MM/YYYY)</label>
+                        <input id="exp-month" type="text" size="2" data-stripe="exp-month" />
+                        <span>/</span>
+                        <input id="exp-year" type="text" size="4" data-stripe="exp-year" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit">Donate</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="push"></div>
+</section>
+@Scripts.Render("~/bundles/stripejs")
+<script type="text/javascript">
+    // This identifies your website in the createToken call below
+    Stripe.setPublishableKey('pk_test_B1k6pC20S2sjCfLkzxwpnLf0');
+    var stripeResponseHandler = function(status, response) {
+        var $form = $('form');
+        if (response.error) {
+            // Show the errors on the form
+            $form.find('.payment-errors').text(response.error.message);
+            $form.find('button').prop('disabled', false);
+        } else {
+            // token contains id, last4, and card type
+            var token = response.id;
+            // Insert the token into the form so it gets submitted to the server
+            $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+            // and re-submit
+            $form.get(0).submit();
+        }
+    };
+    $(document).ready(function(){
+        $('form').submit(function(e) {
+            var $form = $(this);
+            // Disable the submit button to prevent repeated clicks
+            $form.find('button').prop('disabled', true);
+            Stripe.card.createToken($form, stripeResponseHandler);
+            // Prevent the form from submitting with the default action
+            return false;
+        });
+    });
+</script>
