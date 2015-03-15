@@ -29,9 +29,9 @@
                         @Html.EditorFor(model => model.EventDateAndTime, new { 
                             htmlattributes = new { 
                                 placeholder = "" + 
-                                              DateTime.Now.Year + "-" + 
-                                              DateTime.Now.Month + "-" + 
-                                              DateTime.Now.Day + " 1:00 PM"
+                                              DateTime.Now.AddHours(3.0).Year + "-" +
+                                              DateTime.Now.AddHours(3.0).Month + "-" +
+                                              DateTime.Now.AddHours(3.0).Day + " 10:00 AM"
                             }
                         })
                         @Html.ValidationMessageFor(model => model.EventDateAndTime, "", new { @class = "text-danger" })

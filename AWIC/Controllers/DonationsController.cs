@@ -83,7 +83,7 @@ namespace AWIC.Controllers
 
                 try
                 {
-                    donationToProcess.DonationDateAndTime = DateTime.Now;
+                    donationToProcess.DonationDateAndTime = DateTime.Now.AddHours(3.0); // since server time zone is PST and we want the default to be EST
 
                     db.Donations.Add(donationToProcess);
 

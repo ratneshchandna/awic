@@ -130,9 +130,9 @@
         // Initialise the slider
         InitHome();
 
-        var day = Number('@DateTime.Now.Day');
-        var month = Number('@DateTime.Now.Month');
-        var year = Number('@DateTime.Now.Year');
+        var day = Number('@DateTime.Now.AddHours(3.0).Day');
+        var month = Number('@DateTime.Now.AddHours(3.0).Month');
+        var year = Number('@DateTime.Now.AddHours(3.0).Year');
         var preLoad = function(){
             $('#eventlist').html('<div class="text-center loading"><strong>Loading ... </strong></div>');
         };
