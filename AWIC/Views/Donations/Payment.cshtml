@@ -74,7 +74,7 @@
 @Scripts.Render("~/bundles/stripejs")
 <script type="text/javascript">
     // This identifies your website in the createToken call below
-    Stripe.setPublishableKey('pk_test_B1k6pC20S2sjCfLkzxwpnLf0');
+    Stripe.setPublishableKey('@System.Configuration.ConfigurationManager.AppSettings["StripeApiTestKey"]');
     var stripeResponseHandler = function(status, response) {
         var $form = $('form');
         if (response.error) {
