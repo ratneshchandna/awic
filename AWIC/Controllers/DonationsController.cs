@@ -123,14 +123,13 @@ namespace AWIC.Controllers
 
         private bool SendEmails(Donations processedDonation)
         {
-            AWICEmailHelper emailHelper = new AWICEmailHelper();
             bool SentEmailToDonor = false;
 
             if (!String.IsNullOrEmpty(processedDonation.DonorEmail))
             {
                 try
                 {
-                    emailHelper.SendDonationReceiptEmail(processedDonation.DonorEmail, processedDonation);
+                    AWICEmailHelper.SendDonationReceiptEmail(processedDonation);
                     SentEmailToDonor = true;
                 }
                 catch (Exception e)
@@ -143,7 +142,7 @@ namespace AWIC.Controllers
 
             try
             {
-                emailHelper.SendDonationReceivedEmail(AWIC.Models.User.ADMIN, processedDonation);
+                AWICEmailHelper.SendDonationReceivedEmail(processedDonation);
             }
             catch(Exception e)
             {

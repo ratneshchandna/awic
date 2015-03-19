@@ -1,0 +1,324 @@
+﻿@model AWIC.Models.Volunteer
+
+@{
+    ViewBag.Title = "Volunteer";
+}
+
+<section id="awic-volunteer-application-title" class="title-center top-page-nav">
+    <div class="center cf">
+        <h2>@ViewBag.Title</h2>
+    </div>
+</section>
+<section id="awic-volunteer-application-body" class="secondary-body">
+    <div class="linetext">
+        <div class="center">
+            <p>
+                AWIC, at its core, is about strengthening and empowering the lives of new community members integrating into Canadian life.
+                Volunteering with us would mean you understand that and are willing to provide a helping hand in delivering on that core message.
+                If you're interested in volunteering with us, you can apply below. After you've submitted your application, we'll get back to you,
+                letting you know whether or not you're eligible for an interview with us. Here are a few areas in our day to day activities where
+                we could use your help as a volunteer: Administration, Events, Workshops, Fundraising, Outreach Activities, Seniors' Programs,
+                Food Bank, Translation Services, ESL Classes, Computer Classes, Homework Club and/or more.
+            </p>
+        </div>
+    </div>
+    <div class="center cf">
+        <div class="col-12">
+            <div id="fill-form-message">
+                <strong>Please fill in and submit the following form to apply to become a volunteer</strong>
+                <span class="form-instruction">(fields with an asterisk (*) are required)</span>
+            </div>
+            <div class="form-center">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name)*
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.Name)
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Address)*
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.Address, new { htmlattributes = new { placeholder = "123 Example Street" } })
+                                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.City)*
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.City)
+                                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ProvinceOrState)*
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.ProvinceOrState)
+                                    @Html.ValidationMessageFor(model => model.ProvinceOrState, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Country)*
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.Country)
+                                    @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PostalCode)*
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.PostalCode)
+                                    @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Phone)*
+                                    <span class="form-instruction">(best phone number to reach you)</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.Phone, new { htmlattributes = new { placeholder = "(999) 999-9999" } })
+                                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.EmailAddress)*
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.EmailAddress)
+                                    @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DateOfBirth)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.DateOfBirth, new { htmlattributes = new { placeholder = "2000-01-31" } })
+                                    @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.LanguagesSpokenFluently)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.LanguagesSpokenFluently)
+                                    @Html.ValidationMessageFor(model => model.LanguagesSpokenFluently, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div id="QualificationsFormGroup" class="form-group">
+                        @Html.LabelFor(model => model.Qualifications)*
+                        <span class="form-instruction">(please include your education, skills, work experience and/or previous volunteer experience (if any))</span>
+                        @Html.TextAreaFor(model => model.Qualifications, new { rows = "11", placeholder = "Education: \n-\n\nSkills: \n-\n\nWork Experience: \n-\n\nVolunteer Experience: \n-" })
+                        @Html.ValidationMessageFor(model => model.Qualifications, "", new { @class = "text-danger" })
+                    </div>
+                    <label><strong>What days and times are you available to volunteer?</strong></label>
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.Monday, new { htmlattributes = new { onchange = "inputToggleDisabled($('#MondayTimes'))" } })
+                                    @Html.LabelFor(model => model.Monday)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.MondayTimes, new { htmlattributes = new { placeholder = "e.g. 1 PM - 2 PM, after 4 PM", disabled = "disabled" } })
+                                    @Html.ValidationMessageFor(model => model.MondayTimes, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.Tuesday, new { htmlattributes = new { onchange = "inputToggleDisabled($('#TuesdayTimes'))" } })
+                                    @Html.LabelFor(model => model.Tuesday)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.TuesdayTimes, new { htmlattributes = new { disabled = "disabled" } })
+                                    @Html.ValidationMessageFor(model => model.TuesdayTimes, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.Wednesday, new { htmlattributes = new { onchange = "inputToggleDisabled($('#WednesdayTimes'))" } })
+                                    @Html.LabelFor(model => model.Wednesday)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.WednesdayTimes, new { htmlattributes = new { disabled = "disabled" } })
+                                    @Html.ValidationMessageFor(model => model.WednesdayTimes, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.Thursday, new { htmlattributes = new { onchange = "inputToggleDisabled($('#ThursdayTimes'))" } })
+                                    @Html.LabelFor(model => model.Thursday)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.ThursdayTimes, new { htmlattributes = new { disabled = "disabled" } })
+                                    @Html.ValidationMessageFor(model => model.ThursdayTimes, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.Friday, new { htmlattributes = new { onchange = "inputToggleDisabled($('#FridayTimes'))" } })
+                                    @Html.LabelFor(model => model.Friday)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.FridayTimes, new { htmlattributes = new { disabled = "disabled" } })
+                                    @Html.ValidationMessageFor(model => model.FridayTimes, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.Saturday, new { htmlattributes = new { onchange = "inputToggleDisabled($('#SaturdayTimes'))" } })
+                                    @Html.LabelFor(model => model.Saturday)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.SaturdayTimes, new { htmlattributes = new { disabled = "disabled" } })
+                                    @Html.ValidationMessageFor(model => model.SaturdayTimes, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.Sunday, new { htmlattributes = new { onchange = "inputToggleDisabled($('#SundayTimes'))" } })
+                                    @Html.LabelFor(model => model.Sunday)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.SundayTimes, new { htmlattributes = new { disabled = "disabled" } })
+                                    @Html.ValidationMessageFor(model => model.SundayTimes, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div class="form-group text-center">
+                        <input type="submit" value="Sign Up" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="push"></div>
+</section>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ($('#Monday')[0].checked === true) {
+            $('#MondayTimes').removeAttr('disabled');
+        }
+        if ($('#Tuesday')[0].checked === true) {
+            $('#TuesdayTimes').removeAttr('disabled');
+        }
+        if ($('#Wednesday')[0].checked === true) {
+            $('#WednesdayTimes').removeAttr('disabled');
+        }
+        if ($('#Thursday')[0].checked === true) {
+            $('#ThursdayTimes').removeAttr('disabled');
+        }
+        if ($('#Friday')[0].checked === true) {
+            $('#FridayTimes').removeAttr('disabled');
+        }
+        if ($('#Saturday')[0].checked === true) {
+            $('#SaturdayTimes').removeAttr('disabled');
+        }
+        if ($('#Sunday')[0].checked === true) {
+            $('#SundayTimes').removeAttr('disabled');
+        }
+    });
+
+    function inputToggleDisabled(textbox) {
+        if(textbox.attr('disabled')){
+            textbox.removeAttr('disabled');
+        }
+        else{
+            textbox.attr('disabled', 'disabled');
+        }
+    }
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

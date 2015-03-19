@@ -167,6 +167,7 @@
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VolunteerController.cs" />
     <Compile Include="DAL\AWICDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -321,6 +322,8 @@
     <Content Include="Views\Donations\_LatestDonations.cshtml" />
     <Content Include="Views\Donations\Payment.cshtml" />
     <Content Include="Views\Donations\DonationReceived.cshtml" />
+    <Content Include="Views\Volunteer\Apply.cshtml" />
+    <Content Include="Views\Volunteer\ApplicationReceived.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

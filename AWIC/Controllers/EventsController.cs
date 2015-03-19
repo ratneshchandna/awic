@@ -259,7 +259,7 @@ namespace AWIC.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                List<string> daysOfWeek = new List<string> {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+                List<string> daysOfWeek = new List<string> { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
                 DateTime day = DateTime.Parse(calendarData.currentYear + "/" + calendarData.currentMonth + "/" + calendarData.currentDay);
                 int dayNumber = day.Day;
                 int monthNumber = day.Month;

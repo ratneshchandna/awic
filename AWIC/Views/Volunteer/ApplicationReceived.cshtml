@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Volunteer Application Received";
+}
+
+<section id="awic-volunteer-application-received-title" class="title-center top-page-nav">
+    <div class="center cf">
+        <h2>@ViewBag.Title</h2>
+    </div>
+</section>
+<section id="awic-volunteer-application-received-body" class="secondary-body">
+    <div class="linetext">
+        <div class="center">
+            <p>
+                @ViewBag.Name, thank you for your interest in volunteering with us! 
+            </p>
+            <p>
+                We have received your application and will begin reviewing it soon. Once we've reviewed your
+                application, we'll let you know via email (at @ViewBag.EmailAddress), or phone (at @ViewBag.Phone)
+                about whether or not we want you to come in for an interview. 
+            </p>
+            <p>
+                If you have any questions or concerns about anything until then, feel free to email us at 
+                @AWIC.Models.User.ADMIN with your message and we'll be glad to address it. 
+            </p>
+            <br />
+            <p>
+                You can find our full contact information <a href="@Url.Action("Contact", "Home", null, Request.Url.Scheme)">here</a>. 
+            </p>
+        </div>
+    </div>
+    <div class="push"></div>
+</section>

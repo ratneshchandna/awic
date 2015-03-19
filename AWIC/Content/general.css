@@ -238,7 +238,9 @@ input[type="submit"]:hover {
   transition: all 300ms ease-in-out;
 }
 input[type=text],
+input[type=datetime],
 input[type=email],
+input[type=tel],
 input[type=url],
 input[type=search],
 input[type=password],
@@ -618,9 +620,13 @@ section.secondary-body {
     height: calc(100% - 198px);
     margin: 0 auto -52px;
 }
+.form-instruction {
+    display: block;
+    font-size: 12pt;
+}
 .form-center {
     max-width: 250px;
-    margin: 0 auto;
+    margin: 0 auto 10px auto;
     text-align: center;
 }
 .form-center .form-group {
@@ -630,7 +636,9 @@ section.secondary-body {
 }
 .form-center .form-group input[type="text"], 
 .form-center .form-group input[type="datetime"], 
-.form-center .form-group input[type="email"] {
+.form-center .form-group input[type="email"], 
+ .form-center .form-group input[type="tel"], 
+.form-center .form-group textarea {
     width: 100%;
     padding: 0.25em;
     margin: 5px 0;
@@ -2441,6 +2449,7 @@ section#awic-donation-received-body .linetext p {
     font-size: 14pt;
     color: #7c7c7b;
     line-height: 1.4em;
+    text-align: justify;
 }
 section#awic-donate-body #fill-form-message, 
 section#awic-make-payment-body #fill-form-message {
@@ -2449,10 +2458,6 @@ section#awic-make-payment-body #fill-form-message {
 }
 section#awic-donate-body .form-center  {
     max-width: 450px;
-}
-section#awic-donate-body .form-center .form-group .form-instruction {
-    display: block;
-    font-size: 12pt;
 }
 section#awic-donate-body .form-center .form-group input#AmountInCAD {
     width: 100px;
@@ -2474,6 +2479,58 @@ section#awic-make-payment-body .form-center .form-group input#exp-month {
 section#awic-make-payment-body .form-center .form-group input#cvc {
     display: block;
     margin: 0 auto;
+}
+/* AWIC Volunteer
+/* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
+section#awic-volunteer-application-body .linetext, 
+section#awic-volunteer-application-received-body .linetext {
+    margin: 0;
+    padding: 35px 0;
+}
+section#awic-volunteer-application-body .linetext p, 
+section#awic-volunteer-application-received-body .linetext p {
+    font-family: 'Open Sans', 'sans-serif';
+    font-weight: 400;
+    font-size: 14pt;
+    color: #7c7c7b;
+    line-height: 1.4em;
+    text-align: justify;
+}
+section#awic-volunteer-application-body #fill-form-message {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14pt;
+}
+section#awic-volunteer-application-body .form-center {
+    max-width: 500px;
+    text-align: left;
+}
+section#awic-volunteer-application-body .form-center > form > label {
+    display: block;
+    margin-top: 20px;
+    font-size: 12pt;
+}
+section#awic-volunteer-application-body .form-center table {
+    width: 100%;
+}
+section#awic-volunteer-application-body .form-center table td {
+    width: 50%;
+}
+section#awic-volunteer-application-body .form-center .form-group {
+    margin: 0;
+}
+section#awic-volunteer-application-body .form-group#QualificationsFormGroup {
+    margin-top: 20px;
+}
+section#awic-volunteer-application-body .form-center .form-group input[type="text"], 
+section#awic-volunteer-application-body .form-center .form-group input[type="datetime"], 
+section#awic-volunteer-application-body .form-center .form-group input[type="email"], 
+section#awic-volunteer-application-body .form-center .form-group input[type="tel"], 
+section#awic-volunteer-application-body .form-center .form-group textarea {
+    text-align: left;
+}
+section#awic-volunteer-application-body .form-center .form-group textarea {
+    height: 100%;
 }
 /* Bottom
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */

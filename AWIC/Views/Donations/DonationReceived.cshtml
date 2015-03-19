@@ -15,17 +15,31 @@
             <p>
                 @if (!String.IsNullOrEmpty(Model.Donor))
                 {
-                    <span>@Model.Donor, </span>
+                    <span>@Model.Donor, thank you for making a donation to AWIC! </span>
                 }
-                Thank you for making a donation to AWIC!
+                else
+                {
+                    <span>Thank you for making a donation to AWIC! </span>
+                }
             </p>
-            <br />
-            <p>Your donation of $@Model.AmountInCAD CAD, made on @Model.DonationDateAndTime.ToLongDateString() @Model.DonationDateAndTime.ToShortTimeString() has been received by us. </p>
-            <br />
+            <p>
+                Your donation of $@Model.AmountInCAD CAD, made on @Model.DonationDateAndTime.ToLongDateString() @Model.DonationDateAndTime.ToShortTimeString() has been received by us. 
+            </p>
             @if(ViewBag.SentEmailToDonor)
             {
-                <p>We've sent an email to @Model.DonorEmail with the donation details above. You should be receiving it shortly. </p>
+                <p>
+                    We've sent an email to @Model.DonorEmail with the donation details above. You should be receiving it shortly. 
+                </p>
             }
+            <p>
+                If you have any questions or concerns about anything (including the details of where your 
+                donation money will be used by AWIC), feel free to email us at @AWIC.Models.User.ADMIN 
+                with your message and we'll be glad to address it. 
+            </p>
+            <br />
+            <p>
+                You can find our full contact information <a href="@Url.Action("Contact", "Home", null, Request.Url.Scheme)">here</a>. 
+            </p>
         </div>
     </div>
     <div class="push"></div>

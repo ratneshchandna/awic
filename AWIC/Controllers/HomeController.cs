@@ -14,22 +14,24 @@ namespace AWIC.Controllers
         {
             if(User.Identity.IsAuthenticated)
             {
-                AWICEmailHelper emailHelper = new AWICEmailHelper();
-
                 try
                 {
-                    emailHelper.SendTestEmail(emailid);
+                    AWICEmailHelper.SendTestEmail(emailid);
 
                     TempData["AlertMessage"] = "Email sent. Check email. ";
+
                     return RedirectToAction("Index");
                 }
                 catch(Exception ex)
                 {
                     TempData["AlertMessage"] = 
                         "Exception Message: " + 
-                        ex.Message.Replace('\n',' ').Replace('\r',' ') + 
-                        ". Inner Exception: " + 
-                        ex.InnerException;
+                        ex.Message.Replace("\n", "\\n").Replace("\r", "\\r") + "\\n\\n" + 
+                        ( !String.IsNullOrEmpty(ex.InnerException.ToString()) ?
+                            "Inner Exception: " + ex.InnerException.ToString().Replace("\n", "\\n").Replace("\r", "\\r") + ". " : 
+                            ""
+                        );
+
                     return RedirectToAction("Index");
                 }
             }
