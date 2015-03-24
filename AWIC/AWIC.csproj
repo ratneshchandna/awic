@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -167,6 +168,7 @@
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
     <Compile Include="DAL\AWICDbContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -324,6 +326,9 @@
     <Content Include="Views\Donations\DonationReceived.cshtml" />
     <Content Include="Views\Volunteer\Apply.cshtml" />
     <Content Include="Views\Volunteer\ApplicationReceived.cshtml" />
+    <Content Include="Views\Member\SignUp.cshtml" />
+    <Content Include="Views\Member\SignUpComplete.cshtml" />
+    <Content Include="Views\Member\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

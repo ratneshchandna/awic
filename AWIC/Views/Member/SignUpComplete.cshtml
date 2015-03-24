@@ -1,0 +1,96 @@
+﻿@using AWIC.Models;
+@model Member
+
+@{
+    ViewBag.Title = "Membership Sign Up Complete!";
+}
+
+<section id="awic-membership-sign-up-complete-title" class="title-center top-page-nav">
+    <div class="center cf">
+        <h2>@ViewBag.Title</h2>
+    </div>
+</section>
+<section id="awic-membership-sign-up-complete-body" class="secondary-body">
+    <div class="linetext">
+        <div class="center">
+            @if (Model.PaymentMethod == PaymentMethod.CreditCard)
+            {
+                if (Model.MembershipType == MembershipType.New)
+                {
+                    <p>
+                        Congratulations, @Model.FirstName! You are now a member of AWIC!
+                    </p>
+                    <p>
+                        You can start enjoying the benefits of becoming a member right away. Some of them are:
+                    </p>
+                }
+                else
+                {
+                    <p>
+                        Congratulations, @Model.FirstName! Your membership with AWIC has been renewed!
+                    </p>
+                    <p>
+                        You can continue to receive the benefits of being a member of AWIC. 
+                    </p>
+                }
+            }
+            else
+            {
+                if (Model.MembershipType == MembershipType.New)
+                {
+                    <p>
+                        @Model.FirstName, you're just one step short of becoming a member of AWIC!
+                    </p>
+                    <p>
+                        We've yet to receive your fee payment of $@ViewBag.FeeAmount CAD for your @ViewBag.FeeOption by @ViewBag.PaymentMethod.
+                        Once we've received it, you can start enjoying the following benefits of becoming a member:
+                    </p>
+                }
+                else
+                {
+                    <p>
+                        You're just one step short of renewing your membership with AWIC! 
+                    </p>
+                    <p>
+                        We've yet to receive your fee payment of $@ViewBag.FeeAmount CAD for your @ViewBag.FeeOption by @ViewBag.PaymentMethod. 
+                        Once we've received it, you can continue to receive the benefits of being a member of AWIC. 
+                    </p>
+                }
+            }
+            @if (Model.MembershipType == MembershipType.New)
+            {
+                <div class="list">
+                    <ul>
+                        <li>Stand for nomination for the Board of Directors</li>
+                        <li>Voting privileges at the Annual General Meeting</li>
+                        <li>Discount on some of AWIC's events</li>
+                        <li>Low cost advertising in AWIC's newsletter</li>
+                        <li>Receive AWIC's newsletter</li>
+                        <li>Become connected to your community</li>
+                    </ul>
+                </div>
+                <br />
+            }
+            <p>
+                We might contact you if we need to clarify something on the membership form you
+                @if (Model.PaymentMethod != PaymentMethod.CreditCard)
+                {
+                    <span>submitted as well. </span>
+                }
+                else
+                {
+                    <span>submitted. </span>
+                }
+            </p>
+            <p>
+                If you have any questions or concerns about anything, feel free to email us at
+                @AWIC.Models.User.ADMIN with your message and we'll be glad to address it.
+            </p>
+            <br />
+            <p>
+                You can find our full contact information <a href="@Url.Action("Contact", "Home", null, Request.Url.Scheme)">here</a>.
+            </p>
+        </div>
+    </div>
+    <div class="push"></div>
+</section>

@@ -61,10 +61,11 @@ namespace AWIC.Helpers
     {
         public static void SendVolunteerApplicationEmail(Volunteer volunteer)
         {
-            string Subject = "New Volunteer Application";
+            string Subject = "New Volunteer Application - " + volunteer.Name;
 
             string HTMLBody = 
                 "<p>An application was submitted by " + volunteer.Name + " to become a volunteer at AWIC. </p>" + 
+                "<br />" + 
                 "<p>Here is the application: </p>" +
                 "<p>Name: " + volunteer.Name + "</p>" + 
                 "<p>Address: " + volunteer.Address + "</p>" + 
@@ -98,14 +99,14 @@ namespace AWIC.Helpers
 
             string Subject = "Your Volunteer Application for AWIC";
 
-            string HTMLBody =
+            string HTMLBody = 
                 "<p>Hi " + volunteer.Name + ", </p>" +
                 "<p>Thank you for your interest in volunteering with us! </p>" +
                 "<p>We have received your application and will begin reviewing it soon. Once we've reviewed your " +
-                "application, we'll let you know via email (at " + volunteer.EmailAddress + "), or phone (at " +
-                volunteer.Phone + ") about whether or not we want you to come in for an interview. </p>" +
+                    "application, we'll let you know via email (at " + volunteer.EmailAddress + "), or phone (at " +
+                    volunteer.Phone + ") about whether or not we want you to come in for an interview. </p>" +
                 "<p>If you have any questions or concerns about anything until then, feel free to reply back with your " +
-                "message and we'll be glad to address it. </p>" +
+                    "message and we'll be glad to address it. </p>" +
                 "<br />" +
                 "<p>Sincerely, </p>" +
                 "<p>The AWIC Team</p>" +
@@ -115,22 +116,142 @@ namespace AWIC.Helpers
             SendEmail(volunteer.EmailAddress, Subject, HTMLBody);
         }
 
-        public static void SendMemberRegistrationEmail(Member member)
+        public static void SendMemberRegistrationEmail(Member member, string feeOption, string paymentMethod)
         {
-            string Subject = "";
+            string Subject = (member.MembershipType == MembershipType.New ? "New Member Registration - " : "Membership Renewal - " ) + 
+                             member.FirstName + " " + member.LastName;
 
-            string HTMLBody = "";
+            string HTMLBody =
+                "<p>A " + (member.MembershipType == MembershipType.New ? "membership" : "membership renewal") + " form was submitted by " + 
+                    member.FirstName + " " + member.LastName + "</p>" + 
+                "<br />" +
+                "<p>Here is the form: </p>" +
+                "<p>Date: " + member.Date.ToLongDateString() + "</p>" +
+                "<p>Membership Type: " + member.MembershipType.ToString() + "</p>" +
+                "<p>First Name: " + member.FirstName + "</p>" +
+                "<p>Last Name: " + member.LastName + "</p>" +
+                "<p>Address: " + member.Address + "</p>" +
+                "<p>City: " + member.City + "</p>" +
+                "<p>Province or State: " + member.ProvinceOrState + "</p>" +
+                "<p>Country: " + member.Country + "</p>" +
+                "<p>Postal Code: " + member.PostalCode + "</p>" +
+                "<p>Phone Number: " + member.Phone + "</p>" +
+                "<p>E-mail Address: " + member.EmailAddress + "</p>" +
+                (!String.IsNullOrEmpty(member.ReferredBy) ? "<p>Referred By: " + member.ReferredBy + "</p>" : "") +
+                "<p>Fee Option: " + feeOption + "</p>" +
+                "<p>Payment Method: " + paymentMethod + "</p>";
 
             SendEmail(User.ADMIN, Subject, HTMLBody);
         }
 
-        public static void SendMemberRegistrationReceivedEmail(Member member)
+        public static void SendMemberRegistrationReceivedEmail(Member member, int amount, string feeOption, string paymentMethod)
         {
-            string Subject = "";
+            UrlHelper urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            string path = urlHelper.Action("Contact", "Home");
+            Uri fullURL = new Uri(HttpContext.Current.Request.Url, path);
 
-            string HTMLBody = "";
+            string Subject = "Your " + (member.MembershipType == MembershipType.New ? "membership at " : "membership renewal for ") + "AWIC";
 
-            //SendEmail(member.EmailAddress, Subject, HTMLBody);
+            string HTMLBody =
+                "<p>Hi " + member.FirstName + ", </p>" + 
+
+                (
+                    member.PaymentMethod == PaymentMethod.CreditCard ? 
+
+                    (   
+                        (
+                            member.MembershipType == MembershipType.New ? 
+
+                            (
+                                "<p>Congratulations! You are now a member of AWIC! </p>" + 
+                                "<p>You can start enjoying the benefits of becoming a member right away. Some of them are: </p>"
+                            ) 
+
+                            : 
+
+                            (
+                                "<p>Congratulations! Your membership with AWIC has been renewed! </p>" + 
+                                "<p>You can continue to receive the benefits of being a member of AWIC. </p>"
+                            )
+                        )
+                    ) 
+
+                    : 
+
+                    (
+                        (
+                            member.MembershipType == MembershipType.New ? 
+
+                            (
+                                "<p>You're just one step short of becoming a member of AWIC! </p>" + 
+                                "<p>We've yet to receive your fee payment of $" + amount + " CAD for your " + feeOption + " by " + 
+                                    paymentMethod + ". " + "Once we've received it, you can start enjoying the following benefits " + 
+                                    "of becoming a member: </p>"
+                            ) 
+
+                            : 
+
+                            (
+                                "<p>You're just one step short of renewing your membership with AWIC! </p>" +
+                                "<p>We've yet to receive your fee payment of $" + amount + " CAD for your " + feeOption + " by " +
+                                    paymentMethod + ". " + "Once we've received it, you can continue to receive the benefits of being " + 
+                                    "a member of AWIC. </p>"
+                            )
+                        )
+                    )
+                ) + 
+
+                (
+                    member.MembershipType == MembershipType.New ? 
+
+                    (
+                        "<ul>" +
+                            "<li>Stand for nomination for the Board of Directors</li>" +
+                            "<li>Voting privileges at the Annual General Meeting</li>" +
+                            "<li>Discount on some of AWIC's events</li>" +
+                            "<li>Low cost advertising in AWIC's newsletter</li>" +
+                            "<li>Receive AWIC's newsletter</li>" +
+                            "<li>Become connected to your community</li>" + 
+                        "</ul>"
+                    )
+
+                    : 
+
+                    (
+                        ""
+                    )
+                ) + 
+
+                "<p>We might contact you if we need to clarify something on the membership form you submitted" + 
+                    (member.PaymentMethod != PaymentMethod.CreditCard ? " as well" : "") + ". </p>" + 
+                "<p>If you have any questions or concerns about anything, feel free to reply back with your " + 
+                    "message and we'll be glad to address it. </p>" + 
+                "<br />" + 
+                "<p>Sincerely, </p>" + 
+                "<p>The AWIC Team</p>" + 
+                "<br />" + 
+                "<p>PS You can find our full contact information <a href=\"" + fullURL + "\">here</a>. </p>";
+
+            SendEmail(member.EmailAddress, Subject, HTMLBody);
+        }
+
+        public static void SendFeePaidEmail(Member member, int feeAmount, string feeOption)
+        {
+            string Subject = "We've received a fee payment of $" + 
+                feeAmount + " CAD " + 
+                "from " + member.FirstName + " " + member.LastName;
+
+            string HTMLBody =
+                "<p>A fee payment of $" + 
+                    feeAmount + " CAD " + 
+                    "(for a " + feeOption + ")" + 
+                    " from " + 
+                    member.FirstName + " " + member.LastName + 
+                    " was made by credit card to us for his/her " + 
+                    (member.MembershipType == MembershipType.New ? "new member registration" : "membership renewal") +
+                    ". The fee payment should be arriving in our bank account in a few days. </p>";
+
+            SendEmail(User.ADMIN, Subject, HTMLBody);
         }
 
         public static void SendDonationReceiptEmail(Donations donation)
@@ -139,17 +260,19 @@ namespace AWIC.Helpers
             string path = urlHelper.Action("Contact", "Home");
             Uri fullURL = new Uri(HttpContext.Current.Request.Url, path);
 
-            string Subject = "Thank you for your donation!";
+            string Subject = "Thank you for your donation" + 
+                ( !String.IsNullOrEmpty(donation.Donor) ? ", " + donation.Donor : "" ) + 
+                "!";
 
             string HTMLBody = 
                 "<p>Hi" + (!String.IsNullOrEmpty(donation.Donor) ? " " + donation.Donor + ", " : ", ") + "</p>" + 
                 "<p>Thank you for making a donation to AWIC! </p>" + 
                 "<p>Your donation of $" + donation.AmountInCAD + " CAD, made on " + 
-                donation.DonationDateAndTime.ToLongDateString() + " " + 
-                donation.DonationDateAndTime.ToShortTimeString() + " has been received by us. </p>" + 
+                    donation.DonationDateAndTime.ToLongDateString() + " " + 
+                    donation.DonationDateAndTime.ToShortTimeString() + " has been received by us. </p>" + 
                 "<p>If you have any questions or concerns about anything (including the details of where your " + 
-                "donation money will be used by AWIC), feel free to reply back with your message and we'll be glad " + 
-                "to address it. </p>" + 
+                    "donation money will be used by AWIC), feel free to reply back with your message and we'll be glad " + 
+                    "to address it. </p>" + 
                 "<br />" + 
                 "<p>Sincerely, </p>" + 
                 "<p>The AWIC Team</p>" + 
@@ -161,24 +284,28 @@ namespace AWIC.Helpers
 
         public static void SendDonationReceivedEmail(Donations donation)
         {
-            string Subject = "We've received a donation!";
+            string Subject = "We've received a donation of $" + donation.AmountInCAD + " CAD from " + 
+                ( !String.IsNullOrEmpty(donation.Donor) ? donation.Donor : 
+                    ( !String.IsNullOrEmpty(donation.DonorEmail) ? donation.DonorEmail : "an anonymous donor" ) 
+                ) + 
+                "!";
 
             string HTMLBody =
                 "<p>A donation of $" + donation.AmountInCAD + " CAD" +
-                ", made on " +
-                donation.DonationDateAndTime.ToLongDateString() + " " + donation.DonationDateAndTime.ToShortTimeString() +
-                ", by " +
-                ( (!String.IsNullOrEmpty(donation.Donor) && !String.IsNullOrEmpty(donation.DonorEmail)) ? 
-                        donation.Donor + " (" + donation.DonorEmail + ")" : 
-                        (!String.IsNullOrEmpty(donation.DonorEmail) ? 
-                            donation.DonorEmail : 
-                            (!String.IsNullOrEmpty(donation.Donor) ? 
-                                donation.Donor :
-                                "an anonymous donor"
+                    ", made on " +
+                    donation.DonationDateAndTime.ToLongDateString() + " " + donation.DonationDateAndTime.ToShortTimeString() +
+                    ", by " +
+                    ( (!String.IsNullOrEmpty(donation.Donor) && !String.IsNullOrEmpty(donation.DonorEmail)) ? 
+                            donation.Donor + " (" + donation.DonorEmail + ")" : 
+                            (!String.IsNullOrEmpty(donation.DonorEmail) ? 
+                                donation.DonorEmail : 
+                                (!String.IsNullOrEmpty(donation.Donor) ? 
+                                    donation.Donor :
+                                    "an anonymous donor"
+                                )
                             )
-                        )
-                ) +
-                " has been made to us. The donation should be arriving in our bank account in a few days. </p>";
+                    ) +
+                    " has been made to us. The donation should be arriving in our bank account in a few days. </p>";
 
             SendEmail(User.ADMIN, Subject, HTMLBody);
         }

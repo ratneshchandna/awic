@@ -610,6 +610,12 @@ html {
 }
 /* Common
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
+.hidden {
+    display: none;
+}
+.new-line {
+    display: block;
+}
 section.title-center > div > h2 {
     float: none;
     text-align: center;
@@ -2451,6 +2457,11 @@ section#awic-donation-received-body .linetext p {
     line-height: 1.4em;
     text-align: justify;
 }
+section#awic-donate-body #mail-or-cheque-instructions {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14pt;
+}
 section#awic-donate-body #fill-form-message, 
 section#awic-make-payment-body #fill-form-message {
     text-align: center;
@@ -2531,6 +2542,76 @@ section#awic-volunteer-application-body .form-center .form-group textarea {
 }
 section#awic-volunteer-application-body .form-center .form-group textarea {
     height: 100%;
+}
+/* AWIC Membership
+/* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
+section#awic-membership-sign-up-body .linetext, 
+section#awic-fee-payment-body .linetext, 
+section#awic-membership-sign-up-complete-body .linetext {
+    margin: 0;
+    padding: 35px 0;
+}
+section#awic-membership-sign-up-body .linetext p, 
+section#awic-fee-payment-body .linetext p, 
+section#awic-membership-sign-up-complete-body .linetext p, 
+section#awic-membership-sign-up-body .linetext ul > li, 
+section#awic-fee-payment-body .linetext ul > li, 
+section#awic-membership-sign-up-complete-body .linetext ul > li {
+    font-family: 'Open Sans', 'sans-serif';
+    font-weight: 400;
+    font-size: 14pt;
+    color: #7c7c7b;
+    line-height: 1.4em;
+    text-align: justify;
+}
+section#awic-membership-sign-up-body .linetext .list, 
+section#awic-fee-payment-body .linetext .list, 
+section#awic-membership-sign-up-complete-body .linetext .list {
+    margin-left: 5%;
+}
+section#awic-membership-sign-up-body .linetext ul > li, 
+section#awic-fee-payment-body .linetext ul > li, 
+section#awic-membership-sign-up-complete-body .linetext ul > li {
+    list-style: disc;
+}
+section#awic-membership-sign-up-body #fill-form-message, 
+section#awic-fee-payment-body #fill-form-message {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14pt;
+}
+section#awic-membership-sign-up-body .form-center {
+    max-width: 500px;
+    text-align: left;
+}
+section#awic-membership-sign-up-body .form-center table {
+    width: 100%;
+}
+section#awic-membership-sign-up-body .form-center table td {
+    width: 50%;
+    padding: 8px 0;
+}
+section#awic-membership-sign-up-body .form-center .form-group {
+    margin: 0;
+}
+section#awic-membership-sign-up-body .form-center .form-group input[type="text"], 
+section#awic-membership-sign-up-body .form-center .form-group input[type="email"], 
+section#awic-membership-sign-up-body .form-center .form-group input[type="tel"] {
+    text-align: left;
+}
+section#awic-fee-payment-body .form-center .form-group label {
+    display: block;
+}
+section#awic-fee-payment-body .form-center .form-group input#cvc, 
+section#awic-fee-payment-body .form-center .form-group input#exp-year {
+    width: 50px;
+}
+section#awic-fee-payment-body .form-center .form-group input#exp-month {
+    width: 25px;
+}
+section#awic-fee-payment-body .form-center .form-group input#cvc {
+    display: block;
+    margin: 0 auto;
 }
 /* Bottom
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */

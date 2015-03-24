@@ -1,0 +1,122 @@
+﻿@model AWIC.Models.Member
+
+@{
+    ViewBag.Title = "Fee Payment";
+}
+
+<section id="awic-fee-payment-title" class="title-center top-page-nav">
+    <div class="center cf">
+        <h2>@ViewBag.Title</h2>
+    </div>
+</section>
+<section id="awic-fee-payment-body" class="secondary-body">
+    <div class="linetext">
+        <div class="center">
+            <p>
+                Becoming a member of AWIC allows you to become an active participant in our core principle, which is to strengthen and empower the
+                lives of new community members integrating into Canadian life. As a member, you are entitled to benefits such as:
+            </p>
+            <div class="list">
+                <ul>
+                    <li>Stand for nomination for the Board of Directors</li>
+                    <li>Voting privileges at the Annual General Meeting</li>
+                    <li>Discount on some of AWIC's events</li>
+                    <li>Low cost advertising in AWIC's newsletter</li>
+                    <li>Receive AWIC's newsletter</li>
+                    <li>Become connected to your community</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="center cf">
+        <div class="col-12">
+            <div id="fill-form-message">
+                <strong>Please provide your payment information to make your fee payment of $@ViewBag.FeeAmount CAD (for a @ViewBag.FeeOption)</strong>
+            </div>
+            <div class="form-center">
+                @using (Html.BeginForm("Payment", "Member", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        <span class="payment-errors text-danger">
+                            @if (!String.IsNullOrEmpty((string)ViewBag.Error))
+                            {
+                                <span>@ViewBag.Error</span>
+                            }
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.Date)
+                        @Html.HiddenFor(model => model.MembershipType)
+                        @Html.HiddenFor(model => model.FirstName)
+                        @Html.HiddenFor(model => model.LastName)
+                        @Html.HiddenFor(model => model.Address)
+                        @Html.HiddenFor(model => model.City)
+                        @Html.HiddenFor(model => model.ProvinceOrState)
+                        @Html.HiddenFor(model => model.Country)
+                        @Html.HiddenFor(model => model.PostalCode)
+                        @Html.HiddenFor(model => model.Phone)
+                        @Html.HiddenFor(model => model.EmailAddress)
+                        @Html.HiddenFor(model => model.ReferredBy)
+                        @Html.HiddenFor(model => model.FeeOption)
+                        @Html.HiddenFor(model => model.PaymentMethod)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Credit Card Number</label>
+                        <input id="number" type="text" size="20" data-stripe="number" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>CVC</label>
+                        <input id="cvc" type="text" size="4" data-stripe="cvc" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Expiration (MM/YYYY)</label>
+                        <input id="exp-month" type="text" size="2" data-stripe="exp-month" />
+                        <span>/</span>
+                        <input id="exp-year" type="text" size="4" data-stripe="exp-year" />
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit">Pay Fee</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="push"></div>
+</section>
+@Scripts.Render("~/bundles/stripejs")
+<script type="text/javascript">
+    // This identifies your website in the createToken call below
+    Stripe.setPublishableKey('@System.Configuration.ConfigurationManager.AppSettings["StripeApiPublishableKey"]');
+    var stripeResponseHandler = function (status, response) {
+        var $form = $('form');
+        if (response.error) {
+            // Show the errors on the form
+            $form.find('.payment-errors').text(response.error.message);
+            $form.find('button').prop('disabled', false);
+        } else {
+            // token contains id, last4, and card type
+            var token = response.id;
+            // Insert the token into the form so it gets submitted to the server
+            $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+            // and re-submit
+            $form.get(0).submit();
+        }
+    };
+    $(document).ready(function () {
+        $('form').submit(function (e) {
+            var $form = $(this);
+            // Disable the submit button to prevent repeated clicks
+            $form.find('button').prop('disabled', true);
+            Stripe.card.createToken($form, stripeResponseHandler);
+            // Prevent the form from submitting with the default action
+            return false;
+        });
+    });
+</script>
