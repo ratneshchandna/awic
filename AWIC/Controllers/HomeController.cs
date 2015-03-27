@@ -76,18 +76,13 @@ namespace AWIC.Controllers
             return View();
         }
 
+        public ActionResult SupportServices()
+        {
+            return View();
+        }
+
         public ActionResult Community()
         { 
-            return View();
-        }
-
-        public ActionResult Seniors()
-        {
-            return View();
-        }
-
-        public ActionResult Other()
-        {
             return View();
         }
 
@@ -96,6 +91,11 @@ namespace AWIC.Controllers
             return View();
         }
         public ActionResult Sponsors()
+        {
+            return View();
+        }
+
+        public ActionResult Partners()
         {
             return View();
         }

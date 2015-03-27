@@ -616,6 +616,9 @@ html {
 .new-line {
     display: block;
 }
+.clear-float {
+    clear: both;
+}
 section.title-center > div > h2 {
     float: none;
     text-align: center;
@@ -1099,23 +1102,23 @@ header.main #mobile-menu ul ul li a {
 #slider .slides li #settlementtext1 {
     height: 50px;
     width: 800px;
-    font-size: 38px;
+    font-size: 36px;
     font-weight: 350;
     left: 29%;
+}
+
+#slider .slides li #supportservicestext1 {
+    height: 140px;
+    width: 1050px;
+    font-size: 36px;
+    font-weight: 350;
+    left: 17.25%;
 }
 
 #slider .slides li #communitytext1 {
-    height: 100px;
+    height: 90px;
     width: 800px;
-    font-size: 38px;
-    font-weight: 350;
-    left: 29%;
-}
-
-#slider .slides li #seniorstext1 {
-    height: 100px;
-    width: 800px;
-    font-size: 38px;
+    font-size: 36px;
     font-weight: 350;
     left: 29%;
 }
@@ -1139,16 +1142,16 @@ header.main #mobile-menu ul ul li a {
     left: 35%;
 }
 
-#slider .slides li #communitytext2 a {
-    width: 540px;
+#slider .slides li #supportservicestext2 a {
+    width: 325px;
     font-weight: 350;
-    left: 35%;
+    left: 45%;
 }
 
-#slider .slides li #seniorstext2 a {
-    width: 540px;
+#slider .slides li #communitytext2 a {
+    width: 325px;
     font-weight: 350;
-    left: 35%;
+    left: 45%;
 }
 
 #slider .slides li.flex-active-slide {
@@ -1260,6 +1263,7 @@ section.aboutwhatwedo h2 {
 section.aboutwhatwedo p {
     margin: 0;
     line-height: 1;
+    text-align: justify;
 }
 
 section.aboutwhatwedo .bold {
@@ -1271,16 +1275,33 @@ section.aboutwhatwedo a {
     text-decoration: underline;
 }
 
+section.aboutwhatwedo ul {
+    padding-left: 2em;
+}
+
 section.aboutwhatwedo ul li {
     list-style: disc;
 }
 
+section.aboutwhatwedo ul > li.no-list-style {
+    list-style: none;
+}
+
+section.aboutwhatwedo table td {
+    padding: 10px 0;
+}
+
+section.aboutwhatwedo table td img {
+    width: 200px;
+    padding: 0 20px 20px 0;
+}
+
 section.aboutwhatwedo .callus {
     display: inline-block;
-    font-weight: bold;
-    font-size: 24px;
-    text-align: center;
     padding: 50px 0 0 0;
+    font-size: 24px;
+    font-style: italic;
+    text-align: justify;
 }
 
 /* Info
@@ -1384,7 +1405,6 @@ section.info .col-8 h3 {
 }
 section.info .col-8 h3 a {
     color: white;
-    text-decoration: underline;
 }
 section.info .col-8 p {
   font-family: 'PT Sans', 'sans-serif';
@@ -1395,7 +1415,6 @@ section.info .col-8 p {
 }
 section.info .col-8 p a {
     color: white;
-    text-decoration: underline;
 }
 /* Donate
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
@@ -1637,6 +1656,13 @@ section.latest-donations h2 {
   font-weight: 700;
   font-size: 37px;
 }
+section.latest-donations h3 {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Open Sans', 'sans-serif';
+  font-weight: 700;
+  font-size: 24px;
+}
 section.latest-donations .peoples {
   margin-top: 67px;
 }
@@ -1805,6 +1831,14 @@ section.how-help h2 {
   text-align: center;
   text-shadow: 0 3px 0 rgba(0, 0, 0, 0.11);
 }
+section.how-help h3 {
+  font-family: 'Open Sans', 'sans-serif';
+  font-weight: 700;
+  color: #fff;
+  font-size: 20px;
+  text-transform: none;
+  text-align: center;
+}
 section.how-help .col-6.left {
   padding-right: 20px;
 }
@@ -1830,6 +1864,46 @@ section.how-help .col-6 p {
   line-height: 24px;
   color: #fff;
   margin-bottom: 30px;
+}
+section.how-help .col-4, 
+section.how-help .col-6 {
+  padding: 2em;
+  text-align: center;
+}
+section.how-help .col-4 .how-help-content-box, 
+section.how-help .col-6 .how-help-content-box {
+    position: relative;
+}
+section.how-help .col-4 .how-help-content-box {
+    height: 150px;
+}
+section.how-help .col-6 .how-help-content-box {
+    height: 80px;
+}
+section.how-help .col-4 .how-help-content-box > .content-middle,
+section.how-help .col-6 .how-help-content-box > .content-middle {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+section.how-help .col-4 h3, 
+section.how-help .col-6 h3 {
+  margin-bottom: 5px;
+  font-family: 'Open Sans', 'sans-serif';
+  font-weight: 700;
+  font-size: 19px;
+  color: #fff;
+}
+section.how-help .col-4 p, 
+section.how-help .col-6 p {
+  display: inline-block;
+  margin-bottom: 15px;
+  font-family: 'Open Sans', 'sans-serif';
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 24px;
+  color: #fff;
+  text-align: center;
 }
 section.how-help .col-6.line {
   margin-bottom: 12px;
@@ -1877,8 +1951,8 @@ section.how-help .c4.c4 {
 }
 section.how-help .more {
   display: inline-block;
-  width: 208px;
-  height: 50px;
+  width: 150px;
+  height: 40px;
   background: #f65339;
   -webkit-border-top-right-radius: 3px;
   -webkit-border-bottom-right-radius: 3px;
@@ -1899,12 +1973,11 @@ section.how-help .more {
   -moz-box-shadow: 0 3px 0 0 #d8422a;
   box-shadow: 0 3px 0 0 #d8422a;
   text-align: center;
-  line-height: 50px;
+  line-height: 40px;
   font-family: 'Open Sans', 'sans-serif';
   font-weight: 700;
   color: #fff;
   font-size: 15px;
-  margin-top: 20px;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
@@ -1936,7 +2009,7 @@ section.events h2 {
 section.events h3 {
   font-family: 'Open Sans', 'sans-serif';
   font-weight: 700;
-  font-size: 30px;
+  font-size: 26px;
   color: white;
   text-transform: none;
   margin-top: 0;
@@ -2499,13 +2572,25 @@ section#awic-volunteer-application-received-body .linetext {
     padding: 35px 0;
 }
 section#awic-volunteer-application-body .linetext p, 
-section#awic-volunteer-application-received-body .linetext p {
+section#awic-volunteer-application-received-body .linetext p, 
+section#awic-volunteer-application-body .linetext ul > li {
     font-family: 'Open Sans', 'sans-serif';
     font-weight: 400;
     font-size: 14pt;
     color: #7c7c7b;
     line-height: 1.4em;
     text-align: justify;
+}
+section#awic-volunteer-application-body .linetext .list-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+section#awic-volunteer-application-body .linetext .list {
+    margin-left: 5%;
+    float: left;
+}
+section#awic-volunteer-application-body .linetext ul > li {
+    list-style: disc;
 }
 section#awic-volunteer-application-body #fill-form-message {
     margin-bottom: 20px;

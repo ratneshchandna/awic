@@ -106,12 +106,13 @@ namespace AWIC.Helpers
                     "application, we'll let you know via email (at " + volunteer.EmailAddress + "), or phone (at " +
                     volunteer.Phone + ") about whether or not we want you to come in for an interview. </p>" +
                 "<p>If you have any questions or concerns about anything until then, feel free to reply back with your " +
-                    "message and we'll be glad to address it. </p>" +
+                    "message and we'll be glad to address it. You can also call Elmira Mammadova at (416) 499-4144 with " + 
+                    "your message, who will be more than glad to help you. </p>" +
                 "<br />" +
                 "<p>Sincerely, </p>" +
                 "<p>The AWIC Team</p>" +
                 "<br />" +
-                "<p>PS You can find our full contact information <a href=\"" + fullURL + "\">here</a>. </p>";
+                "<p>PS You can find our general contact information <a href=\"" + fullURL + "\">here</a>. </p>";
 
             SendEmail(volunteer.EmailAddress, Subject, HTMLBody);
         }
@@ -154,56 +155,80 @@ namespace AWIC.Helpers
 
             string HTMLBody =
                 "<p>Hi " + member.FirstName + ", </p>" + 
-
                 (
                     member.PaymentMethod == PaymentMethod.CreditCard ? 
-
                     (   
                         (
                             member.MembershipType == MembershipType.New ? 
-
                             (
-                                "<p>Congratulations! You are now a member of AWIC! </p>" + 
-                                "<p>You can start enjoying the benefits of becoming a member right away. Some of them are: </p>"
+                                member.FeeOption != FeeOption.OneYearPatronage ? 
+                                (
+                                    "<p>Congratulations! You are now a member of AWIC! </p>" + 
+                                    "<p>You can start enjoying the benefits of becoming a member right away. Some of them are: </p>"
+                                ) 
+                                : 
+                                (
+                                    "<p>Thank you for becoming a patron of AWIC! </p>" +
+                                    "<p>You can start enjoying some of the membership benefits right away, like: </p>"
+                                )
                             ) 
-
                             : 
-
                             (
-                                "<p>Congratulations! Your membership with AWIC has been renewed! </p>" + 
-                                "<p>You can continue to receive the benefits of being a member of AWIC. </p>"
+                                member.FeeOption != FeeOption.OneYearPatronage ? 
+                                (
+                                    "<p>Congratulations! Your membership with AWIC has been renewed! </p>" + 
+                                    "<p>You can continue to receive the benefits of being a member of AWIC. </p>"
+                                ) 
+                                : 
+                                (
+                                    "<p>Thank you! Your patronage with AWIC has been renewed! </p>" +
+                                    "<p>You can continue to receive membership benefits, as before. </p>"
+                                )
                             )
                         )
                     ) 
-
                     : 
-
                     (
                         (
                             member.MembershipType == MembershipType.New ? 
-
                             (
-                                "<p>You're just one step short of becoming a member of AWIC! </p>" + 
-                                "<p>We've yet to receive your fee payment of $" + amount + " CAD for your " + feeOption + " by " + 
-                                    paymentMethod + ". " + "Once we've received it, you can start enjoying the following benefits " + 
-                                    "of becoming a member: </p>"
+                                member.FeeOption != FeeOption.OneYearPatronage ? 
+                                (
+                                    "<p>You're just one step short of becoming a member of AWIC! </p>" + 
+                                    "<p>We've yet to receive your fee payment of $" + amount + " CAD for your " + feeOption + " by " + 
+                                        paymentMethod + ". " + "Once we've received it, you can start enjoying the following benefits " + 
+                                        "of becoming a member: </p>"
+                                ) 
+                                : 
+                                (
+                                    "<p>You're just one step short of becoming a patron of AWIC! </p>" +
+                                    "<p>We've yet to receive your fee payment of $" + amount + " CAD for your " + feeOption + " by " +
+                                        paymentMethod + ". " + "Once we've received it, you can start enjoying some of the membership benefits, " + 
+                                        "such as: </p>"
+                                )
                             ) 
-
                             : 
-
                             (
-                                "<p>You're just one step short of renewing your membership with AWIC! </p>" +
-                                "<p>We've yet to receive your fee payment of $" + amount + " CAD for your " + feeOption + " by " +
-                                    paymentMethod + ". " + "Once we've received it, you can continue to receive the benefits of being " + 
-                                    "a member of AWIC. </p>"
+                                member.FeeOption != FeeOption.OneYearPatronage ? 
+                                (
+                                    "<p>You're just one step short of renewing your membership with AWIC! </p>" +
+                                    "<p>We've yet to receive your fee payment of $" + amount + " CAD for your " + feeOption + " by " +
+                                        paymentMethod + ". " + "Once we've received it, you can continue to receive the benefits of being " + 
+                                        "a member of AWIC. </p>"
+                                ) 
+                                : 
+                                (
+                                    "<p>You're just one step short of renewing your patronage with AWIC! </p>" +
+                                    "<p>We've yet to receive your fee payment of $" + amount + " CAD for your " + feeOption + " by " +
+                                        paymentMethod + ". " + "Once we've received it, you can continue to receive membership benefits, " + 
+                                        "as before. </p>"
+                                )
                             )
                         )
                     )
                 ) + 
-
                 (
                     member.MembershipType == MembershipType.New ? 
-
                     (
                         "<ul>" +
                             "<li>Stand for nomination for the Board of Directors</li>" +
@@ -214,23 +239,21 @@ namespace AWIC.Helpers
                             "<li>Become connected to your community</li>" + 
                         "</ul>"
                     )
-
                     : 
-
                     (
                         ""
                     )
                 ) + 
-
-                "<p>We might contact you if we need to clarify something on the membership form you submitted" + 
+                "<p>We might contact you if we need to clarify something on the form you submitted" + 
                     (member.PaymentMethod != PaymentMethod.CreditCard ? " as well" : "") + ". </p>" + 
                 "<p>If you have any questions or concerns about anything, feel free to reply back with your " + 
-                    "message and we'll be glad to address it. </p>" + 
+                    "message and we'll be glad to address it. You can also call Nilani Nanthan (our office " +
+                    "assistant at (416) 499-4144 with your message, who will be more than glad to help you. </p>" + 
                 "<br />" + 
                 "<p>Sincerely, </p>" + 
                 "<p>The AWIC Team</p>" + 
                 "<br />" + 
-                "<p>PS You can find our full contact information <a href=\"" + fullURL + "\">here</a>. </p>";
+                "<p>PS You can find our general contact information <a href=\"" + fullURL + "\">here</a>. </p>";
 
             SendEmail(member.EmailAddress, Subject, HTMLBody);
         }
@@ -277,7 +300,7 @@ namespace AWIC.Helpers
                 "<p>Sincerely, </p>" + 
                 "<p>The AWIC Team</p>" + 
                 "<br />" +
-                "<p>PS You can find our full contact information <a href=\"" + fullURL + "\">here</a>. </p>";
+                "<p>PS You can find our general contact information <a href=\"" + fullURL + "\">here</a>. </p>";
 
             SendEmail(donation.DonorEmail, Subject, HTMLBody);
         }

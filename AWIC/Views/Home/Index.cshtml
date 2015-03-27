@@ -3,17 +3,18 @@
         <li>
             <img src="@Url.Content("~/Content/images/Canadian Flag.png")" alt="" />
             <div id="settlementtext1" class="text1">New to Canada and need help settling in?</div>
-            <div id="settlementtext2" class="text2"><a href="@Url.Action("Settlement")">Check out our housing and settlement services</a></div>
+            <div id="settlementtext2" class="text2"><a href="@Url.Action("Settlement", "Home")">Check out our settlement and housing services</a></div>
+        </li>
+        <li>
+            <img src="@Url.Content("~/Content/images/clasped_hands.png")" alt="" />
+            <div id="supportservicestext1" class="text1">We also provide support for seniors, the ill or disabled, needy women, immigrants and refugees 
+            to get by and to integrate successfully into Canadian life with a sense of independence</div>
+            <div id="supportservicestext2" class="text2"><a href="@Url.Action("SupportServices", "Home")">Click here to find out more</a></div>
         </li>
         <li>
             <img src="@Url.Content("~/Content/images/community.png")" alt="" />
-            <div id="communitytext1" class="text1">We also help you get involved in the community</div>
-            <div id="communitytext2" class="text2"><a href="@Url.Action("Community")">Check out our community and health services</a></div>
-        </li>
-        <li>
-            <img src="@Url.Content("~/Content/images/seniors.png")" alt="" />
-            <div id="seniorstext1" class="text1">Seniors are always welcome to participate in one of our seniors' programs</div>
-            <div id="seniorstext2" class="text2"><a href="@Url.Action("Seniors")">Check out our senior's programs</a></div>
+            <div id="communitytext1" class="text1">We offer community and health and wellness services as well</div>
+            <div id="communitytext2" class="text2"><a href="@Url.Action("Community", "Home")">Click here to find out more</a></div>
         </li>
     </ul>
 </div>
@@ -23,10 +24,8 @@
             &nbsp;
         </div>
         <div class="col-8">
-            <!--div class="icon i3"></div-->
             <div class="text">
-                <!--h3>Read <a href="@Url.Action("About")">this blurb</a> to learn about us and what we do</h3-->
-                <h3>Some other services we offer are listed on <a href="@Url.Action("Other")">this page</a>. </h3>
+                <h3><a href="~/Content/flyers/@Path.GetFileName(Directory.GetFiles(Server.MapPath("~/Content/flyers"))[0])">Click here to get details on some exciting upcoming events! </a></h3>
             </div>
         </div>
         <div class="col-2">
@@ -75,52 +74,73 @@
     <div class="top-border"></div>
     <div class="center cf">
         <h2>How Can You Help?</h2>
-        <div class="col-6 left">
-            <h3>Help for cause</h3>
-            <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                It has survived not only five centuries, but also the leap into electronic typesetting.
-            </p>
-            <div class="col-6 c1">Media</div>
-            <div class="col-6 c2">Projection</div>
-            <div class="col-6 line"><div class="li"></div></div>
-            <div class="col-6 line"><div class="li"></div></div>
-            <div class="col-6 c3">Mobilization</div>
-            <div class="col-6 c4">Support</div>
-            <a class="more" href="about.html">Read More</a>
+        <h3>
+            AWIC, at its core, is about strengthening and empowering the lives of community members integrating 
+            into Canadian life. Helping us would mean that you understand that and are willing to deliver on that 
+            core message. Here's how you can help us become better. 
+        </h3>
+        <div class="col-4">
+            <h3>Become a Member / Patron</h3>
+            <div class="how-help-content-box">
+                <div class="content-middle">
+                    <p>
+                        Becoming a member / patron of AWIC will help sustain and enhance AWIC's resources 
+                        that are available to individuals, newcomer families and the community at large. 
+                    </p>
+                </div>
+            </div>
+            <a class="more" href="@Url.Action("SignUp", "Member")">More</a>
         </div>
-        <div class="col-6 right">
-            <iframe src="//www.youtube.com/embed/uF47o0wOncA" allowfullscreen></iframe>
+        <div class="col-4">
+            <h3>Sponsor</h3>
+            <div class="how-help-content-box">
+                <div class="content-middle">
+                    <p>
+                        Your sponsorship makes a difference by improving AWIC’s ability to start new community projects 
+                        and carry existing projects into the future after the funding period. 
+                    </p>
+                </div>
+            </div>
+            <a class="more" href="@Url.Action("Sponsors", "Home")">More</a>
         </div>
-    </div>
-</section>
-<!-- Donate -->
-<section class="donate">
-    <div class="cf">
-        <div class="col-6 text">
-            <h3>Thank you!</h3>
-            <h4>You’ve helped us raise a staggering</h4>
-            <h5><span>£53,370,743</span> so far!</h5>
+        <div class="col-4">
+            <h3>Donate</h3>
+            <div class="how-help-content-box">
+                <div class="content-middle">
+                    <p>
+                        Your donation, no matter how small, will go a long way for us to continue to 
+                        provide our services to the people who need it without creating a financial burden on them. 
+                    </p>
+                </div>
+            </div>
+            <a class="more" href="@Url.Action("Donate", "Donations")">More</a>
         </div>
-        <div class="col-6 but">
-            <a href="donate.html">Donate/pay in your money</a>
+        <div class="clear-float"></div>
+        <div class="col-6">
+            <h3>Volunteer</h3>
+            <div class="how-help-content-box">
+                <div class="content-middle">
+                    <p>
+                        We are always looking for enthusiastic volunteers! From computer tutoring to office work and events, 
+                        we will find the perfect volunteering opportunity for you at AWIC. 
+                    </p>
+                </div>
+            </div>
+            <a class="more" href="@Url.Action("Apply", "Volunteer")">More</a>
         </div>
-    </div>
-    <!-- -->
-    <div id="line">
-        <div class="way">
-            <div class="bar"></div>
+        <div class="col-6">
+            <h3>Partner</h3>
+            <div class="how-help-content-box">
+                <div class="content-middle">
+                    <p>
+                        AWIC is only able to continue its services and work because of the generous support of its community, 
+                        including the many volunteers who commit their time and efforts, as well as a broad base of funding 
+                        partners. 
+                    </p>
+                </div>
+            </div>
+            <a class="more" href="@Url.Action("Partners", "Home")">More</a>
         </div>
-    </div>
-    <!-- -->
-    <div class="share">
-        <span>Share: </span>
-        <a class="twitter" href=""></a>
-        <a class="facebook" href=""></a>
-        <a class="pinterest" href=""></a>
-        <a class="skype" href=""></a>
     </div>
 </section>
 @Scripts.Render("~/bundles/sliderscripts")
