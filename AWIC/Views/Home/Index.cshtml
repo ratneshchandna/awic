@@ -41,7 +41,7 @@
             <div id="calendar"></div>
             <span class="allevents">Click <a id="allEventsOfWeek" href="javascript:void(0)">here</a> to see all the events of this <strong>week</strong></span>
             <span class="allevents">Click <a id="allEventsOfMonth" href="javascript:void(0)">here</a> to see all the events of this <strong>month</strong></span>
-            <span class="allevents">Click <a id="calendarPDF" href="~/Content/calendar/calendar.pdf">here</a> to view the entire calendar in <strong>PDF</strong></span>
+            <span class="allevents">Click <a id="calendarPDF" href="~/Content/calendar/@Path.GetFileName(Directory.GetFiles(Server.MapPath("~/Content/calendar"))[0])">here</a> to view the entire calendar in <strong>PDF</strong></span>
         </div>
         <div class="col-8">
             <div id="eventlist">
