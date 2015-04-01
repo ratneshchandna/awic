@@ -203,6 +203,10 @@
     <Compile Include="Migrations\201511130414114_RemovedPaymentSucceededBoolProperty.Designer.cs">
       <DependentUpon>201511130414114_RemovedPaymentSucceededBoolProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511280714205_AddedWeeklyDates.cs" />
+    <Compile Include="Migrations\201511280714205_AddedWeeklyDates.Designer.cs">
+      <DependentUpon>201511280714205_AddedWeeklyDates.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Donations.cs" />
@@ -377,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511130414114_RemovedPaymentSucceededBoolProperty.resx">
       <DependentUpon>201511130414114_RemovedPaymentSucceededBoolProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511280714205_AddedWeeklyDates.resx">
+      <DependentUpon>201511280714205_AddedWeeklyDates.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

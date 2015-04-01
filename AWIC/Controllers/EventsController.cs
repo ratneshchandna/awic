@@ -19,6 +19,10 @@ namespace AWIC.Controllers
     public class EventsController : Controller
     {
         private AWICDbContext db = new AWICDbContext();
+        private string[] Months = new string[] { 
+                "January", "February", "March", "April", "May", "June", "July", 
+                "August", "September", "October", "November", "December" };
+        DateTime today = DateTime.Now.AddHours(3.0);
 
         // GET: Event
         public async Task<ActionResult> Index(string sortOrder)
@@ -27,8 +31,20 @@ namespace AWIC.Controllers
             ViewBag.EventDescriptionSortParm = sortOrder == "event_description" ? "event_description_desc" : "event_description";
             ViewBag.AllDaySortParam = sortOrder == "all_day" ? "all_day_desc" : "all_day";
 
+            string beginningOfMonth = Months[((today.Month) - 1)] + " 01, " + today.Year;
+            DateTime beginningOfMonthDate = DateTime.Parse(beginningOfMonth);
+            var eventsToDelete = db.Events.Where(e => e.EventDateAndTime < beginningOfMonthDate);
+            if(eventsToDelete.Count() > 0)
+            {
+                foreach(Event @event in eventsToDelete)
+                {
+                    db.Events.Remove(@event);
+                }
+                await db.SaveChangesAsync();
+            }
+
             var events = from s in db.Events
-                           select s;
+                         select s;
 
             switch(sortOrder)
             {
@@ -76,6 +92,94 @@ namespace AWIC.Controllers
             return View();
         }
 
+        private async Task AddWeeklyEventsAsync(Event @event)
+        {
+            db.Events.Add(@event);
+
+            // Keep track of repeated event's all day flag and description, 
+            // as well as a list of dates it repeats on. Once this information 
+            // is collected (after the 2 while loops), it will be used to search 
+            // for the repeated events in the DB (after they've been committed) 
+            // and the their IDs will be written to the WeeklyDates property in 
+            // each of those events
+
+            bool repeatedAllDay = @event.AllDay;
+            string repeatedEventDescription = @event.EventDescription;
+            List<DateTime> repeatedDatesAndTimes = new List<DateTime>();
+            repeatedDatesAndTimes.Add(@event.EventDateAndTime);
+
+            int eventMonth = @event.EventDateAndTime.Month;
+            DateTime eventDateAndTime = @event.EventDateAndTime.AddDays(-7);
+
+            while (eventDateAndTime.Month == eventMonth)
+            {
+                db.Events.Add(new Event
+                {
+                    AllDay = @event.AllDay,
+                    EventDateAndTime = eventDateAndTime,
+                    EventDescription = @event.EventDescription
+                });
+
+                repeatedDatesAndTimes.Add(eventDateAndTime);
+
+                eventDateAndTime = eventDateAndTime.AddDays(-7);
+            }
+
+            eventDateAndTime = @event.EventDateAndTime.AddDays(7);
+
+            while (eventDateAndTime.Month == eventMonth)
+            {
+                db.Events.Add(new Event
+                {
+                    AllDay = @event.AllDay,
+                    EventDateAndTime = eventDateAndTime,
+                    EventDescription = @event.EventDescription
+                });
+
+                repeatedDatesAndTimes.Add(eventDateAndTime);
+
+                eventDateAndTime = eventDateAndTime.AddDays(7);
+            }
+
+            await db.SaveChangesAsync();
+
+            string IDs = "";
+            foreach (DateTime dateAndTime in repeatedDatesAndTimes)
+            {
+                Event repeatedEvent = db.Events.FirstOrDefault(
+                                                                e => e.AllDay == repeatedAllDay &&
+                                                                e.EventDescription == repeatedEventDescription &&
+                                                                e.EventDateAndTime == dateAndTime
+                                                              );
+                if (repeatedEvent != null)
+                {
+                    if (String.IsNullOrEmpty(IDs))
+                    {
+                        IDs = repeatedEvent.ID.ToString();
+                    }
+                    else
+                    {
+                        IDs = IDs + "," + repeatedEvent.ID.ToString();
+                    }
+                }
+            }
+            foreach (DateTime dateAndTime in repeatedDatesAndTimes)
+            {
+                Event repeatedEvent = db.Events.FirstOrDefault(
+                                                                e => e.AllDay == repeatedAllDay &&
+                                                                e.EventDescription == repeatedEventDescription &&
+                                                                e.EventDateAndTime == dateAndTime
+                                                              );
+                if (repeatedEvent != null)
+                {
+                    repeatedEvent.WeeklyDates = IDs;
+                }
+                db.Entry(repeatedEvent).State = EntityState.Modified;
+            }
+
+            await db.SaveChangesAsync();
+        }
+
         // POST: Event/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -85,41 +189,25 @@ namespace AWIC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Events.Add(@event);
+                string beginningOfMonth = Months[((today.Month) - 1)] + " 01, " + today.Year;
+                DateTime beginningOfMonthDate = DateTime.Parse(beginningOfMonth);
+                if(@event.EventDateAndTime < beginningOfMonthDate)
+                {
+                    ModelState.AddModelError("EventDateAndTime", "The event's date and time cannot be before " + beginningOfMonth);
+
+                    return View(@event);
+                }
 
                 if (weekly != null)
                 {
-                    DateTime eventDateAndTime = @event.EventDateAndTime.AddDays(-7);
-                    int eventMonth = @event.EventDateAndTime.Month;
-
-                    while(eventDateAndTime.Month == eventMonth)
-                    {
-                        db.Events.Add(new Event
-                        {
-                            AllDay = @event.AllDay,
-                            EventDateAndTime = eventDateAndTime,
-                            EventDescription = @event.EventDescription
-                        });
-
-                        eventDateAndTime = eventDateAndTime.AddDays(-7);
-                    }
-
-                    eventDateAndTime = @event.EventDateAndTime.AddDays(7);
-
-                    while (eventDateAndTime.Month == eventMonth)
-                    {
-                        db.Events.Add(new Event
-                        {
-                            AllDay = @event.AllDay,
-                            EventDateAndTime = eventDateAndTime,
-                            EventDescription = @event.EventDescription
-                        });
-
-                        eventDateAndTime = eventDateAndTime.AddDays(7);
-                    }
+                    await AddWeeklyEventsAsync(@event);
                 }
+                else
+                {
+                    db.Events.Add(@event);
 
-                await db.SaveChangesAsync();
+                    await db.SaveChangesAsync();
+                }
 
                 return RedirectToAction("Index");
             }
@@ -134,11 +222,14 @@ namespace AWIC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Event @event = await db.Events.FindAsync(id);
+
             if (@event == null)
             {
                 return HttpNotFound();
             }
+
             return View(@event);
         }
 
@@ -147,27 +238,108 @@ namespace AWIC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditPost(int id, string weekly)
+        public async Task<ActionResult> EditPost(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var eventToUpdate = await db.Events.FindAsync(id);
-            if (TryUpdateModel(eventToUpdate, "", new string[] { "AllDay", "EventDateAndTime", "EventDescription" }))
+
+            Event eventToUpdate = await db.Events.FindAsync(id);
+
+            if (eventToUpdate == null)
             {
+                return HttpNotFound();
+            }
+
+            DateTime editedDateAndTime;
+            if(!DateTime.TryParse(Request.Form.Get("EventDateAndTime"), out editedDateAndTime))
+            {
+                ModelState.AddModelError("EventDateAndTime", "The date and time entered is not valid. Please change it to a valid date. ");
+
+                return View(eventToUpdate);
+            }
+
+            Event editedEvent = new Event
+            {
+                AllDay = Boolean.Parse(Request.Form.Get("AllDay").Split(',')[0]), 
+                EventDateAndTime = editedDateAndTime, 
+                EventDescription = Request.Form.Get("EventDescription")
+            };
+
+            string beginningOfMonth = Months[((today.Month) - 1)] + " 01, " + today.Year;
+            DateTime beginningOfMonthDate = DateTime.Parse(beginningOfMonth);
+
+            if (editedEvent.EventDateAndTime < beginningOfMonthDate)
+            {
+                ModelState.AddModelError("EventDateAndTime", "The event's date and time cannot be before " + beginningOfMonth);
+
+                return View(eventToUpdate);
+            }
+
+            if(!String.IsNullOrEmpty(eventToUpdate.WeeklyDates))
+            {
+                if(editedEvent.EventDateAndTime == eventToUpdate.EventDateAndTime)
+                {
+                    string[] weeklyDates = eventToUpdate.WeeklyDates.Split(',');
+
+                    foreach(string weeklyDate in weeklyDates)
+                    {
+                        int ID = int.Parse(weeklyDate);
+
+                        if(ID != null)
+                        {
+                            Event repeatedEventToUpdate = await db.Events.FindAsync(ID);
+                        
+                            if(repeatedEventToUpdate != null)
+                            {
+                                if(!TryUpdateModel(repeatedEventToUpdate, "", new string[] { "AllDay", "EventDescription" }))
+                                {
+                                    return View(eventToUpdate);
+                                }
+                            }   
+                        }
+                    }
+                }
+                else
+                {
+                    // Delete weekly events
+                    await DeleteWeeklyEventsAsync(eventToUpdate);
+
+                    // Add weekly events
+                    await AddWeeklyEventsAsync(editedEvent);
+                }
+
                 try
                 {
                     await db.SaveChangesAsync();
 
                     return RedirectToAction("Index");
                 }
-                catch (RetryLimitExceededException /* dex */ )
+                catch (Exception /* dex */ )
                 {
-                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    //Log the error (uncomment dex variable name and add a line here to write a log. 
                     ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
                 }
             }
+            else
+            {
+                if(TryUpdateModel(eventToUpdate, "", new string[] { "AllDay", "EventDateAndTime", "EventDescription" }))
+                {
+                    try
+                    {
+                        await db.SaveChangesAsync();
+
+                        return RedirectToAction("Index");
+                    }
+                    catch (Exception /* dex */ )
+                    {
+                        //Log the error (uncomment dex variable name and add a line here to write a log. 
+                        ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                    }
+                }
+            }
+
             return View(eventToUpdate);
         }
 
@@ -186,6 +358,28 @@ namespace AWIC.Controllers
             return View(@event);
         }*/
 
+        private async Task DeleteWeeklyEventsAsync(Event @event)
+        {
+            string[] weeklyDatesToDelete = @event.WeeklyDates.Split(',');
+
+            foreach(string weeklyDateToDelete in weeklyDatesToDelete)
+            {
+                int ID = int.Parse(weeklyDateToDelete);
+
+                if (ID != null)
+                {
+                    Event repeatedEventToDelete = await db.Events.FindAsync(ID);
+
+                    if (repeatedEventToDelete != null)
+                    {
+                        db.Events.Remove(repeatedEventToDelete);
+                    }
+                }
+            }
+
+            await db.SaveChangesAsync();
+        }
+
         // GET: Event/Delete/5
         [HttpGet, ActionName("Delete")]
         //[ValidateAntiForgeryToken]
@@ -195,13 +389,25 @@ namespace AWIC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
             Event @event = await db.Events.FindAsync(id);
+            
             if (@event == null)
             {
                 return HttpNotFound();
             }
-            db.Events.Remove(@event);
+            
+            if(String.IsNullOrEmpty(@event.WeeklyDates))
+            {
+                db.Events.Remove(@event);
+            }
+            else
+            {
+                await DeleteWeeklyEventsAsync(@event);
+            }
+
             await db.SaveChangesAsync();
+
             return RedirectToAction("Index");
         }
 

@@ -26,5 +26,7 @@ namespace AWIC.Models
         [Required]
         [Display(Name = "Event Description")]
         public string EventDescription { get; set; }
+
+        public string WeeklyDates { get; set; }
     }
 }
