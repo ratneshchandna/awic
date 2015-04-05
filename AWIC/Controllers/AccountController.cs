@@ -44,7 +44,13 @@ namespace AWIC.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if(Request.IsAuthenticated)
+            {
+                return RedirectToLocal(returnUrl);
+            }
+
             ViewBag.ReturnUrl = returnUrl;
+
             return View();
         }
 
@@ -58,9 +64,11 @@ namespace AWIC.Controllers
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindAsync(model.Email, model.Password);
+
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
+
                     return RedirectToLocal(returnUrl);
                 }
                 else
@@ -69,7 +77,7 @@ namespace AWIC.Controllers
                 }
             }
 
-            // If we got this far, something failed, redisplay form
+            // If we got this far, something failed, re-display form
             return View(model);
         }
 

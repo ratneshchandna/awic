@@ -646,7 +646,8 @@ section.secondary-body {
 .form-center .form-group input[type="text"], 
 .form-center .form-group input[type="datetime"], 
 .form-center .form-group input[type="email"], 
- .form-center .form-group input[type="tel"], 
+.form-center .form-group input[type="tel"], 
+.form-center .form-group input[type="password"], 
 .form-center .form-group textarea {
     width: 100%;
     padding: 0.25em;
@@ -654,7 +655,7 @@ section.secondary-body {
     height: 1em;
     font-size: 14pt;
     color: black;
-    text-align :center
+    text-align: center
 }
 .form-center .form-group input[type="submit"], 
 .form-center .form-group button {
@@ -2415,6 +2416,11 @@ section.pics .button a:hover {
   -webkit-box-shadow: 0 0px 0 0 #d8422a;
   -moz-box-shadow: 0 0px 0 0 #d8422a;
   box-shadow: 0 0px 0 0 #d8422a;
+}
+/* AWIC Administrator Login
+/* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
+section#awic-admin-login-body > .center > .col-12 > .form-center > form > .text-danger {
+    margin-top: 20px;
 }
 /* AWIC Events
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
