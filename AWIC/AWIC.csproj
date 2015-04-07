@@ -218,6 +218,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BadRequest.aspx" />
+    <Content Include="BadRequest.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\flyers\awic_updated_programmes.jpg" />
@@ -275,10 +277,14 @@
     <Content Include="Content\images\YellowBrickHouse.jpg" />
     <Content Include="Content\jquery.event.calendar.css" />
     <Content Include="Content\photoswipe.css" />
+    <Content Include="Error.aspx" />
+    <Content Include="Error.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="PageNotFound.aspx" />
+    <Content Include="PageNotFound.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="AppSettings.config" />
@@ -309,20 +315,20 @@
     </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Settlement.cshtml" />
     <Content Include="Views\Home\Community.cshtml" />
     <Content Include="Views\Home\SupportServices.cshtml" />
@@ -331,8 +337,6 @@
     <Content Include="Views\Home\Careers.cshtml" />
     <Content Include="Views\Gallery\Index.cshtml" />
     <Content Include="Views\Events\Create.cshtml" />
-    <Content Include="Views\Events\Delete.cshtml" />
-    <Content Include="Views\Events\Details.cshtml" />
     <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Events\_EventsForDay.cshtml" />
