@@ -619,6 +619,12 @@ html {
 .clear-float {
     clear: both;
 }
+.small-title {
+    display: none;
+}
+.big-title {
+    display: block;
+}
 section.title-center > div > h2 {
     float: none;
     text-align: center;
@@ -4763,6 +4769,24 @@ section.donate-text .col-4 form #submit:hover {
   aside.blog .video {
     margin-bottom: 20px;
   }
+  section.secondary-body {
+    margin: 0 auto -52px;
+  }
+  .push {
+    height: 52px;
+  }
+  .big-title {
+    display: block;
+  }
+  .small-title {
+    display: none;
+  }
+  section.latest-donations .peoples .col-3 {
+    width: 25%;
+  }
+  section.latest-donations .peoples .col-4 {
+    width: 33.33333333333333%;
+  }
 }
 /* Tablets
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
@@ -4973,6 +4997,25 @@ section.donate-text .col-4 form #submit:hover {
   .gallery .photos .col-4 {
   height: calc(500px/3); /*Warning: 500px depends on (.center) of .center*/
   }
+  section.secondary-body {
+    margin: 0 auto -76px;
+  }
+  .push {
+    height: 76px;
+  }
+  .big-title {
+    display: block;
+  }
+  .small-title {
+    display: none;
+  }
+  section.latest-donations .peoples .col-3, 
+  section.latest-donations .peoples .col-4 {
+    width: 50%;
+  }
+  section.latest-donations .peoples .col-4:nth-child(3n + 3) {
+    width: 100%;
+  }
 }
 /* Mobile
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
@@ -5078,5 +5121,22 @@ section.donate-text .col-4 form #submit:hover {
   }
   section.top-page-nav h2 {
     font-size: 30px;
+  }
+  section.secondary-body {
+    margin: 0 auto -90px;
+  }
+  .push {
+    height: 90px;
+  }
+  .big-title {
+    display: none;
+  }
+  .small-title {
+    display: block;
+  }
+  section.latest-donations .peoples .col-3, 
+  section.latest-donations .peoples .col-4, 
+  section.latest-donations .peoples .col-6 {
+    width: 100%;
   }
 }
