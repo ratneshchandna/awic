@@ -4861,6 +4861,9 @@ section.donate-text .col-4 form #submit:hover {
     width: 50%;
     margin-bottom: 20px;
   }
+  .col-2i:nth-child(5n+5) {
+      width: 100%;
+  }
   section.how-help h2,
   section.latest-donations h2 {
     font-size: 30px;
