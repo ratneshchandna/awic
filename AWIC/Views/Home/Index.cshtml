@@ -18,18 +18,22 @@
         </li>
     </ul>
 </div>
+<div id="slider-text-only">
+    <div class="center cf">
+        <div class="col-12">
+            <div class="text1">New to Canada and need help settling in?</div>
+            <div class="text2"><a href="@Url.Action("Settlement", "Home")">Check out our settlement and housing services</a></div>
+            <div class="text1">We also provide support for seniors, the ill or disabled, needy women, immigrants and refugees</div>
+            <div class="text2"><a href="@Url.Action("SupportServices", "Home")">Click here to find out more</a></div>
+            <div class="text1">We offer community and health and wellness services as well</div>
+            <div class="text2"><a href="@Url.Action("Community", "Home")">Click here to find out more</a></div>
+        </div>
+    </div>
+</div>
 <section class="info">
     <div class="center cf">
-        <div class="col-2">
-            &nbsp;
-        </div>
-        <div class="col-8">
-            <div class="text">
-                <h3><a href="~/Content/flyers/@Path.GetFileName(Directory.GetFiles(Server.MapPath("~/Content/flyers"))[0])">Click here to get details on some exciting upcoming events! </a></h3>
-            </div>
-        </div>
-        <div class="col-2">
-            &nbsp;
+        <div class="col-12">
+            <h3><a href="~/Content/flyers/@Path.GetFileName(Directory.GetFiles(Server.MapPath("~/Content/flyers"))[0])">View <span class="underline">our flyer</span> to learn about exciting, upcoming events! </a></h3>
         </div>
     </div>
 </section>
@@ -39,6 +43,7 @@
         <h2>Events</h2>
         <div class="col-4">
             <div id="calendar"></div>
+            <span class="allevents"><strong><span id="scroll-instruction">Scroll down to view the list of events</span></strong></span>
             <span class="allevents">Click <a id="allEventsOfWeek" href="javascript:void(0)">here</a> to see all the events of this <strong>week</strong></span>
             <span class="allevents">Click <a id="allEventsOfMonth" href="javascript:void(0)">here</a> to see all the events of this <strong>month</strong></span>
             <span class="allevents">Click <a id="calendarPDF" href="~/Content/calendar/@Path.GetFileName(Directory.GetFiles(Server.MapPath("~/Content/calendar"))[0])">here</a> to view the entire calendar in <strong>PDF</strong></span>
@@ -58,7 +63,7 @@
                     foreach (string file in ViewBag.Files)
                     {
                         <div class="pic">
-                            <img height="200" src="~/Content/gallery/@Path.GetFileName(file)" />
+                            <img src="~/Content/gallery/@Path.GetFileName(file)" />
                         </div>
                     }
                 }
@@ -80,7 +85,7 @@
             core message. Here's how you can help us become better. 
         </h3>
         <div class="col-4">
-            <h3>Become a Member / Patron</h3>
+            <h3>Membership / Patronship</h3>
             <div class="how-help-content-box">
                 <div class="content-middle">
                     <p>
@@ -92,7 +97,7 @@
             <a class="more" href="@Url.Action("SignUp", "Member")">More</a>
         </div>
         <div class="col-4">
-            <h3>Sponsor</h3>
+            <h3>Become a Sponsor</h3>
             <div class="how-help-content-box">
                 <div class="content-middle">
                     <p>
@@ -104,7 +109,7 @@
             <a class="more" href="@Url.Action("Sponsors", "Home")">More</a>
         </div>
         <div class="col-4">
-            <h3>Donate</h3>
+            <h3>Make a Donation</h3>
             <div class="how-help-content-box">
                 <div class="content-middle">
                     <p>
@@ -117,7 +122,7 @@
         </div>
         <div class="clear-float"></div>
         <div class="col-6">
-            <h3>Volunteer</h3>
+            <h3>Volunteer with us</h3>
             <div class="how-help-content-box">
                 <div class="content-middle">
                     <p>
@@ -129,7 +134,7 @@
             <a class="more" href="@Url.Action("Apply", "Volunteer")">More</a>
         </div>
         <div class="col-6">
-            <h3>Partner</h3>
+            <h3>Become a Partner</h3>
             <div class="how-help-content-box">
                 <div class="content-middle">
                     <p>

@@ -619,6 +619,9 @@ html {
 .clear-float {
     clear: both;
 }
+.underline {
+    text-decoration: underline;
+}
 .small-title {
     display: none;
 }
@@ -1104,6 +1107,7 @@ header.main #mobile-menu ul ul li a {
   background: #7bae4e;
   text-align: center;
   margin-left: -170px;
+  opacity: 0.8;
 }
 
 #slider .slides li #settlementtext1 {
@@ -1242,11 +1246,36 @@ header.main #mobile-menu ul ul li a {
 #slider .flex-direction-nav .flex-next:hover {
   background: rgba(0, 0, 0, 0.4) url("/Content/images/right.png") no-repeat center;
 }
-
+#slider-text-only {
+    display: none;
+    padding: 20px 0 60px 0;
+    background: #7bae4e;
+}
+#slider-text-only .text1 {
+    width: 100%;
+    margin: 30px 0 15px 0;
+    font-family: 'Open Sans', 'sans-serif';
+    font-size: 24pt;
+    color: #fff;
+    text-transform:none;
+    text-align: center;
+}
+#slider-text-only .text2 {
+    font-family: 'Open Sans', 'sans-serif';
+    font-size: 16pt;
+    text-align: center;
+}
+#slider-text-only .text2 a {
+    padding: 0.25em;
+    background: rgba(0, 0, 0, 0.73);
+    color: #fff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
 /* What We Do / About
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
 section.aboutwhatwedo {
-    /*background-color: #70a346;*/
     background-color: #223115;
     min-height: calc(100% - 98px);
     height: auto !important;
@@ -1316,91 +1345,13 @@ section.aboutwhatwedo .callus {
 section.info {
   background-color: #f65339;
 }
-section.info.i2 {
-  padding: 40px 0 0;
-}
-section.info.i2 .center {
-  padding-bottom: 55px;
-  border-bottom: 1px solid #ececec;
-}
-section.info .col-4:nth-child(3n+1) {
-  padding-right: 60px;
-}
-section.info .col-4:nth-child(3n+2) {
-  padding-left: 30px;
-  padding-right: 30px;
-}
-section.info .col-4:nth-child(3n+3) {
-  padding-left: 60px;
-}
-section.info .col-4 .icon {
-  width: 72px;
-  height: 72px;
-  -webkit-border-top-right-radius: 50%;
-  -webkit-border-bottom-right-radius: 50%;
-  -webkit-border-bottom-left-radius: 50%;
-  -webkit-border-top-left-radius: 50%;
-  -moz-border-radius-topright: 50%;
-  -moz-border-radius-bottomright: 50%;
-  -moz-border-radius-bottomleft: 50%;
-  -moz-border-radius-topleft: 50%;
-  border-top-right-radius: 50%;
-  border-bottom-right-radius: 50%;
-  border-bottom-left-radius: 50%;
-  border-top-left-radius: 50%;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  -webkit-box-shadow: 0 0 0 1px #c2c2c2;
-  -moz-box-shadow: 0 0 0 1px #c2c2c2;
-  box-shadow: 0 0 0 1px #c2c2c2;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  float: left;
-  margin-right: 20px;
-}
-section.info .col-4 .icon.i1 {
-  background: url("images/i1.png") no-repeat center;
-}
-section.info .col-4 .icon.i2 {
-  background: url("images/i2.png") no-repeat center;
-}
-section.info .col-4 .icon.i3 {
-  background: url("images/i3.png") no-repeat center;
-}
-section.info .col-4 h3 {
-  font-family: 'PT Sans', 'sans-serif';
-  font-weight: 700;
-  font-size: 18px;
-  color: #404148;
-  padding: 0;
-  text-transform: none;
-  margin-bottom: 10px;
-}
-section.info .col-4 p {
-  font-family: 'PT Sans', 'sans-serif';
-  font-size: 12px;
-  color: #8c8d95;
-  margin-bottom: 0;
-}
-section.info .col-8 {
+section.info .col-12 {
     padding: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
 }
-section.info .col-8:nth-child(3n+1) {
-  padding-right: 60px;
-}
-section.info .col-8:nth-child(3n+2) {
-  padding-left: 30px;
-  padding-right: 30px;
-}
-section.info .col-8:nth-child(3n+3) {
-  padding-left: 60px;
-}
-section.info .col-8 h3 {
+section.info .col-12 h3 {
   font-family: 'PT Sans', 'sans-serif';
   font-weight: 700;
   font-size: 18px;
@@ -1410,17 +1361,7 @@ section.info .col-8 h3 {
   margin-bottom: 10px;
   text-align: center;
 }
-section.info .col-8 h3 a {
-    color: white;
-}
-section.info .col-8 p {
-  font-family: 'PT Sans', 'sans-serif';
-  font-size: 14px;
-  color: white;
-  margin-bottom: 0;
-  text-align: center;
-}
-section.info .col-8 p a {
+section.info .col-12 h3 a {
     color: white;
 }
 /* Donate
@@ -2036,6 +1977,10 @@ section.events .allevents {
     font-size: 12pt;
     color: white;
 }
+section.events .allevents #scroll-instruction {
+    display: none;
+    color: #fcc5bc;
+}
 section.events .allevents a {
     color: white;
     text-decoration: underline;
@@ -2365,7 +2310,6 @@ section.pics h2 {
   text-transform: uppercase;
   font-family: 'Open Sans', 'sans-serif';
   font-weight: 700;
-  /*font-size: 37px;*/
   font-size: 58px;
   text-shadow: 0 3px 0 rgba(0, 0, 0, 0.11);
 }
@@ -2374,9 +2318,12 @@ section.pics .pics-container {
     white-space: nowrap;
 }
 section.pics .pic {
-    display: inline;
-    height: 200px;
+    display: inline-block;
+    height: 150px;
     padding: 0 20px;
+}
+section.pics .pic img {
+    height: 150px;
 }
 section.pics .button {
     width: 100%;
@@ -2385,8 +2332,8 @@ section.pics .button {
 }
 section.pics .button a {
     display: inline-block;
-    width: 390px;
-    height: 78px;
+    width: 350px;
+    height: 70px;
     background: #f65339;
     -webkit-border-top-right-radius: 3px;
     -webkit-border-bottom-right-radius: 3px;
@@ -2407,7 +2354,7 @@ section.pics .button a {
     -moz-box-shadow: 0 3px 0 0 #d8422a;
     box-shadow: 0 3px 0 0 #d8422a;
     text-align: center;
-    line-height: 78px;
+    line-height: 70px;
     font-family: 'Open Sans', 'sans-serif';
     font-weight: 700;
     color: #fff;
@@ -4649,28 +4596,11 @@ section.donate-text .col-4 form #submit:hover {
     background-size: 80%;
     background-position: left center;
   }
-  /*header.main nav > ul > li > a {
-    font-size: 14px;
-    padding: 0 14px;
-  }*/
   header.main nav {
       display: none;
   }
   header.main #mobile-button {
       display: block;
-  }
-  #slider {
-    width: 800px;
-  }
-  section.info .col-4 .icon {
-    float: none;
-    margin: 0 auto 10px;
-  }
-  section.info .col-4 h3 {
-    text-align: center;
-  }
-  section.info .col-4 p {
-    text-align: center;
   }
   section.donate #line {
     width: 800px;
@@ -4678,12 +4608,6 @@ section.donate-text .col-4 form #submit:hover {
   section.donate .col-6.but a {
     width: 350px;
     font-size: 20px;
-  }
-  section.events .news .info .tag {
-    margin-top: 10px;
-  }
-  section.events .news .more {
-    width: 100%;
   }
   section.bottom .text {
     top: 40%;
@@ -4790,6 +4714,47 @@ section.donate-text .col-4 form #submit:hover {
   section.latest-donations .peoples .col-4 {
     width: 33.33333333333333%;
   }
+  #slider {
+    width: 800px;
+  }
+  #slider .slides li #settlementtext1 {
+    width: 700px;
+    left: 28%;
+  }
+  #slider .slides li #supportservicestext1 {
+    height: 220px;
+    width: 755px;
+    left: 24.25%;
+  }
+  #slider .slides li #communitytext1 {
+    width: 700px;
+    left: 27.5%;
+  }
+  #slider .slides li #settlementtext2 a {
+    left: 31%;
+  }
+  #slider .slides li #supportservicestext2 a {
+    left: 43%;
+  }
+  #slider .slides li #communitytext2 a {
+    left: 43%;
+  }
+  #slider-text-only {
+    display: none;
+  }
+  section.pics .button a {
+    width: 250px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 22px;
+  }
+  section.how-help .col-6 .how-help-content-box {
+    height: 100px;
+  }
+  section.how-help .col-4 h3, 
+  section.how-help .col-6 h3 {
+      font-size: 17px;
+  }
 }
 /* Tablets
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
@@ -4800,42 +4765,10 @@ section.donate-text .col-4 form #submit:hover {
   header.main #mobile-button {
     display: block;
   }
-  #slider {
-    width: 500px;
-  }
-  #slider .slides li .text1 {
-    height: 40px;
-    font-size: 30px;
-    line-height: 30px;
-  }
-  #slider .slides li .text2 {
-    font-size: 18px;
-    line-height: 25px;
-    height: 25px;
-  }
   header.main nav,
   header.top .right .email,
   header.top .right .donate {
     display: none;
-  }
-  section.info .col-4:nth-child(3n+1) {
-    padding-right: 30px;
-  }
-  section.info .col-4:nth-child(3n+2) {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  section.info .col-4:nth-child(3n+3) {
-    padding-left: 30px;
-  }
-  section.info .col-4 h3 {
-    font-size: 14px;
-  }
-  #slider .flex-direction-nav .flex-next {
-    right: -48px;
-  }
-  #slider .flex-direction-nav .flex-prev {
-    left: -48px;
   }
   section.donate {
     height: auto;
@@ -4866,49 +4799,6 @@ section.donate-text .col-4 form #submit:hover {
   }
   .col-2i:nth-child(5n+5) {
       width: 100%;
-  }
-  section.how-help h2,
-  section.latest-donations h2 {
-    font-size: 30px;
-  }
-  section.how-help .col-6.left,
-  section.how-help .col-6.right {
-    width: 100%;
-    padding: 0;
-    margin-bottom: 20px;
-  }
-  section.events .about,
-  section.events .news,
-  section.events .photos {
-    padding: 0;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  section.events .photos h3 {
-    padding-left: 0;
-  }
-  section.events .news .more {
-    margin-top: 0;
-  }
-  section.events .news .info .tag {
-    margin-top: 0;
-  }
-  section.events #photo-slider .col-6:nth-child(2n+1),
-  section.events #photo-slider .col-6:nth-child(2n+2),
-  section.events #photo-slider {
-    padding: 0;
-  }
-  section.events #photo-slider .col-6:nth-child(2n+1) .flex-control-nav,
-  section.events #photo-slider .col-6:nth-child(2n+2) .flex-control-nav,
-  section.events #photo-slider .flex-control-nav {
-    display: none;
-  }
-  section.events #photo-slider .col-6 {
-    width: 33.333333333333%;
-    padding: 0 5px !important;
-  }
-  section.events .photos h3 .control {
-    right: 0;
   }
   section.bottom .col-4 {
     width: 100%;
@@ -5018,6 +4908,9 @@ section.donate-text .col-4 form #submit:hover {
   .small-title {
     display: block;
   }
+  section.latest-donations h2 {
+    font-size: 30px;
+  }
   section.latest-donations .peoples .col-3, 
   section.latest-donations .peoples .col-4 {
     width: 50%;
@@ -5025,19 +4918,73 @@ section.donate-text .col-4 form #submit:hover {
   section.latest-donations .peoples .col-4:nth-child(3n + 3) {
     width: 100%;
   }
+  #slider {
+    display: none;
+  }
+  #slider-text-only {
+    display: block;
+  }
+  section.events h3 {
+    font-size: 22px;
+  }
+  section.events .col-4 {
+    width: 100%;
+    height: auto;
+  }
+  section.events .col-8 {
+    width: 100%;
+    height: 250px;
+    border: 5px solid;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+  section.events .allevents #scroll-instruction {
+    display: block;
+  }
+  section.events #eventlist {
+    margin: 0;
+  }
+  section.events #eventlist h3 {
+    text-align: center;
+  }
+  section.events #eventlist table {
+    margin: 0 auto 25px auto;
+  }
+  section.events #eventlist table td {
+    font-size: 22px;
+  }
+  section.pics h2 {
+    font-size: 40px;
+  }
+  section.pics .pic {
+    height: 100px;
+  }
+  section.pics .pic img {
+    height: 100px;
+  }
+  section.pics .button a {
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+  }
+  section.how-help h2 {
+    font-size: 30px;
+  }
+  section.how-help .col-4, 
+  section.how-help .col-6 {
+    width: 100%;
+  }
+  section.how-help .col-4 .how-help-content-box {
+    height: 100px;
+  }
 }
 /* Mobile
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
 @media (max-width: 550px) {
   .center {
-    width: 260px;
-  }
-  #slider {
-    width: 260px;
-  }
-  #slider .slides li .text1,
-  #slider .slides li .text2 {
-    display: none;
+    width: 320px;
   }
   header.top .tel {
     font-size: 14px;
@@ -5051,17 +4998,6 @@ section.donate-text .col-4 form #submit:hover {
   header.top .right .search input[type='search'] {
     width: 128px;
   }
-  section.info .col-4 {
-    width: 100%;
-    padding: 0!important;
-    margin-bottom: 15px;
-  }
-  #slider .flex-direction-nav .flex-next {
-    right: 3px;
-  }
-  #slider .flex-direction-nav .flex-prev {
-    left: 3px;
-  }
   section.donate #line {
     width: 260px;
   }
@@ -5074,24 +5010,6 @@ section.donate-text .col-4 form #submit:hover {
   }
   .col-2i {
     width: 100%;
-  }
-  section.how-help h2 {
-    font-size: 20px;
-  }
-  section.how-help .c1,
-  section.how-help .c2,
-  section.how-help .c3,
-  section.how-help .c4 {
-    width: 100%;
-  }
-  section.how-help .col-6.line {
-    display: none;
-  }
-  section.how-help .more {
-    width: 100%;
-  }
-  section.events #photo-slider .col-6 {
-    width: 50%;
   }
   section.contacts .col-5 form #submit {
     width: 100%;
@@ -5152,10 +5070,63 @@ section.donate-text .col-4 form #submit:hover {
     width: 100%;
   }
   section#awic-membership-sign-up-body .form-center .form-group select#FeeOption {
-    width: 120px;
+    width: 150px;
   }
   section.aboutwhatwedo table td img {
     width: 100px;
     padding: 0 20px 20px 0;
+  }
+  #slider {
+    display: none;
+  }
+  #slider-text-only {
+    display: block;
+  }
+  #slider-text-only .text1 {
+    //font-size: 22pt;
+  }
+  #slider-text-only .text2 {
+    padding: 0.25em;
+    font-size: 14pt;
+    background: rgba(0, 0, 0, 0.73);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+  }
+  #slider-text-only .text2 a {
+    padding: 0;
+    background: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+  }
+  section.events h3 {
+    font-size: 18px;
+  }
+  section.events #eventlist table td {
+    font-size: 18px;
+  }
+  section.pics h2 {
+    font-size: 30px;
+  }
+  section.pics .pic {
+    height: 75px;
+    padding: 0 5px;
+  }
+  section.pics .pic img {
+    height: 75px;
+  }
+  section.pics .button a {
+    width: 140px;
+    height: 50px;
+    line-height: 25px;
+    font-size: 16px;
+  }
+  section.how-help h2 {
+    font-size: 20px;
+  }
+  section.how-help .col-4 .how-help-content-box, 
+  section.how-help .col-6 .how-help-content-box {
+    height: 130px;
   }
 }
