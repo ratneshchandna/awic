@@ -4769,6 +4769,9 @@ section.donate-text .col-4 form #submit:hover {
   aside.blog .video {
     margin-bottom: 20px;
   }
+  section.aboutwhatwedo {
+    margin: 0 auto -52px;
+  }
   section.secondary-body {
     margin: 0 auto -52px;
   }
@@ -5000,6 +5003,9 @@ section.donate-text .col-4 form #submit:hover {
   .gallery .photos .col-4 {
   height: calc(500px/3); /*Warning: 500px depends on (.center) of .center*/
   }
+  section.aboutwhatwedo {
+    margin: 0 auto -76px;
+  }
   section.secondary-body {
     margin: 0 auto -76px;
   }
@@ -5007,10 +5013,10 @@ section.donate-text .col-4 form #submit:hover {
     height: 76px;
   }
   .big-title {
-    display: block;
+    display: none;
   }
   .small-title {
-    display: none;
+    display: block;
   }
   section.latest-donations .peoples .col-3, 
   section.latest-donations .peoples .col-4 {
@@ -5125,6 +5131,9 @@ section.donate-text .col-4 form #submit:hover {
   section.top-page-nav h2 {
     font-size: 30px;
   }
+  section.aboutwhatwedo {
+    margin: 0 auto -90px;
+  }
   section.secondary-body {
     margin: 0 auto -90px;
   }
@@ -5141,5 +5150,12 @@ section.donate-text .col-4 form #submit:hover {
   section.latest-donations .peoples .col-4, 
   section.latest-donations .peoples .col-6 {
     width: 100%;
+  }
+  section#awic-membership-sign-up-body .form-center .form-group select#FeeOption {
+    width: 120px;
+  }
+  section.aboutwhatwedo table td img {
+    width: 100px;
+    padding: 0 20px 20px 0;
   }
 }

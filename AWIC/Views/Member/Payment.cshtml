@@ -3,16 +3,20 @@
 
 @if(Model.FeeOption != FeeOption.OneYearPatronage)
 {
-    ViewBag.Title = "Membership Fee Payment";
+    ViewBag.BigTitle = "Membership Fee Payment";
 }
 else
 {
-    ViewBag.Title = "Patronage Fee Payment";
+    ViewBag.BigTitle = "Patronage Fee Payment";
+}
+@{
+    ViewBag.SmallTitle = "Fee Payment";
 }
 
 <section id="awic-fee-payment-title" class="title-center top-page-nav">
     <div class="center cf">
-        <h2>@ViewBag.Title</h2>
+        <h2 class="big-title">@ViewBag.BigTitle</h2>
+        <h2 class="small-title">@ViewBag.SmallTitle</h2>
     </div>
 </section>
 <section id="awic-fee-payment-body" class="secondary-body">
