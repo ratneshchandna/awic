@@ -5,9 +5,9 @@ syntax: glob
 *.mdf
 *.ldf
 *.cache
-*.[Pp]ublish.xml
 *.tmp
 *.swp
+*.pubxml
 Logs/
 obj/
 [Bb]in
