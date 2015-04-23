@@ -220,18 +220,7 @@
   <ItemGroup>
     <Content Include="BadRequest.aspx" />
     <Content Include="BadRequest.html" />
-    <Content Include="Content\flyers\awic_updated_programmes.jpg" />
     <Content Include="Content\default-skin.css" />
-    <Content Include="Content\gallery\Chrysanthemum.jpg" />
-    <Content Include="Content\gallery\Desert.jpg" />
-    <Content Include="Content\gallery\Hydrangeas.jpg" />
-    <Content Include="Content\gallery\Jellyfish.jpg" />
-    <Content Include="Content\gallery\Koala.jpg" />
-    <Content Include="Content\gallery\Lighthouse.jpg" />
-    <Content Include="Content\gallery\Nature-Wallpaper-1.jpg" />
-    <Content Include="Content\gallery\Penguins.jpg" />
-    <Content Include="Content\gallery\Portrait.jpg" />
-    <Content Include="Content\gallery\Tulips.jpg" />
     <Content Include="Content\general.css" />
     <Content Include="Content\green.event.calendar.css" />
     <Content Include="Content\images\arco_logo.png" />
@@ -283,7 +272,6 @@
     <Content Include="PageNotFound.aspx" />
     <Content Include="PageNotFound.html" />
     <Content Include="AppSettings.config" />
-    <Content Include="Content\calendar\calendar.pdf" />
     <None Include="Properties\PublishProfiles\AWIC.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\initPhotoSwipe.js" />
