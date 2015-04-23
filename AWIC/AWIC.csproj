@@ -220,8 +220,6 @@
   <ItemGroup>
     <Content Include="BadRequest.aspx" />
     <Content Include="BadRequest.html" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\flyers\awic_updated_programmes.jpg" />
     <Content Include="Content\default-skin.css" />
     <Content Include="Content\gallery\Chrysanthemum.jpg" />
@@ -282,11 +280,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="PageNotFound.aspx" />
     <Content Include="PageNotFound.html" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="AppSettings.config" />
     <Content Include="Content\calendar\calendar.pdf" />
     <None Include="Properties\PublishProfiles\AWIC.pubxml" />
@@ -302,11 +297,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\photoswipe-ui-default.js" />
     <Content Include="Scripts\photoswipe.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\scripts.js" />
     <Content Include="Scripts\stripe.js" />
     <Content Include="Scripts\_references.js" />
@@ -365,27 +357,35 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201511050739183_InitialCreate.resx">
       <DependentUpon>201511050739183_InitialCreate.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511050811323_AddedEventModelRestrictions.resx">
       <DependentUpon>201511050811323_AddedEventModelRestrictions.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511050841203_AddedAllDayAsEventProperty.resx">
       <DependentUpon>201511050841203_AddedAllDayAsEventProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511122253412_AddedDonationsModel.resx">
       <DependentUpon>201511122253412_AddedDonationsModel.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511130041340_AddedPaymentSucceededBoolProperty.resx">
       <DependentUpon>201511130041340_AddedPaymentSucceededBoolProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511130239577_FixedAmountProperty.resx">
       <DependentUpon>201511130239577_FixedAmountProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511130414114_RemovedPaymentSucceededBoolProperty.resx">
       <DependentUpon>201511130414114_RemovedPaymentSucceededBoolProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511280714205_AddedWeeklyDates.resx">
       <DependentUpon>201511280714205_AddedWeeklyDates.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
