@@ -64,7 +64,7 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
 
         // find root element of slide
         var clickedListItem = closest(eTarget, function (el) {
-            return (el.className && el.className === 'col-4');
+            return (el.className && (el.className === 'col-4' || el.className === 'col-4 col-4-wide'));
         });
 
         if (!clickedListItem) {

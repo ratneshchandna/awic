@@ -382,7 +382,7 @@ html[xmlns] .slides {
 /* Fonts
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
 .center {
-  width: 1080px;
+  width: 1080px; /* Warning: Other css rules depend on this absolute value */
   margin: 0 auto;
 }
 html {
@@ -506,7 +506,7 @@ header.main {
   background: #fff;
 }
 header.main .center {
-  height: 98px;
+  height: 98px; /* Warning: Other css rules depend on this absolute value */
   position: relative;
 }
 header.main .logo {
@@ -1123,16 +1123,17 @@ section.events .allevents a {
     text-decoration: underline;
 }
 section.events #eventlist {
-    position: relative;
     margin: 0 0 0 100px;
-    height: 100%;
+}
+section.events #eventlist .loading, 
+section.events #eventlist .loadingFailed {
+    font-size: 24pt;
 }
 section.events #eventlist .loading {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    font-size: 24pt;
+    margin-top: calc(225px - 0.5em);
+}
+section.events #eventlist .loadingFailed {
+    margin-top: calc(225px - 1.6em);
 }
 section.events #eventlist table {
     font-family: 'Open Sans', 'sans-serif';
@@ -1269,19 +1270,18 @@ section.how-help .col-6 {
 }
 section.how-help .col-4 .how-help-content-box, 
 section.how-help .col-6 .how-help-content-box {
-    position: relative;
+    display: table;
 }
 section.how-help .col-4 .how-help-content-box {
-    height: 150px;
+    height: 120px;
 }
 section.how-help .col-6 .how-help-content-box {
-    height: 80px;
+    height: 90px;
 }
 section.how-help .col-4 .how-help-content-box > .content-middle,
 section.how-help .col-6 .how-help-content-box > .content-middle {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    display: table-cell;
+    vertical-align: middle;
 }
 section.how-help .col-4 h3, 
 section.how-help .col-6 h3 {
@@ -1294,7 +1294,7 @@ section.how-help .col-6 h3 {
 section.how-help .col-4 p, 
 section.how-help .col-6 p {
   display: inline-block;
-  margin-bottom: 15px;
+  margin-bottom: 0;
   font-family: 'Open Sans', 'sans-serif';
   font-weight: 400;
   font-size: 13px;
@@ -1448,8 +1448,8 @@ section.latest-donations .peoples .donated .right:before {
 /* Gallery
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
 .gallery {
-    margin-top: 10px;
-    margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .gallery .photos .col-4 {
   margin-top: 12px;
@@ -1460,14 +1460,15 @@ section.latest-donations .peoples .donated .right:before {
   position: relative;
   text-align: center;
 }
+.gallery .photos .col-4-wide {
+  display: table;
+}
 .gallery .photos .col-4 .pics-container-wide {
-    position: absolute;
-    width: calc(100% - 12px); /*Warning: 12px depends on (padding-left + padding-right) of .gallery .photos .col-4*/
-    top: 50%;
-    transform: translate(0,-50%);
+  display: table-cell;
+  vertical-align: middle;
 }
 .gallery .photos .col-4 .pics-container-tall {
-    height: 100%;
+  height: 100%;
 }
 .gallery .photos .col-4 div > a {
   display: block;
@@ -1862,7 +1863,7 @@ footer .line .copy span {
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
 @media (max-width: 1150px) {
   .center {
-    width: 800px;
+    width: 800px; /* Warning: Other css rules depend on this absolute value */
   }
   header.main .logo {
     width: 200px;
@@ -1927,14 +1928,20 @@ footer .line .copy span {
   #slider-text-only {
     display: none;
   }
+  section.events #eventlist .loadingFailed {
+    margin-top: calc(225px - 2.2em);
+}
   section.pics .button a {
     width: 250px;
     height: 60px;
     line-height: 60px;
     font-size: 22px;
   }
+  section.how-help .col-4 .how-help-content-box {
+    height: 160px;
+  }
   section.how-help .col-6 .how-help-content-box {
-    height: 100px;
+    height: 120px;
   }
   section.how-help .col-4 h3, 
   section.how-help .col-6 h3 {
@@ -1945,7 +1952,7 @@ footer .line .copy span {
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
 @media (max-width: 850px) {
   .center {
-    width: 500px;
+    width: 500px; /* Warning: Other css rules depend on this absolute value */
   }
   header.main #mobile-button {
     display: block;
@@ -1982,7 +1989,8 @@ footer .line .copy span {
     font-size: 35px;
   }
   .gallery .photos .col-4 {
-  height: calc(500px/3); /*Warning: 500px depends on (.center) of .center*/
+    width: 50%;
+    height: calc(500px/2); /*Warning: 500px depends on (.center) of .center*/
   }
   section.aboutwhatwedo {
     margin: 0 auto -76px;
@@ -2036,6 +2044,12 @@ footer .line .copy span {
   section.events #eventlist {
     margin: 0;
   }
+  section.events #eventlist .loading {
+    margin-top: calc(125px - 0.7em);
+  }
+  section.events #eventlist .loadingFailed {
+    margin-top: calc(125px - 2.4em);
+  }
   section.events #eventlist h3 {
     text-align: center;
   }
@@ -2075,13 +2089,14 @@ footer .line .copy span {
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
 @media (max-width: 550px) {
   .center {
-    width: 320px;
+    width: 320px; /* Warning: Other css rules depend on this absolute value */
   }
   .col-2i {
     width: 100%;
   }
   .gallery .photos .col-4 {
-  height: calc(260px/3); /*Warning: 260px depends on (.center) of .center*/
+    width: 100%;
+    height: 320px; /*Warning: 320px depends on (.center) of .center*/
   }
   section.top-page-nav h2 {
     font-size: 30px;
@@ -2140,6 +2155,12 @@ footer .line .copy span {
   section.events h3 {
     font-size: 18px;
   }
+  section.events #eventlist .loading {
+    margin-top: calc(125px - 0.7em);
+  }
+  section.events #eventlist .loadingFailed {
+    margin-top: calc(125px - 3em);
+  }
   section.events #eventlist table td {
     font-size: 18px;
   }
@@ -2164,6 +2185,6 @@ footer .line .copy span {
   }
   section.how-help .col-4 .how-help-content-box, 
   section.how-help .col-6 .how-help-content-box {
-    height: 130px;
+    height: 140px;
   }
 }

@@ -174,27 +174,31 @@
         var preLoad = function(){
             $('#eventlist').html('<div class="text-center loading"><strong>Loading ... </strong></div>');
         };
+        var onFail = function(){
+            $('#eventlist').html('<div class="text-center loadingFailed"><strong>Sorry, but it looks like ' +
+                'something went wrong on our side. We\'ll get to fixing it right away! </strong></div>');
+        }
         var getEventsForWeek = function(){
             preLoad();
             $.post(
                 '@Url.Action("GetEventsForWeek", "Events")',
                 'currentDay=' + day.toString() + '&currentMonth=' + month.toString() + '&currentYear=' + year.toString(),
-                function(data){
+                function (data) {
                     $('#eventlist').html(data);
                 },
                 'html'
-            );
+            ).fail(onFail);
         };
         var getEventsForMonth = function(){
             preLoad();
             $.post(
                 '@Url.Action("GetEventsForMonth", "Events")',
                 'currentMonth=' + month.toString() + '&currentYear=' + year.toString(),
-                function(data){
+                function (data) {
                     $('#eventlist').html(data);
                 },
                 'html'
-            );
+            ).fail(onFail);
         };
         // Initialise the calendar
         $('#calendar').eCalendar({

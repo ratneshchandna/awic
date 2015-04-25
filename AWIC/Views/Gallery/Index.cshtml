@@ -15,28 +15,30 @@
                     @{
                         foreach (string file in ViewBag.Files)
                         {
-                            <div class="col-4">
-                                @if (ViewBag.Wides[ViewBag.Files.IndexOf(file)])
-                                {
+                            if (ViewBag.Wides[ViewBag.Files.IndexOf(file)])
+                            {
+                                <div class="col-4 col-4-wide">
                                     <div class="pics-container-wide">
                                         <a class="a-wide" href="~/Content/gallery/@Path.GetFileName(file)"
-                                           data-size="@ViewBag.Sizes[ViewBag.Files.IndexOf(file)]">
+                                            data-size="@ViewBag.Sizes[ViewBag.Files.IndexOf(file)]">
                                             <img class="img-wide" src="~/Content/gallery/@Path.GetFileName(file)" alt="" />
                                             <span class="mask"></span>
                                         </a>
                                     </div>
-                                }
-                                else
-                                {
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-4">
                                     <div class="pics-container-tall">
                                         <a class="a-tall" href="~/Content/gallery/@Path.GetFileName(file)"
-                                           data-size="@ViewBag.Sizes[ViewBag.Files.IndexOf(file)]">
+                                            data-size="@ViewBag.Sizes[ViewBag.Files.IndexOf(file)]">
                                             <img class="img-tall" src="~/Content/gallery/@Path.GetFileName(file)" alt="" />
                                             <span class="mask"></span>
                                         </a>
                                     </div>
-                                }
-                            </div>
+                                </div>
+                            }
                         }
                     }
                 </div>
