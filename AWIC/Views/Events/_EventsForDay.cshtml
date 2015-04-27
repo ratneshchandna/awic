@@ -8,13 +8,9 @@
         {
             <tr>
                 <td class="event-time">
-                    @if (!e.AllDay)
+                    @if (!e.AllDayOrTBD)
                     {
                         <span>@e.EventDateAndTime.ToShortTimeString()</span>
-                    }
-                    else
-                    {
-                        <span>All Day</span>
                     }
                 </td>
                 <td class="event-description">@e.EventDescription</td>

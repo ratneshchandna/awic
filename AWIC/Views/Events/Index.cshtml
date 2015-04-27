@@ -18,7 +18,7 @@
             <table class="table">
                 <tr class="text-center">
                     <th>
-                        @Html.ActionLink("All Day", "Index", new { sortOrder = ViewBag.AllDaySortParam })
+                        @Html.ActionLink("All Day or TBD", "Index", new { sortOrder = ViewBag.AllDayOrTBDSortParam })
                     </th>
                     <th>
                         @Html.ActionLink("Event Date and Time", "Index", new { sortOrder = ViewBag.EventDateAndTimeSortParm })
@@ -32,10 +32,10 @@
                 {
                     <tr>
                         <td class="text-center">
-                            @Html.DisplayFor(modelItem => item.AllDay)
+                            @Html.DisplayFor(modelItem => item.AllDayOrTBD)
                         </td>
                         <td>
-                            @if (item.AllDay)
+                            @if (item.AllDayOrTBD)
                             {
                                 <span>@item.EventDateAndTime.ToLongDateString()</span>
                             }

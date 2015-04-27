@@ -16,8 +16,8 @@ namespace AWIC.Models
         [Required]
         public int ID { get; set; }
 
-        [Display(Name = "All Day")]
-        public bool AllDay { get; set; }
+        [Display(Name = "All Day or TBD")]
+        public bool AllDayOrTBD { get; set; }
 
         [Required]
         [Display(Name="Event Date and Time")]

@@ -29,7 +29,7 @@ namespace AWIC.Controllers
         {
             ViewBag.EventDateAndTimeSortParm = String.IsNullOrEmpty(sortOrder) ? "event_date_and_time_desc" : "";
             ViewBag.EventDescriptionSortParm = sortOrder == "event_description" ? "event_description_desc" : "event_description";
-            ViewBag.AllDaySortParam = sortOrder == "all_day" ? "all_day_desc" : "all_day";
+            ViewBag.AllDayOrTBDSortParam = sortOrder == "all_day" ? "all_day_desc" : "all_day";
 
             string beginningOfMonth = Months[((today.Month) - 1)] + " 01, " + today.Year;
             DateTime beginningOfMonthDate = DateTime.Parse(beginningOfMonth);
@@ -58,10 +58,10 @@ namespace AWIC.Controllers
                     events = events.OrderByDescending(e => e.EventDescription);
                     break;
                 case "all_day":
-                    events = events.OrderBy(e => e.AllDay);
+                    events = events.OrderBy(e => e.AllDayOrTBD);
                     break;
                 case "all_day_desc":
-                    events = events.OrderByDescending(e => e.AllDay);
+                    events = events.OrderByDescending(e => e.AllDayOrTBD);
                     break;
                 default:
                     events = events.OrderBy(e => e.EventDateAndTime);
@@ -99,14 +99,14 @@ namespace AWIC.Controllers
                 db.Events.Add(@event);
             }
 
-            // Keep track of repeated event's all day flag and description, 
+            // Keep track of repeated event's all day or TBD flag and description, 
             // as well as a list of dates it repeats on. Once this information 
             // is collected (after the 2 while loops), it will be used to search 
             // for the repeated events in the DB (after they've been committed) 
             // and the their IDs will be written to the WeeklyDates property in 
             // each of those events
 
-            bool repeatedAllDay = @event.AllDay;
+            bool repeatedAllDayOrTBD = @event.AllDayOrTBD;
             string repeatedEventDescription = @event.EventDescription;
             List<DateTime> repeatedDatesAndTimes = new List<DateTime>();
             repeatedDatesAndTimes.Add(@event.EventDateAndTime);
@@ -118,7 +118,7 @@ namespace AWIC.Controllers
             {
                 db.Events.Add(new Event
                 {
-                    AllDay = @event.AllDay,
+                    AllDayOrTBD = @event.AllDayOrTBD,
                     EventDateAndTime = eventDateAndTime,
                     EventDescription = @event.EventDescription
                 });
@@ -134,7 +134,7 @@ namespace AWIC.Controllers
             {
                 db.Events.Add(new Event
                 {
-                    AllDay = @event.AllDay,
+                    AllDayOrTBD = @event.AllDayOrTBD,
                     EventDateAndTime = eventDateAndTime,
                     EventDescription = @event.EventDescription
                 });
@@ -150,7 +150,7 @@ namespace AWIC.Controllers
             foreach (DateTime dateAndTime in repeatedDatesAndTimes)
             {
                 Event repeatedEvent = db.Events.FirstOrDefault(
-                                                                e => e.AllDay == repeatedAllDay &&
+                                                                e => e.AllDayOrTBD == repeatedAllDayOrTBD &&
                                                                 e.EventDescription == repeatedEventDescription &&
                                                                 e.EventDateAndTime == dateAndTime
                                                               );
@@ -169,7 +169,7 @@ namespace AWIC.Controllers
             foreach (DateTime dateAndTime in repeatedDatesAndTimes)
             {
                 Event repeatedEvent = db.Events.FirstOrDefault(
-                                                                e => e.AllDay == repeatedAllDay &&
+                                                                e => e.AllDayOrTBD == repeatedAllDayOrTBD &&
                                                                 e.EventDescription == repeatedEventDescription &&
                                                                 e.EventDateAndTime == dateAndTime
                                                               );
@@ -188,7 +188,7 @@ namespace AWIC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "AllDay,EventDateAndTime,EventDescription")] Event @event, string weekly)
+        public async Task<ActionResult> Create([Bind(Include = "AllDayOrTBD,EventDateAndTime,EventDescription")] Event @event, string weekly)
         {
             if (ModelState.IsValid)
             {
@@ -265,7 +265,7 @@ namespace AWIC.Controllers
 
             Event editedEvent = new Event
             {
-                AllDay = Boolean.Parse(Request.Form.Get("AllDay").Split(',')[0]), 
+                AllDayOrTBD = Boolean.Parse(Request.Form.Get("AllDayOrTBD").Split(',')[0]), 
                 EventDateAndTime = editedDateAndTime, 
                 EventDescription = Request.Form.Get("EventDescription")
             };
@@ -298,7 +298,7 @@ namespace AWIC.Controllers
 
                                 if (repeatedEventToUpdate != null)
                                 {
-                                    if (!TryUpdateModel(repeatedEventToUpdate, "", new string[] { "AllDay", "EventDescription" }))
+                                    if (!TryUpdateModel(repeatedEventToUpdate, "", new string[] { "AllDayOrTBD", "EventDescription" }))
                                     {
                                         return View(eventToUpdate);
                                     }
@@ -329,7 +329,7 @@ namespace AWIC.Controllers
                 }
                 else
                 {
-                    if (TryUpdateModel(eventToUpdate, "", new string[] { "AllDay", "EventDateAndTime", "EventDescription" }))
+                    if (TryUpdateModel(eventToUpdate, "", new string[] { "AllDayOrTBD", "EventDateAndTime", "EventDescription" }))
                     {
                         try
                         {
@@ -354,7 +354,7 @@ namespace AWIC.Controllers
             {
                 if(String.IsNullOrEmpty(makeweekly))
                 {
-                    if (TryUpdateModel(eventToUpdate, "", new string[] { "AllDay", "EventDateAndTime", "EventDescription" }))
+                    if (TryUpdateModel(eventToUpdate, "", new string[] { "AllDayOrTBD", "EventDateAndTime", "EventDescription" }))
                     {
                         try
                         {
@@ -371,7 +371,7 @@ namespace AWIC.Controllers
                 }
                 else
                 {
-                    if (TryUpdateModel(eventToUpdate, "", new string[] { "AllDay", "EventDateAndTime", "EventDescription" }))
+                    if (TryUpdateModel(eventToUpdate, "", new string[] { "AllDayOrTBD", "EventDateAndTime", "EventDescription" }))
                     {
                         try
                         {
