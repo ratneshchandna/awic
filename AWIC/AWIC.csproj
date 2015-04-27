@@ -207,6 +207,10 @@
     <Compile Include="Migrations\201511280714205_AddedWeeklyDates.Designer.cs">
       <DependentUpon>201511280714205_AddedWeeklyDates.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512040547532_UpdatedEventsAllDayToAllDayOrTBD.cs" />
+    <Compile Include="Migrations\201512040547532_UpdatedEventsAllDayToAllDayOrTBD.Designer.cs">
+      <DependentUpon>201512040547532_UpdatedEventsAllDayToAllDayOrTBD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Donations.cs" />
@@ -377,6 +381,9 @@
     <EmbeddedResource Include="Migrations\201511280714205_AddedWeeklyDates.resx">
       <DependentUpon>201511280714205_AddedWeeklyDates.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512040547532_UpdatedEventsAllDayToAllDayOrTBD.resx">
+      <DependentUpon>201512040547532_UpdatedEventsAllDayToAllDayOrTBD.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
