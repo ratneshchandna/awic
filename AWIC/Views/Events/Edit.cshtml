@@ -57,6 +57,21 @@
                         @Html.ValidationMessageFor(model => model.EventDescription, "", new { @class = "text-danger" })
                     </div>
 
+                    if (!String.IsNullOrEmpty(Model.WeeklyDates))
+                    {
+                        <div class="form-group">
+                            <input type="checkbox" id="makenonweekly" name="makenonweekly" value="makenonweekly">
+                            <label for="makenonweekly">Make this a non-weekly event (delete other, repeated events)</label>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group">
+                            <input type="checkbox" id="makeweekly" name="makeweekly" value="makeweekly">
+                            <label for="makeweekly">Make this a weekly event</label>
+                        </div>
+                    }
+
                     <div class="form-group">
                         <input type="submit" value="Update">
                     </div>

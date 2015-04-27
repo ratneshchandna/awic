@@ -92,9 +92,12 @@ namespace AWIC.Controllers
             return View();
         }
 
-        private async Task AddWeeklyEventsAsync(Event @event)
+        private async Task AddWeeklyEventsAsync(Event @event, bool ignoreReferenceEvent)
         {
-            db.Events.Add(@event);
+            if(!ignoreReferenceEvent)
+            {
+                db.Events.Add(@event);
+            }
 
             // Keep track of repeated event's all day flag and description, 
             // as well as a list of dates it repeats on. Once this information 
@@ -200,7 +203,7 @@ namespace AWIC.Controllers
 
                 if (weekly != null)
                 {
-                    await AddWeeklyEventsAsync(@event);
+                    await AddWeeklyEventsAsync(@event, false);
                 }
                 else
                 {
@@ -238,7 +241,7 @@ namespace AWIC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditPost(int id)
+        public async Task<ActionResult> EditPost(int id, string makeweekly, string makenonweekly)
         {
             if (id == null)
             {
@@ -279,53 +282,39 @@ namespace AWIC.Controllers
 
             if(!String.IsNullOrEmpty(eventToUpdate.WeeklyDates))
             {
-                if(editedEvent.EventDateAndTime == eventToUpdate.EventDateAndTime)
+                if(String.IsNullOrEmpty(makenonweekly))
                 {
-                    string[] weeklyDates = eventToUpdate.WeeklyDates.Split(',');
-
-                    foreach(string weeklyDate in weeklyDates)
+                    if (editedEvent.EventDateAndTime == eventToUpdate.EventDateAndTime)
                     {
-                        int ID = int.Parse(weeklyDate);
+                        string[] weeklyDates = eventToUpdate.WeeklyDates.Split(',');
 
-                        if(ID != null)
+                        foreach (string weeklyDate in weeklyDates)
                         {
-                            Event repeatedEventToUpdate = await db.Events.FindAsync(ID);
-                        
-                            if(repeatedEventToUpdate != null)
+                            int ID = int.Parse(weeklyDate);
+
+                            if (ID != null)
                             {
-                                if(!TryUpdateModel(repeatedEventToUpdate, "", new string[] { "AllDay", "EventDescription" }))
+                                Event repeatedEventToUpdate = await db.Events.FindAsync(ID);
+
+                                if (repeatedEventToUpdate != null)
                                 {
-                                    return View(eventToUpdate);
+                                    if (!TryUpdateModel(repeatedEventToUpdate, "", new string[] { "AllDay", "EventDescription" }))
+                                    {
+                                        return View(eventToUpdate);
+                                    }
                                 }
-                            }   
+                            }
                         }
                     }
-                }
-                else
-                {
-                    // Delete weekly events
-                    await DeleteWeeklyEventsAsync(eventToUpdate);
+                    else
+                    {
+                        // Delete weekly events
+                        await DeleteWeeklyEventsAsync(eventToUpdate, false);
 
-                    // Add weekly events
-                    await AddWeeklyEventsAsync(editedEvent);
-                }
+                        // Add weekly events
+                        await AddWeeklyEventsAsync(editedEvent, false);
+                    }
 
-                try
-                {
-                    await db.SaveChangesAsync();
-
-                    return RedirectToAction("Index");
-                }
-                catch (Exception /* dex */ )
-                {
-                    //Log the error (uncomment dex variable name and add a line here to write a log. 
-                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
-                }
-            }
-            else
-            {
-                if(TryUpdateModel(eventToUpdate, "", new string[] { "AllDay", "EventDateAndTime", "EventDescription" }))
-                {
                     try
                     {
                         await db.SaveChangesAsync();
@@ -336,6 +325,67 @@ namespace AWIC.Controllers
                     {
                         //Log the error (uncomment dex variable name and add a line here to write a log. 
                         ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                    }
+                }
+                else
+                {
+                    if (TryUpdateModel(eventToUpdate, "", new string[] { "AllDay", "EventDateAndTime", "EventDescription" }))
+                    {
+                        try
+                        {
+                            await DeleteWeeklyEventsAsync(eventToUpdate, true);
+
+                            eventToUpdate.WeeklyDates = null;
+                            db.Entry(eventToUpdate).State = EntityState.Modified;
+
+                            await db.SaveChangesAsync();
+
+                            return RedirectToAction("Index");
+                        }
+                        catch (Exception /* dex */ )
+                        {
+                            //Log the error (uncomment dex variable name and add a line here to write a log. 
+                            ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if(String.IsNullOrEmpty(makeweekly))
+                {
+                    if (TryUpdateModel(eventToUpdate, "", new string[] { "AllDay", "EventDateAndTime", "EventDescription" }))
+                    {
+                        try
+                        {
+                            await db.SaveChangesAsync();
+
+                            return RedirectToAction("Index");
+                        }
+                        catch (Exception /* dex */ )
+                        {
+                            //Log the error (uncomment dex variable name and add a line here to write a log. 
+                            ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                        }
+                    }
+                }
+                else
+                {
+                    if (TryUpdateModel(eventToUpdate, "", new string[] { "AllDay", "EventDateAndTime", "EventDescription" }))
+                    {
+                        try
+                        {
+                            await db.SaveChangesAsync();
+
+                            await AddWeeklyEventsAsync(eventToUpdate, true);
+
+                            return RedirectToAction("Index");
+                        }
+                        catch (Exception /* dex */ )
+                        {
+                            //Log the error (uncomment dex variable name and add a line here to write a log. 
+                            ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                        }
                     }
                 }
             }
@@ -358,16 +408,24 @@ namespace AWIC.Controllers
             return View(@event);
         }*/
 
-        private async Task DeleteWeeklyEventsAsync(Event @event)
+        private async Task DeleteWeeklyEventsAsync(Event @event, bool ignoreReferenceEvent)
         {
             string[] weeklyDatesToDelete = @event.WeeklyDates.Split(',');
 
             foreach(string weeklyDateToDelete in weeklyDatesToDelete)
             {
-                int ID = int.Parse(weeklyDateToDelete);
-
-                if (ID != null)
+                int ID;
+                if(!int.TryParse(weeklyDateToDelete, out ID))
                 {
+                    ID = -1;
+                }
+
+                if(ID != -1)
+                {
+                    if(ignoreReferenceEvent && ID == @event.ID)
+                    {
+                        continue;
+                    }
                     Event repeatedEventToDelete = await db.Events.FindAsync(ID);
 
                     if (repeatedEventToDelete != null)
@@ -403,7 +461,7 @@ namespace AWIC.Controllers
             }
             else
             {
-                await DeleteWeeklyEventsAsync(@event);
+                await DeleteWeeklyEventsAsync(@event, false);
             }
 
             await db.SaveChangesAsync();
