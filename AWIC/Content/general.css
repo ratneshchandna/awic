@@ -671,7 +671,7 @@ header.main #mobile-menu {
   right: -1px;
   top: 80%;
   padding: 20px;
-  background: #7bae4e;
+  background: black;
   -webkit-border-top-right-radius: 3px;
   -webkit-border-bottom-right-radius: 3px;
   -webkit-border-bottom-left-radius: 3px;
@@ -690,9 +690,12 @@ header.main #mobile-menu {
 }
 header.main #mobile-menu li a {
   font-family: 'PT Sans', 'sans-serif';
-  font-size: 15px;
-  color: #38383f;
-  line-height: 20px;
+  font-size: 20px;
+  color: white;
+  line-height: 40px;
+}
+header.main #mobile-menu li a:hover {
+  color: #f65339;
 }
 header.main #mobile-menu ul ul {
   display: none;
@@ -2090,6 +2093,12 @@ footer .line .copy span {
 @media (max-width: 550px) {
   .center {
     width: 320px; /* Warning: Other css rules depend on this absolute value */
+  }
+  header.main #mobile-button {
+    display: block;
+  }
+  header.main nav {
+    display: none;
   }
   .col-2i {
     width: 100%;
