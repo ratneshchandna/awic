@@ -136,8 +136,21 @@ namespace AWIC.Helpers
                 member.FirstName + " " + member.LastName;
 
             string HTMLBody =
-                "<p>A " + (member.MembershipType == MembershipType.New ? "membership" : "membership renewal") + " form was submitted by " + 
-                    member.FirstName + " " + member.LastName + "</p>" + 
+                "<p>A " + 
+                    (
+                        member.MembershipType == MembershipType.New ? 
+                            (
+                                member.FeeOption != FeeOption.OneYearPatronage ? 
+                                    "membership" :
+                                    "patron-ship"
+                            ) : 
+                            (
+                                member.FeeOption != FeeOption.OneYearPatronage ?
+                                    "membership renewal" :
+                                    "patron-ship renewal"
+                            )
+                    ) + 
+                    " form was submitted by " + member.FirstName + " " + member.LastName + "</p>" + 
                 "<br />" +
                 "<p>Here is the form: </p>" +
                 "<p>Date: " + member.Date.ToLongDateString() + "</p>" +
