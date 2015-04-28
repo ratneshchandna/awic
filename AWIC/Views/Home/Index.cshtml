@@ -173,6 +173,7 @@
         var year = Number('@DateTime.Now.AddHours(3.0).Year');
         var preLoad = function(){
             $('#eventlist').html('<div class="text-center loading"><strong>Loading ... </strong></div>');
+            $('.hb-day-selected').removeClass('hb-day-selected');
         };
         var onFail = function(){
             $('#eventlist').html('<div class="text-center loadingFailed"><strong>Sorry, but it looks like ' +
