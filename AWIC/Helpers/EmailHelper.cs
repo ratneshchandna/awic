@@ -299,7 +299,19 @@ namespace AWIC.Helpers
                     " from " + 
                     member.FirstName + " " + member.LastName + 
                     " was made by credit card to us for his/her " + 
-                    (member.MembershipType == MembershipType.New ? "new member registration" : "membership renewal") +
+                    (
+                        member.MembershipType == MembershipType.New ? 
+                            (
+                                member.FeeOption != FeeOption.OneYearPatronage ?
+                                    "new member registration" :
+                                    "new patron registration"
+                            ) :
+                            (
+                                member.FeeOption != FeeOption.OneYearPatronage ?
+                                    "membership renewal" :
+                                    "patronage renewal"
+                            )
+                    ) +
                     ". The fee payment should be arriving in our bank account in a few days. </p>";
 
             SendEmail(User.ADMIN, Subject, HTMLBody);
