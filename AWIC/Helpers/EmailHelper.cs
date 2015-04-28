@@ -119,8 +119,21 @@ namespace AWIC.Helpers
 
         public static void SendMemberRegistrationEmail(Member member, string feeOption, string paymentMethod)
         {
-            string Subject = (member.MembershipType == MembershipType.New ? "New Member Registration - " : "Membership Renewal - " ) + 
-                             member.FirstName + " " + member.LastName;
+            string Subject = 
+                (
+                    member.MembershipType == MembershipType.New ? 
+                        (
+                            member.FeeOption != FeeOption.OneYearPatronage ? 
+                                "New Member Registration - " : 
+                                "New Patron Registration - "
+                        ) : 
+                        (
+                            member.FeeOption != FeeOption.OneYearPatronage ?
+                                "Membership Renewal - " : 
+                                "Patronage Renewal - "
+                        )
+                ) + 
+                member.FirstName + " " + member.LastName;
 
             string HTMLBody =
                 "<p>A " + (member.MembershipType == MembershipType.New ? "membership" : "membership renewal") + " form was submitted by " + 
@@ -151,8 +164,23 @@ namespace AWIC.Helpers
             string path = urlHelper.Action("Contact", "Home");
             Uri fullURL = new Uri(HttpContext.Current.Request.Url, path);
 
-            string Subject = "Your " + (member.MembershipType == MembershipType.New ? "membership at " : "membership renewal for ") + "AWIC";
-
+            string Subject = 
+                "Your " + 
+                (
+                    member.MembershipType == MembershipType.New ?
+                        (
+                            member.FeeOption != FeeOption.OneYearPatronage ?
+                                "membership at " :
+                                "patronage at "
+                        ) :
+                        (
+                            member.FeeOption != FeeOption.OneYearPatronage ?
+                                "membership renewal for " :
+                                "patronage renewal for "
+                        )
+                ) + 
+                "AWIC";
+            // : 
             string HTMLBody =
                 "<p>Hi " + member.FirstName + ", </p>" + 
                 (

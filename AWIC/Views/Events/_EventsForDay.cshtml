@@ -12,7 +12,7 @@
                     {
                         <span>
                             @e.EventDateAndTime.ToShortTimeString() to 
-                            @e.EventDateAndTime.AddHours(e.Duration).ToShortTimeString()
+                            @e.EventDateAndTime.AddHours((double)e.Duration).ToShortTimeString()
                         </span>
                     }
                 </td>
