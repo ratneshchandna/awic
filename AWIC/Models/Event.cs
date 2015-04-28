@@ -23,6 +23,9 @@ namespace AWIC.Models
         [Display(Name="Event Date and Time")]
         public DateTime EventDateAndTime { get; set; }
 
+        [Display(Name = "Duration (in hours)")]
+        public double? Duration { get; set; }
+
         [Required]
         [Display(Name = "Event Description")]
         public string EventDescription { get; set; }

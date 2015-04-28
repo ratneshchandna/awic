@@ -41,7 +41,11 @@
                             }
                             else
                             {
-                                <span>@item.EventDateAndTime.ToLongDateString() @item.EventDateAndTime.ToShortTimeString()</span>
+                                <span>
+                                    @item.EventDateAndTime.ToLongDateString() 
+                                    @item.EventDateAndTime.ToShortTimeString() to 
+                                    @item.EventDateAndTime.AddHours((double)item.Duration).ToShortTimeString()
+                                </span>
                             }
                         </td>
                         <td>

@@ -20,10 +20,10 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                     <div class="form-group">
-                        @Html.CheckBoxFor(model => model.AllDayOrTBD)
+                        @Html.CheckBoxFor(model => model.AllDayOrTBD, new { onchange = "durationToggleDisabled()" })
                         @Html.LabelFor(model => model.AllDayOrTBD)
                     </div>
-
+                    
                     <div class="form-group">
                         @Html.LabelFor(model => model.EventDateAndTime)
                         @Html.EditorFor(model => model.EventDateAndTime, new { 
@@ -35,6 +35,12 @@
                             }
                         })
                         @Html.ValidationMessageFor(model => model.EventDateAndTime, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Duration)
+                        @Html.EditorFor(model => model.Duration, new { htmlattributes = new { placeholder = "e.g. 1.5" } }) hours
+                        @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="form-group">
@@ -61,6 +67,22 @@
     </div>
     <div class="push"></div>
 </section>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ($('#AllDayOrTBD')[0].checked === true) {
+            $('#Duration').attr('disabled', 'disabled');
+        }
+    });
+
+    function durationToggleDisabled() {
+        if($('#AllDayOrTBD')[0].checked === true){
+            $('#Duration').attr('disabled', 'disabled');
+        }
+        else {
+            $('#Duration').removeAttr('disabled');
+        }
+    }
+</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

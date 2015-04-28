@@ -110,6 +110,7 @@ namespace AWIC.Controllers
             string repeatedEventDescription = @event.EventDescription;
             List<DateTime> repeatedDatesAndTimes = new List<DateTime>();
             repeatedDatesAndTimes.Add(@event.EventDateAndTime);
+            double? repeatedDuration = @event.Duration;
 
             int eventMonth = @event.EventDateAndTime.Month;
             DateTime eventDateAndTime = @event.EventDateAndTime.AddDays(-7);
@@ -118,9 +119,10 @@ namespace AWIC.Controllers
             {
                 db.Events.Add(new Event
                 {
-                    AllDayOrTBD = @event.AllDayOrTBD,
+                    AllDayOrTBD = repeatedAllDayOrTBD,
                     EventDateAndTime = eventDateAndTime,
-                    EventDescription = @event.EventDescription
+                    Duration = repeatedDuration,
+                    EventDescription = repeatedEventDescription
                 });
 
                 repeatedDatesAndTimes.Add(eventDateAndTime);
@@ -134,9 +136,10 @@ namespace AWIC.Controllers
             {
                 db.Events.Add(new Event
                 {
-                    AllDayOrTBD = @event.AllDayOrTBD,
+                    AllDayOrTBD = repeatedAllDayOrTBD,
                     EventDateAndTime = eventDateAndTime,
-                    EventDescription = @event.EventDescription
+                    Duration = repeatedDuration,
+                    EventDescription = repeatedEventDescription
                 });
 
                 repeatedDatesAndTimes.Add(eventDateAndTime);
@@ -152,7 +155,8 @@ namespace AWIC.Controllers
                 Event repeatedEvent = db.Events.FirstOrDefault(
                                                                 e => e.AllDayOrTBD == repeatedAllDayOrTBD &&
                                                                 e.EventDescription == repeatedEventDescription &&
-                                                                e.EventDateAndTime == dateAndTime
+                                                                e.EventDateAndTime == dateAndTime && 
+                                                                e.Duration == repeatedDuration
                                                               );
                 if (repeatedEvent != null)
                 {
@@ -171,7 +175,8 @@ namespace AWIC.Controllers
                 Event repeatedEvent = db.Events.FirstOrDefault(
                                                                 e => e.AllDayOrTBD == repeatedAllDayOrTBD &&
                                                                 e.EventDescription == repeatedEventDescription &&
-                                                                e.EventDateAndTime == dateAndTime
+                                                                e.EventDateAndTime == dateAndTime && 
+                                                                e.Duration == repeatedDuration
                                                               );
                 if (repeatedEvent != null)
                 {
@@ -188,7 +193,7 @@ namespace AWIC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "AllDayOrTBD,EventDateAndTime,EventDescription")] Event @event, string weekly)
+        public async Task<ActionResult> Create([Bind(Include = "AllDayOrTBD,EventDateAndTime,Duration,EventDescription")] Event @event, string weekly)
         {
             if (ModelState.IsValid)
             {
@@ -199,6 +204,28 @@ namespace AWIC.Controllers
                     ModelState.AddModelError("EventDateAndTime", "The event's date and time cannot be before " + beginningOfMonth);
 
                     return View(@event);
+                }
+
+                if (!@event.AllDayOrTBD)
+                {
+                    if (@event.Duration == null)
+                    {
+                        ModelState.AddModelError("Duration", "Duration is required");
+
+                        return View(@event);
+                    }
+                    else if(@event.Duration < 0.5)
+                    {
+                        ModelState.AddModelError("Duration", "Duration must be greater than 0 and more than or equal to 0.5 hours");
+
+                        return View(@event);
+                    }
+                    else if(@event.EventDateAndTime.Day < @event.EventDateAndTime.AddHours((double)@event.Duration).Day)
+                    {
+                        ModelState.AddModelError("Duration", "The duration of the event cannot go past midnight");
+
+                        return View(@event);
+                    }
                 }
 
                 if (weekly != null)
@@ -255,29 +282,72 @@ namespace AWIC.Controllers
                 return HttpNotFound();
             }
 
+            Event editedEvent = new Event
+            {
+                ID = eventToUpdate.ID,
+                AllDayOrTBD = Boolean.Parse(Request.Form.Get("AllDayOrTBD").Split(',')[0]),
+                EventDescription = Request.Form.Get("EventDescription"),
+                WeeklyDates = eventToUpdate.WeeklyDates
+            };
+
+            bool invalidEditedDateAndTimeOrDuration = false;
+
             DateTime editedDateAndTime;
             if(!DateTime.TryParse(Request.Form.Get("EventDateAndTime"), out editedDateAndTime))
             {
                 ModelState.AddModelError("EventDateAndTime", "The date and time entered is not valid. Please change it to a valid date. ");
 
-                return View(eventToUpdate);
+                invalidEditedDateAndTimeOrDuration = true;
             }
-
-            Event editedEvent = new Event
+            else
             {
-                AllDayOrTBD = Boolean.Parse(Request.Form.Get("AllDayOrTBD").Split(',')[0]), 
-                EventDateAndTime = editedDateAndTime, 
-                EventDescription = Request.Form.Get("EventDescription")
-            };
+                editedEvent.EventDateAndTime = editedDateAndTime;
+            }
 
             string beginningOfMonth = Months[((today.Month) - 1)] + " 01, " + today.Year;
             DateTime beginningOfMonthDate = DateTime.Parse(beginningOfMonth);
 
-            if (editedEvent.EventDateAndTime < beginningOfMonthDate)
+            if(!invalidEditedDateAndTimeOrDuration)
             {
-                ModelState.AddModelError("EventDateAndTime", "The event's date and time cannot be before " + beginningOfMonth);
+                if (editedEvent.EventDateAndTime < beginningOfMonthDate)
+                {
+                    ModelState.AddModelError("EventDateAndTime", "The event's date and time cannot be before " + beginningOfMonth);
 
-                return View(eventToUpdate);
+                    invalidEditedDateAndTimeOrDuration = true;
+                }
+            }
+
+            double editedDuration;
+            if (!editedEvent.AllDayOrTBD)
+            {
+                if (!Double.TryParse(Request.Form.Get("Duration"), out editedDuration))
+                {
+                    ModelState.AddModelError("Duration", "The duration is not valid. Please change it to a valid number. ");
+
+                    invalidEditedDateAndTimeOrDuration = true;
+                }
+                else
+                {
+                    editedEvent.Duration = editedDuration;
+
+                    if (editedEvent.Duration < 0.5)
+                    {
+                        ModelState.AddModelError("Duration", "Duration must be greater than 0 and more than or equal to 0.5 hours");
+
+                        invalidEditedDateAndTimeOrDuration = true;
+                    }
+                    else if (editedEvent.EventDateAndTime.Day != editedEvent.EventDateAndTime.AddHours((double)editedEvent.Duration).Day)
+                    {
+                        ModelState.AddModelError("Duration", "The duration of the event cannot go past midnight");
+
+                        invalidEditedDateAndTimeOrDuration = true;
+                    }
+                }
+            }
+
+            if (invalidEditedDateAndTimeOrDuration)
+            {
+                return View(editedEvent);
             }
 
             if(!String.IsNullOrEmpty(eventToUpdate.WeeklyDates))
@@ -298,12 +368,29 @@ namespace AWIC.Controllers
 
                                 if (repeatedEventToUpdate != null)
                                 {
-                                    if (!TryUpdateModel(repeatedEventToUpdate, "", new string[] { "AllDayOrTBD", "EventDescription" }))
+                                    if (!TryUpdateModel(repeatedEventToUpdate, "", new string[] { "AllDayOrTBD", "Duration", "EventDescription" }))
                                     {
-                                        return View(eventToUpdate);
+                                        return View(editedEvent);
+                                    }
+                                    else
+                                    {
+                                        repeatedEventToUpdate.Duration = editedEvent.Duration;
+                                        db.Entry(repeatedEventToUpdate).State = EntityState.Modified;
                                     }
                                 }
                             }
+                        }
+
+                        try
+                        {
+                            await db.SaveChangesAsync();
+
+                            return RedirectToAction("Index");
+                        }
+                        catch (Exception /* dex */ )
+                        {
+                            //Log the error (uncomment dex variable name and add a line here to write a log. 
+                            ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
                         }
                     }
                     else
@@ -313,30 +400,23 @@ namespace AWIC.Controllers
 
                         // Add weekly events
                         await AddWeeklyEventsAsync(editedEvent, false);
-                    }
-
-                    try
-                    {
-                        await db.SaveChangesAsync();
 
                         return RedirectToAction("Index");
-                    }
-                    catch (Exception /* dex */ )
-                    {
-                        //Log the error (uncomment dex variable name and add a line here to write a log. 
-                        ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
                     }
                 }
                 else
                 {
-                    if (TryUpdateModel(eventToUpdate, "", new string[] { "AllDayOrTBD", "EventDateAndTime", "EventDescription" }))
+                    if (TryUpdateModel(eventToUpdate, "", new string[] { "AllDayOrTBD", "EventDateAndTime", "Duration", "EventDescription" }))
                     {
                         try
                         {
                             await DeleteWeeklyEventsAsync(eventToUpdate, true);
 
+                            eventToUpdate.Duration = editedEvent.Duration;
                             eventToUpdate.WeeklyDates = null;
                             db.Entry(eventToUpdate).State = EntityState.Modified;
+
+                            editedEvent.WeeklyDates = null;
 
                             await db.SaveChangesAsync();
 
@@ -354,10 +434,13 @@ namespace AWIC.Controllers
             {
                 if(String.IsNullOrEmpty(makeweekly))
                 {
-                    if (TryUpdateModel(eventToUpdate, "", new string[] { "AllDayOrTBD", "EventDateAndTime", "EventDescription" }))
+                    if (TryUpdateModel(eventToUpdate, "", new string[] { "AllDayOrTBD", "EventDateAndTime", "Duration", "EventDescription" }))
                     {
                         try
                         {
+                            eventToUpdate.Duration = editedEvent.Duration;
+                            db.Entry(eventToUpdate).State = EntityState.Modified;
+
                             await db.SaveChangesAsync();
 
                             return RedirectToAction("Index");
@@ -371,13 +454,18 @@ namespace AWIC.Controllers
                 }
                 else
                 {
-                    if (TryUpdateModel(eventToUpdate, "", new string[] { "AllDayOrTBD", "EventDateAndTime", "EventDescription" }))
+                    if (TryUpdateModel(eventToUpdate, "", new string[] { "AllDayOrTBD", "EventDateAndTime", "Duration", "EventDescription" }))
                     {
                         try
                         {
+                            eventToUpdate.Duration = editedEvent.Duration;
+                            db.Entry(eventToUpdate).State = EntityState.Modified;
+
                             await db.SaveChangesAsync();
 
                             await AddWeeklyEventsAsync(eventToUpdate, true);
+
+                            editedEvent.WeeklyDates = eventToUpdate.WeeklyDates;
 
                             return RedirectToAction("Index");
                         }
@@ -390,7 +478,7 @@ namespace AWIC.Controllers
                 }
             }
 
-            return View(eventToUpdate);
+            return View(editedEvent);
         }
 
         // GET: Event/Delete/5

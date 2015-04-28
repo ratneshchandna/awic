@@ -211,6 +211,14 @@
     <Compile Include="Migrations\201512040547532_UpdatedEventsAllDayToAllDayOrTBD.Designer.cs">
       <DependentUpon>201512040547532_UpdatedEventsAllDayToAllDayOrTBD.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512040742019_AddedDurationInEventsModel.cs" />
+    <Compile Include="Migrations\201512040742019_AddedDurationInEventsModel.Designer.cs">
+      <DependentUpon>201512040742019_AddedDurationInEventsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512040846030_UpdatedDurationInEventsModel.cs" />
+    <Compile Include="Migrations\201512040846030_UpdatedDurationInEventsModel.Designer.cs">
+      <DependentUpon>201512040846030_UpdatedDurationInEventsModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Donations.cs" />
@@ -384,6 +392,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512040547532_UpdatedEventsAllDayToAllDayOrTBD.resx">
       <DependentUpon>201512040547532_UpdatedEventsAllDayToAllDayOrTBD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512040742019_AddedDurationInEventsModel.resx">
+      <DependentUpon>201512040742019_AddedDurationInEventsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512040846030_UpdatedDurationInEventsModel.resx">
+      <DependentUpon>201512040846030_UpdatedDurationInEventsModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

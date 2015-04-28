@@ -1639,6 +1639,10 @@ section#awic-event-list-body table td.event-actions .confirm-delete {
     display: block;
     padding: 5px 0;
 }
+section#awic-add-event-body .form-center .form-group input#Duration, 
+section#awic-edit-event-body .form-center .form-group input#Duration {
+    width: 100px;
+}
 /* AWIC Membership
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
 section#awic-membership-sign-up-body .linetext, 

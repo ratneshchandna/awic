@@ -10,7 +10,10 @@
                 <td class="event-time">
                     @if (!e.AllDayOrTBD)
                     {
-                        <span>@e.EventDateAndTime.ToShortTimeString()</span>
+                        <span>
+                            @e.EventDateAndTime.ToShortTimeString() to 
+                            @e.EventDateAndTime.AddHours(e.Duration).ToShortTimeString()
+                        </span>
                     }
                 </td>
                 <td class="event-description">@e.EventDescription</td>
