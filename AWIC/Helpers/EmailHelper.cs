@@ -289,7 +289,7 @@ namespace AWIC.Helpers
                     (member.PaymentMethod != PaymentMethod.CreditCard ? " as well" : "") + ". </p>" + 
                 "<p>If you have any questions or concerns about anything, feel free to reply back with your " + 
                     "message and we'll be glad to address it. You can also call Nilani Nanthan (our office " +
-                    "assistant at (416) 499-4144 with your message, who will be more than glad to help you. </p>" + 
+                    "assistant) at (416) 499-4144 with your message, who will be more than glad to help you. </p>" + 
                 "<br />" + 
                 "<p>Sincerely, </p>" + 
                 "<p>The AWIC Team</p>" + 
