@@ -1,20 +1,92 @@
+###############
+# Directories #
+###############
+bin/
+obj/
+TestResults/
+Debug/
+Release/
+Logs/
+Uploads/
+App_Data/
+Samples/
+###################
+# Compiled Source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.pdb
+*.dll.config
+*.cache
+# Include dlls if they’re in the NuGet packages directory
+!/packages/*/lib/*.dll
+!/packages/*/lib/*/*.dll
+# Include dlls if they're in the CommonReferences directory
+!*CommonReferences/*.dll
+*.nupkg
+NuGet.exe
+####################
+#     VS  Files    #
+####################
 *.suo
 *.user
 *.dgml
 *.mdf
 *.ldf
-*.cache
+# VS Upgrade Stuff #
+UpgradeLog.XML
+_UpgradeReport_Files/
+###################
+# Web publish log #
+###################
+*.Publish.xml
+*.pubxml
+#############
+# Resharper #
+#############
+/_ReSharper.*
+*.ReSharper.*
+######################
+# Logs and databases #
+######################
+*.log
+*.sqlite
+############
+# Packages #
+############
+# it’s better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+######################
+# OS generated files #
+######################
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
 *.tmp
 *.swp
-*.pubxml
-Logs/
-obj/
+packages
 [Bb]in
-Debug/
-Release/
-Uploads/
-App_Data/
-Samples/
+[Oo]bj
+[Tt]est[Rr]esults
+*.[Cc]ache
+*[Rr]esharper*
+_[Ss]cripts
+*.ncrunchsolution
+*.dot[Cc]over
+######################
+#    App Specific    #
+######################
 Content/gallery/
 Content/flyer/
 Content/calendar/
