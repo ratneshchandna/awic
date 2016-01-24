@@ -130,7 +130,7 @@ namespace AWIC.Controllers
             ModelState.AddModelError("", "Something went wrong while trying to submit your membership form. " +
                                          "Please fix any errors below, if any. Otherwise, please try again, or email " +
                                          "us your intent to sign up as a member of AWIC at " +
-                                         AWIC.Models.User.ADMIN + ". ");
+                                         System.Configuration.ConfigurationManager.AppSettings["OrganisationEmailAddress"] + ". ");
 
             return View(member);
         }

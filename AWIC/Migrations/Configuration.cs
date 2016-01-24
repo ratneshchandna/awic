@@ -19,17 +19,17 @@ namespace AWIC.Migrations
         {
             var admin = new User
             {
-                Email = User.ADMIN,
+                Email = System.Configuration.ConfigurationManager.AppSettings["OrganisationEmailAddress"],
                 EmailConfirmed = false,
-                PasswordHash = "AK0O2maSDXqmvN/zipLunJ0C1rEoyTDm/D6EXje3TkTjUfxz6CPYNMsqvq+nGtHHZQ==",
-                SecurityStamp = "83d4d10f-93d1-4967-8066-604cdc27a44b",
+                PasswordHash = System.Configuration.ConfigurationManager.AppSettings["OrganisationAdminPasswordHash"],
+                SecurityStamp = System.Configuration.ConfigurationManager.AppSettings["OrganisationAdminSecurityStamp"],
                 PhoneNumber = null,
                 PhoneNumberConfirmed = false,
                 TwoFactorEnabled = false,
                 LockoutEndDateUtc = null,
                 LockoutEnabled = false,
                 AccessFailedCount = 0,
-                UserName = User.ADMIN
+                UserName = System.Configuration.ConfigurationManager.AppSettings["OrganisationAdminUsername"]
             };;
             context.Users.AddOrUpdate(u => u.UserName, admin);
             context.SaveChanges();

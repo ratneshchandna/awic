@@ -31,12 +31,12 @@ namespace AWIC.Helpers
         {
             _config = new EmailConfig
                 {
-                    From = User.ADMIN,
+                    From = System.Configuration.ConfigurationManager.AppSettings["OrganisationEmailAddress"],
                     SMTPServer = new SMTPServer
                     {
                         Address = System.Configuration.ConfigurationManager.AppSettings["SMTPServerAddress"],
                         Port = int.Parse(System.Configuration.ConfigurationManager.AppSettings["SMTPServerPort"]),
-                        Username = User.ADMIN,
+                        Username = System.Configuration.ConfigurationManager.AppSettings["OrganisationEmailAddress"],
                         Password = System.Configuration.ConfigurationManager.AppSettings["SMTPServerPassword"]
                     }
                 };
@@ -88,7 +88,7 @@ namespace AWIC.Helpers
                 ( volunteer.Saturday  ? "<p>Saturday"  + ( !String.IsNullOrEmpty(volunteer.SaturdayTimes)  ? ": " + volunteer.SaturdayTimes  : "" ) + "</p>" : "" ) +
                 ( volunteer.Sunday    ? "<p>Sunday"    + ( !String.IsNullOrEmpty(volunteer.SundayTimes)    ? ": " + volunteer.SundayTimes    : "" ) + "</p>" : "" );
 
-            SendEmail(User.ADMIN, Subject, HTMLBody);
+            SendEmail(System.Configuration.ConfigurationManager.AppSettings["OrganisationEmailAddress"], Subject, HTMLBody);
         }
 
         public static void SendVolunteerApplicationReceivedEmail(Volunteer volunteer)
@@ -168,7 +168,7 @@ namespace AWIC.Helpers
                 "<p>Fee Option: " + feeOption + "</p>" +
                 "<p>Payment Method: " + paymentMethod + "</p>";
 
-            SendEmail(User.ADMIN, Subject, HTMLBody);
+            SendEmail(System.Configuration.ConfigurationManager.AppSettings["OrganisationEmailAddress"], Subject, HTMLBody);
         }
 
         public static void SendMemberRegistrationReceivedEmail(Member member, int amount, string feeOption, string paymentMethod)
@@ -327,7 +327,7 @@ namespace AWIC.Helpers
                     ) +
                     ". The fee payment should be arriving in our bank account in a few days. </p>";
 
-            SendEmail(User.ADMIN, Subject, HTMLBody);
+            SendEmail(System.Configuration.ConfigurationManager.AppSettings["OrganisationEmailAddress"], Subject, HTMLBody);
         }
 
         public static void SendDonationReceiptEmail(Donations donation)
@@ -383,7 +383,7 @@ namespace AWIC.Helpers
                     ) +
                     " has been made to us. The donation should be arriving in our bank account in a few days. </p>";
 
-            SendEmail(User.ADMIN, Subject, HTMLBody);
+            SendEmail(System.Configuration.ConfigurationManager.AppSettings["OrganisationEmailAddress"], Subject, HTMLBody);
         }
 
         public static void SendTestEmail(string To)

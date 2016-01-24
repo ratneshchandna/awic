@@ -43,7 +43,7 @@ namespace AWIC.Controllers
             ModelState.AddModelError("", "Something went wrong while trying to submit your volunteer application. " + 
                                          "Please fix any errors below, if any. Otherwise, please try again, or email " + 
                                          "us your intent to apply to become a volunteer for AWIC at " + 
-                                         AWIC.Models.User.ADMIN + ". ");
+                                         System.Configuration.ConfigurationManager.AppSettings["OrganisationEmailAddress"] + ". ");
 
             return View(volunteer);
         }
