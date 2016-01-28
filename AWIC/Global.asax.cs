@@ -13,6 +13,14 @@ namespace AWIC
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        protected void Application_BeginRequest()
+        {
+            if (!Request.IsSecureConnection)
+            {
+                Response.Redirect(Context.Request.Url.ToString().Replace("http:", "https:"));
+            }
+        }
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
