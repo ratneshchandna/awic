@@ -15,7 +15,7 @@ namespace AWIC
     {
         protected void Application_BeginRequest()
         {
-            if (!Request.IsSecureConnection)
+            if (!Request.IsSecureConnection && !Request.IsLocal)
             {
                 Response.Redirect(Context.Request.Url.ToString().Replace("http:", "https:"));
             }
