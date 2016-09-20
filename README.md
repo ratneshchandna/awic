@@ -11,7 +11,7 @@ With the above copyright notice being laid out, anyone viewing this repository, 
 ## Technologies and Frameworks Used
 
 * ASP.NET MVC 5
-* EF 6 Code First
+* Entity Framework 6 Code First
 * ASP.NET Identity 2
 
 ## Libraries Used
@@ -22,7 +22,7 @@ With the above copyright notice being laid out, anyone viewing this repository, 
 
 1. Open the solution in Visual Studio 2013. Build the solution to install Nuget packages. This step will automatically restore Nuget packages. Please ensure you have the latest version of Nuget installed. 
 2. Once the application is running, HTTP REST calls to Stripe and connection attempts to the SMTP server will not work, as their settings (API Keys, usernames, passwords, etc.) are not checked into this repository for security purposes. The settings, however, can be conveniently configured in the config files checked into this repository. You can find them under the "AWIC" folder as "AppSettings.config" and "WebConnectionStrings.config". These files already have a template which just needs to be filled in with your own API Keys, usernames, passwords, etc. 
-3. If you do not wish to change these settings right away, the application will work to the extent of accessing the DB only (as the default web.config file uses LocalDB), without being able to use Stripe or email functionality. If you decide to publish the application to a remote server (again, for learning purposes only), the connection strings will change to those in "WebConnectionStrings.config" and you'll have to change that file before publishing to able to access your DB. 
+3. If you do not wish to change these settings right away, the application will work to the extent of accessing the DB only (as the default web.config file uses LocalDB), without being able to use Stripe or email functionality. If you decide to publish the application to a remote server (again, for learning purposes only), the connection strings will change to those in "WebConnectionStrings.config" and you'll have to change that file before publishing to be able to access your DB. 
 
 ## Team
 
